@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+    <head>
+        <title>Market Sim</title>
+    </head>
+
+    <body ng-app="app">
+        <link href="../static/utilities/bootstrap.css" th:href="@{/utilities/bootstrap.css}" rel="stylesheet" />
+        <link href="../static/styles/marketSimStyles.css" th:href="@{/styles/marketSimStyles.css}" rel="stylesheet" />.
+
+        <script src="../static/utilities/jquery-1.12.4.js" th:src="@{/utilities/jquery-1.12.4.js}"></script>
+        <script src="../static/utilities/bootstrap.js" th:src="@{/utilities/bootstrap.js}"></script>
+        <script src="../static/utilities/angular.js" th:src="@{/utilities/angular.js}"></script>
+        <script src="../static/utilities/uirouter.js" th:src="@{/utilities/uirouter.js}"></script>
+        <!--<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>-->
+        <script src="../static/utilities/d3.js" th:src="@{/utilities/d3.js}"></script>
+
+
+        <script src="../static/javascript/mainSimModule.js" th:src="@{/javascript/mainSimModule.js}"></script>
+        <script src="../static/javascript/routes.config.js" th:src="@{/javascript/routes.config.js}"></script>.
+        <script src="../static/javascript/controllers/mainViewController.js" th:src="@{/javascript/controllers/mainViewController.js}"></script>
+        <script src="../static/javascript/controllers/testController.js" th:src="@{/javascript/controllers/testController.js}"></script>
+
+
+        <div class="container mainDiv">
+            {{test}}
+            <ui-view></ui-view>
+        </div>
+
+    </body>
+</html>
