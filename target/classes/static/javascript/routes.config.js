@@ -6,16 +6,16 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
     
     $stateProvider
         
-        // HOME STATES AND NESTED VIEWS ========================================
         .state('home', {
             url: '/home',
             controller: 'mainViewController',
             templateUrl: '/stateViews/firstMenu.html'
         })
         
-        // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
-        .state('about', {
-            // we'll get to this in a bit       
+        .state('map', {
+            url: '/map',
+            controller:  'mapController',
+            templateUrl: '/stateViews/map.html'
         });
         
 });

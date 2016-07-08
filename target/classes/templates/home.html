@@ -13,18 +13,22 @@
         <script src="../static/utilities/bootstrap.js" th:src="@{/utilities/bootstrap.js}"></script>
         <script src="../static/utilities/angular.js" th:src="@{/utilities/angular.js}"></script>
         <script src="../static/utilities/uirouter.js" th:src="@{/utilities/uirouter.js}"></script>
-        <!--<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>-->
         <script src="../static/utilities/d3.js" th:src="@{/utilities/d3.js}"></script>
 
 
         <script src="../static/javascript/mainSimModule.js" th:src="@{/javascript/mainSimModule.js}"></script>
         <script src="../static/javascript/routes.config.js" th:src="@{/javascript/routes.config.js}"></script>.
         <script src="../static/javascript/controllers/mainViewController.js" th:src="@{/javascript/controllers/mainViewController.js}"></script>
+
+        <script src="../static/javascript/services/drawing.service.js" th:src="@{/javascript/services/drawing.service.js}"></script>.
+        <script src="../static/javascript/services/generator.service.js" th:src="@{/javascript/services/generator.service.js}"></script>.
+
         <script src="../static/javascript/controllers/testController.js" th:src="@{/javascript/controllers/testController.js}"></script>
+        <script src="../static/javascript/controllers/mapController.js" th:src="@{/javascript/controllers/mapController.js}"></script>
 
 
-        <div class="container mainDiv">
-            {{test}}
+        <div class="mainDiv">
+
             <ui-view></ui-view>
         </div>
 
