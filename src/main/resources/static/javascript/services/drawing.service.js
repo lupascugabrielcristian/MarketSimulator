@@ -5,6 +5,7 @@ function drawingService(){
     return {
         drawPoints: drawPoints,
         removePoints: removePoints,
+        drawCities: drawCities,
         drawMessage: drawMessage,
         removeMessage: removeMessage,
         drawLines: drawLines,
@@ -25,6 +26,21 @@ function drawingService(){
             .style("fill", "red")
             .on('click' , changePointColor);
 
+    }
+
+    function drawCities(cities) {
+        var svg = d3.select("#mainSvgArea");
+        var circle = svg.selectAll("circle").data(cities);
+        circle.attr("cx", function(city) {return city.longitude;});
+        circle.attr("cy", function(city) {return city.latitude;});
+
+
+        circle.enter().append("circle")
+            .attr("cx", function(city) {return city.longitude;})
+            .attr("cy", function(city) {return city.latitude;})
+            .attr("r", 4)
+            .style("fill", "red")
+            .on('click' , changePointColor);
     }
 
     function changePointColor(point){
