@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e545621e-9dc6-4282-b4b2-6c5f1eb96acf" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MarketSimulation.iml" afterPath="$PROJECT_DIR$/MarketSimulation.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/stateViews/firstMenu.html" afterPath="$PROJECT_DIR$/src/main/resources/static/stateViews/firstMenu.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/stateViews/firstMenu.html" afterPath="$PROJECT_DIR$/target/classes/static/stateViews/firstMenu.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/home.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/home.html" afterPath="$PROJECT_DIR$/target/classes/templates/home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/styles/marketSimStyles.css" afterPath="$PROJECT_DIR$/src/main/resources/static/styles/marketSimStyles.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/styles/marketSimStyles.css" afterPath="$PROJECT_DIR$/target/classes/static/styles/marketSimStyles.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/javascript/routes.config.js" afterPath="$PROJECT_DIR$/src/main/resources/static/javascript/routes.config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/javascript/routes.config.js" afterPath="$PROJECT_DIR$/target/classes/static/javascript/routes.config.js" />
+      <change type="DELETED" beforePath="E:\Informatica\MarketSimulation\.gitignore" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MarketSimulation.iws" />
@@ -43,7 +32,7 @@
       <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/home.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="779">
+            <state vertical-scroll-proportion="-10.25" vertical-offset="150" max-vertical-offset="779">
               <caret line="23" column="124" selection-start-line="23" selection-start-column="124" selection-end-line="23" selection-end-column="124" />
               <folding />
             </state>
@@ -83,8 +72,8 @@
       <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.44781145" vertical-offset="0" max-vertical-offset="703">
-              <caret line="14" column="10" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
+            <state vertical-scroll-proportion="0.93602693" vertical-offset="33" max-vertical-offset="703">
+              <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -780,12 +769,12 @@
       <updated>1467988935755</updated>
       <workItem from="1467988937488" duration="3347000" />
       <workItem from="1468005872740" duration="3401000" />
-      <workItem from="1468009497124" duration="1064000" />
+      <workItem from="1468009497124" duration="1513000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7812000" />
+    <option name="totallyTimeSpent" value="8261000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -1007,7 +996,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="779">
+        <state vertical-scroll-proportion="-10.25" vertical-offset="150" max-vertical-offset="779">
           <caret line="23" column="124" selection-start-line="23" selection-start-column="124" selection-end-line="23" selection-end-column="124" />
           <folding />
         </state>
@@ -1055,8 +1044,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44781145" vertical-offset="0" max-vertical-offset="703">
-          <caret line="14" column="10" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
+        <state vertical-scroll-proportion="0.93602693" vertical-offset="33" max-vertical-offset="703">
+          <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
           <folding />
         </state>
       </provider>
