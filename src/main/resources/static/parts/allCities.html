@@ -1,0 +1,17 @@
+<div>
+        <h4>All Cities</h4>
+
+        <div class="row">
+
+                <div class="col-md-4">
+                        <div ng-repeat="city in allCities">
+                                <a ng-click="getDetails(city)">{{city.name}}</a>
+                        </div>
+                </div>
+
+                <div class="col-md-8">
+                        Name: <span ng-bind="selectedCityName"></span>
+                </div>
+
+        </div>
+</div>

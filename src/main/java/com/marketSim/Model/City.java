@@ -4,6 +4,9 @@ import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class City {
     @Id
@@ -12,9 +15,13 @@ public class City {
     private String population;
     private double latitude;
     private double longitude;
+    private List<Factory> factories;
+    private List<Cargo> cargos;
 
     public City() {
         id = ObjectId.get().toString();
+        factories = new ArrayList<>();
+        cargos = new ArrayList<>();
     }
 
     public String getName() {

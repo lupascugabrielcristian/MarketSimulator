@@ -2,10 +2,13 @@
 
     <div class="row">
 
+
         <!--Left panel-->
         <div class="col-lg-2">
-            <button class="left-panel-button" ng-click="testAction()">Get initialdata</button>
-            <button class="left-panel-button" ng-click="showPlayerDetails()">See player details</button>
+            <button class="left-panel-button btn" ng-click="testAction()">Get initialdata</button>
+            <button class="left-panel-button btn" ng-click="showPlayerDetails()">See player details</button>
+            <button class="left-panel-button btn" >Buy Ship</button>
+            <button class="left-panel-button btn" ng-click="showAllCitiesPanel()"> All Cities</button>
 
         </div>
 
@@ -29,5 +32,6 @@
     <player-details class="custom-modal" ng-hide="!showPlayerDetailsModal"></player-details>
     <ship-details class="custom-modal" ng-hide="!showShipDetailsModal" point="shipClicked"></ship-details>
     <city-details class="custom-modal" ng-hide="!showCityDetailsModal" point="cityClicked"></city-details>
+    <all-cities class="custom-modal" ng-hide="!allCitiesPanelIsVisible"></all-cities>
 
 </div>

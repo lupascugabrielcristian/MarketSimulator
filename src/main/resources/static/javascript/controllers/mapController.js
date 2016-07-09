@@ -4,6 +4,7 @@ function mapController($scope, generatorService, drawingService, player,  dataCa
     $scope.showPlayerDetailsModal = false;
     $scope.showShipDetailsModal = false;
     $scope.showCitypDetailsModal = false;
+    $scope.allCitiesPanelIsVisible = false;
 
     var resolveData = initialData.data;
 
@@ -13,10 +14,15 @@ function mapController($scope, generatorService, drawingService, player,  dataCa
 
     $scope.testAction = function() {
         drawingService.drawCities(initialCities);
+        citiesManager.addCities(initialCities);
     };
 
     $scope.showPlayerDetails = function(){
         $scope.showPlayerDetailsModal = !$scope.showPlayerDetailsModal;
+    };
+
+    $scope.showAllCitiesPanel = function() {
+        $scope.allCitiesPanelIsVisible = !$scope.allCitiesPanelIsVisible;
     };
 
     $scope.$on(events.pointClicked, function(event, args){
