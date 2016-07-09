@@ -54,7 +54,7 @@ function drawingService(){
             d3.select(this).style("fill", "blue");
         }
         else {
-            d3.select(this).style("fill", "red");
+            d3.select(this).style("fill", "black");
         }
     }
 

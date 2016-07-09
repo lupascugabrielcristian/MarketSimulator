@@ -25,8 +25,8 @@ public class CitiesService implements ICitiesService {
         Random random = new Random();
 
         City newCity = new City();
-        newCity.setLatitude(random.nextInt(60));
-        newCity.setLongitude(random.nextInt(170));
+        newCity.setLatitude(random.nextInt(500));
+        newCity.setLongitude(random.nextInt(900));
 
         return newCity;
 

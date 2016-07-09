@@ -15,7 +15,12 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
         .state('map', {
             url: '/map',
             controller:  'mapController',
-            templateUrl: '/stateViews/map.html'
+            templateUrl: '/stateViews/map.html',
+            resolve: {
+                initialData: function(dataCalls) {
+                    return dataCalls.initialize();
+                }
+            }
         });
-        
+
 });

@@ -1,25 +1,15 @@
 angular.module('app').controller('mapController', mapController);
 
-function mapController($scope, generatorService, drawingService, dataCalls, citiesManager) {
-    $scope.points = [];
+function mapController($scope, generatorService, drawingService, dataCalls, citiesManager, initialData) {
 
-    $scope.selectedPoints = 0;
+    var resolveData = initialData.data;
+
+    $scope.playerName = resolveData.initialPlayer.name;
+    var initialCities = resolveData.initialCities;
+
     $scope.testAction = function() {
-
-        getInitialCities();
+        drawingService.drawCities(initialCities);
     };
 
-    function getInitialCities(){
-        dataCalls.getInitialCities().then(function(result){
-            var initialCities = result.data;
-            drawingService.drawCities(initialCities);
-        });
-    }
 
-    function doAction() {
-        $scope.points = generatorService.generatePoints(40);
-        drawingService.drawPoints($scope.points);
-        drawingService.removeLines();
-        drawingService.drawLines($scope.points);
-    }
 }
