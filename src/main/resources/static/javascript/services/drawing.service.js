@@ -1,6 +1,6 @@
 angular.module('app').service('drawingService', drawingService);
 
-function drawingService(){
+function drawingService($rootScope, events){
 
     return {
         drawPoints: drawPoints,
@@ -39,7 +39,7 @@ function drawingService(){
             .attr("cx", function(city) {return city.longitude;})
             .attr("cy", function(city) {return city.latitude;})
             .attr("r", 4)
-            .style("fill", "red")
+            .style("fill", "black")
             .on('click' , changePointColor);
     }
 
@@ -48,7 +48,7 @@ function drawingService(){
         // var svg = d3.select("#mainSvgArea");
         // var circle = svg.selectAll("circle");
         // circle.style("fill", "red");
-
+        $rootScope.$broadcast(events.pointClicked, point);
         point.selected = !point.selected;
         if (point.selected){
             d3.select(this).style("fill", "blue");

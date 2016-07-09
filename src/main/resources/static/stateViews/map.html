@@ -1,15 +1,11 @@
 <div id="fullMapView">
 
-
-
-
-
     <div class="row">
 
         <!--Left panel-->
         <div class="col-lg-2">
-            <p>{{playerName}}</p>
-            <button ng-click="testAction()">Start game</button>
+            <button class="left-panel-button" ng-click="testAction()">Get initialdata</button>
+            <button class="left-panel-button" ng-click="showPlayerDetails()">See player details</button>
 
         </div>
 
@@ -30,5 +26,8 @@
 
     </div>
 
+    <player-details class="custom-modal" ng-hide="!showPlayerDetailsModal"></player-details>
+    <ship-details class="custom-modal" ng-hide="!showShipDetailsModal" point="shipClicked"></ship-details>
+    <city-details class="custom-modal" ng-hide="!showCityDetailsModal" point="cityClicked"></city-details>
 
 </div>
