@@ -5,6 +5,10 @@ body {
 .mainDiv {
 }
 
+.button-active{
+    background-color: #8383b4;
+}
+
 .firstMenu {
 
     min-height: 500px;
@@ -66,7 +70,30 @@ body {
 .left-panel-button{
     margin-bottom: 5px;
     margin-top: 5px;
+    width: 100%;
 }
+
+time-control{
+    color: wheat;
+}
+
+time-control #days {
+    font-size: 24px;
+}
+
+time-control #control-buttons {
+    font-size: 32px;
+    text-align: center;
+}
+.time-control-button:hover{
+    color: #F5DE5C;
+}
+.time-control-button:active{
+    color: #4e4738;
+}
+
+
+
 /*=======================*/
 
 

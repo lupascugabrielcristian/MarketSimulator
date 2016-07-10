@@ -10,15 +10,18 @@
                 </div>
 
                 <div class="col-md-8">
-                        Name: <span ng-bind="selectedCityName"></span>
+                        <h4 ng-bind="selectedCityName"></h4>
 
-                        <p>Commodities</p>
-                        <div ng-repeat="commodity in commodities"><span>{{commodity.name}}</span></div>
-
-                        <p>Factories</p>
+                        <p>Factories:</p>
                         <div ng-repeat="factory in factories">
                                 <span>{{factory.commodity.quantity}} of {{factory.commodity.name}} at {{factory.commodity.defaultPrice}}</span>
                         </div>
+                        <hr>
+                        <p>Commodities</p>
+                        <div ng-repeat="commodity in commodities"><span>{{commodity.quantity}} {{commodity.name}}</span>
+                        </div>
+
+
                 </div>
 
         </div>

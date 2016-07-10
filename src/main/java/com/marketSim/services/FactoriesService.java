@@ -31,6 +31,7 @@ public class FactoriesService implements IFactoriesService {
         Factory factory = new Factory();
         Commodity commodity = availableCommodities.get(random.nextInt(availableCommodities.size()));
         factory.setCommodity(commodity);
+        factory.setProductionRate(commodity.getQuantity());
         return factory;
     }
 

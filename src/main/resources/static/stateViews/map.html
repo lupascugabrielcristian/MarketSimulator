@@ -6,9 +6,10 @@
         <!--Left panel-->
         <div class="col-lg-2">
             <button class="left-panel-button btn" ng-click="testAction()">Get initialdata</button>
-            <button class="left-panel-button btn" ng-click="showPlayerDetails()">See player details</button>
-            <button class="left-panel-button btn" >Buy Ship</button>
-            <button class="left-panel-button btn" ng-click="showAllCitiesPanel()"> All Cities</button>
+            <button ng-class="{'button-active': showPlayerDetailsModal}" class="left-panel-button btn" ng-click="showPlayerDetails()">See player details</button>
+            <button  class="left-panel-button btn" >Buy Ship</button>
+            <button class="left-panel-button btn">Construct Factory</button>
+            <button ng-class="{'button-active': allCitiesPanelIsVisible}" class="left-panel-button btn" ng-click="showAllCitiesPanel()"> All Cities</button>
 
         </div>
 
@@ -24,7 +25,7 @@
 
         <!--Right panel-->
         <div class="col-lg-2">
-
+            <time-control></time-control>
         </div>
 
     </div>
