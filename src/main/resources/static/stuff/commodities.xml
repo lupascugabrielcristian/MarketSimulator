@@ -1,0 +1,31 @@
+<parrent>
+	<commodity>
+		<name>Lemn</name>
+		<production>100</production>
+		<price>10</price>
+	</commodity>
+
+	<commodity>
+		<name>Sticla</name>
+		<production>80</production>
+		<price>20</price>
+	</commodity>
+
+	<commodity>
+		<name>Grau</name>
+		<production>500</production>
+		<price>1</price>
+	</commodity>
+
+	<commodity>
+		<name>Alimente</name>
+		<production>300</production>
+		<price>2</price>
+	</commodity>
+
+	<commodity>
+		<name>Electronice</name>
+		<production>30</production>
+		<price>20</price>
+	</commodity>
+</parrent>

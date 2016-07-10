@@ -11,6 +11,14 @@
 
                 <div class="col-md-8">
                         Name: <span ng-bind="selectedCityName"></span>
+
+                        <p>Commodities</p>
+                        <div ng-repeat="commodity in commodities"><span>{{commodity.name}}</span></div>
+
+                        <p>Factories</p>
+                        <div ng-repeat="factory in factories">
+                                <span>{{factory.commodity.quantity}} of {{factory.commodity.name}} at {{factory.commodity.defaultPrice}}</span>
+                        </div>
                 </div>
 
         </div>

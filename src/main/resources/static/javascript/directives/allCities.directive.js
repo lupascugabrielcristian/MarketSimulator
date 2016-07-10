@@ -10,6 +10,8 @@ function allCities(citiesManager){
             $scope.allCities = citiesManager.getCities();
             $scope.getDetails = function(citySelected) {
                 $scope.selectedCityName = citySelected.name;
+                $scope.factories =  citySelected.factories;
+                $scope.commodities = citySelected.commodities;
             };
         }
     }

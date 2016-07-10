@@ -6,4 +6,6 @@ import org.mongodb.morphia.annotations.Entity;
 public class Cargo {
     private String cargoName;
     private double cargoQantity;
+    private String departureId;
+    private String destinationId;
 }

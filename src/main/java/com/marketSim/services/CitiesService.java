@@ -1,7 +1,13 @@
 package com.marketSim.services;
 
 import com.marketSim.Model.City;
+import com.marketSim.Model.Commodity;
+import com.marketSim.Model.Factory;
+import com.marketSim.Repositories.CitiesRepository;
 import com.marketSim.interfaces.ICitiesService;
+import com.marketSim.interfaces.ICommoditiesParser;
+import com.marketSim.interfaces.IFactoriesService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
@@ -15,6 +21,14 @@ import java.util.Random;
 
 @Component
 public class CitiesService implements ICitiesService {
+
+    private IFactoriesService factoriesService;
+
+    @Autowired
+    public CitiesService(IFactoriesService factoriesService) {
+        this.factoriesService = factoriesService;
+    }
+
     @Override
     public List<City> generateRandomCities(int numberOfCities) {
         List<City> result = new ArrayList<>();
@@ -34,8 +48,21 @@ public class CitiesService implements ICitiesService {
         newCity.setLatitude(random.nextInt(500));
         newCity.setLongitude(random.nextInt(900));
 
+
+        Factory factory = factoriesService.getRandomFactory();
+        factory.setLocation(newCity.getName());
+        newCity.addFactory(factory);
+
+
         return newCity;
 
+    }
+
+    private Factory addAFactory(List<Commodity> availableCommodities) {
+        Factory factory = new Factory();
+        Commodity commodity = availableCommodities.get(new Random().nextInt(availableCommodities.size()));
+        factory.setCommodity(commodity);
+        return factory;
     }
 
     private String getRandomCityName(){

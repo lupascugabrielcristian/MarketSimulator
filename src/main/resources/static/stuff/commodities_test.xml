@@ -1,0 +1,12 @@
+<parrent>
+	<commodity>
+		<name>Comm1</name>
+		<production>100</production>
+		<price>10</price>
+	</commodity>
+	<commodity>
+		<name>Comm2</name>
+		<production>200</production>
+		<price>20</price>
+	</commodity>
+</parrent>

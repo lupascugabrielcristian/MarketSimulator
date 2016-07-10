@@ -16,12 +16,16 @@ public class City {
     private double latitude;
     private double longitude;
     private List<Factory> factories;
-    private List<Cargo> cargos;
+    private List<Commodity> commodities;
 
     public City() {
         id = ObjectId.get().toString();
         factories = new ArrayList<>();
-        cargos = new ArrayList<>();
+        commodities = new ArrayList<>();
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getName() {
@@ -54,5 +58,17 @@ public class City {
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    public List<Factory> getFactories() {
+        return factories;
+    }
+
+    public void addFactory(Factory factory) {
+        factories.add(factory);
+    }
+
+    public List<Commodity> getCommodities() {
+        return commodities;
     }
 }
