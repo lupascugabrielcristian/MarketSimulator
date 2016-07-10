@@ -18,6 +18,10 @@ body {
     margin: 50px;
 }
 
+.selectedRow{
+    color: #39adf0;
+}
+
 .menu-actions-group{
     padding: 15px;
 }
@@ -61,6 +65,10 @@ body {
     overflow-y: auto;
     border-radius: 10px;
     padding: 15px;
+}
+
+.custom-modal li {
+    cursor: pointer;
 }
 
 .close-modal-button{

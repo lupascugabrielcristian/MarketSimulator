@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-md-12">
+        <!--<div ng-repeat="game in games">-->
+            <!--<div> {{game.player.name}} cu {{game.player.money}}</div>-->
+        <!--</div>-->
+
+        <ul class="list-group">
+            <li ng-repeat="game in games" class="list-group-item" ng-click="selectGame(game)" ng-class="{'selectedRow': selectedGame == game}">
+                {{game.player.name}} cu {{game.player.money}}
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <button ng-show="selectedGame != null" class="btn btn-default" ng-click="loadSelectedGame()">Load this</button>
+    </div>
+</div>

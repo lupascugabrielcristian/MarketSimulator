@@ -6,6 +6,8 @@ import com.marketSim.interfaces.IGameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class GameService implements IGameService {
 
@@ -15,5 +17,15 @@ public class GameService implements IGameService {
     @Override
     public void saveGame(GameSituation gameSituation) {
         gameRepository.save(gameSituation);
+    }
+
+    @Override
+    public List<GameSituation> loadGames() {
+        return gameRepository.findAll();
+    }
+
+    @Override
+    public GameSituation loadGame(String id) {
+        return gameRepository.findOneById(id);
     }
 }

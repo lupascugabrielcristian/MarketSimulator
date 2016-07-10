@@ -1,21 +1,14 @@
 angular.module('app').controller('mapController', mapController);
 
-function mapController($scope, generatorService, drawingService, player,  dataCalls, citiesManager, initialData, events) {
+function mapController($scope, generatorService, drawingService, player,  dataCalls, citiesManager, events, game) {
     $scope.showPlayerDetailsModal = false;
     $scope.showShipDetailsModal = false;
     $scope.showCitypDetailsModal = false;
     $scope.allCitiesPanelIsVisible = false;
 
-    var resolveData = initialData.data;
 
-    $scope.playerName = resolveData.initialPlayer.name;
-    player.setPlayerData(resolveData.initialPlayer);
-    var initialCities = resolveData.initialCities;
-
-    $scope.testAction = function() {
-        drawingService.drawCities(initialCities);
-        citiesManager.addCities(initialCities);
-    };
+    var initialCities = citiesManager.getCities;
+    drawingService.drawCities(initialCities);
 
     $scope.showPlayerDetails = function(){
         $scope.showPlayerDetailsModal = !$scope.showPlayerDetailsModal;

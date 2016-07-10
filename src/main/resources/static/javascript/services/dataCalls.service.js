@@ -4,11 +4,15 @@ function dataCalls($http){
     var getInitialCitiesUrl = "/initialcities";
     var initializeUrl = "/initial";
     var saveGameSituationUrl = '/save';
+    var loadAllUrl = "/loadAll";
+    var loadGameByIdUrl = "/load";
 
     return {
         getInitialCities: getInitialCities,
         initialize: initialize,
-        saveGameSituation: saveGameSituation
+        saveGameSituation: saveGameSituation,
+        loadAllGames: loadAllGames,
+        loadOneGame: loadOneGame
     };
 
     function getInitialCities(){
@@ -28,5 +32,13 @@ function dataCalls($http){
         };
 
         return $http.post(saveGameSituationUrl, request);
+    }
+
+    function loadAllGames() {
+        return $http.get(loadAllUrl)
+    }
+
+    function loadOneGame(id) {
+        return $http.get(loadGameByIdUrl + "?id=" + id)
     }
 }
