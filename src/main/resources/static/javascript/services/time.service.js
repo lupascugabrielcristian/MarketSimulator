@@ -6,12 +6,12 @@ function timeService(citiesManager, $interval, $rootScope, events) {
 
     return {
         stop: stop,
-        nextDay: nextDay,
+        start: start,
         getDayNumber: getDayNumber,
         setDayNumber: setDayNumber
     };
 
-    function nextDay() {
+    function start() {
         timeInterval = $interval(function() {
             citiesManager.nextDay();
             days += 1;

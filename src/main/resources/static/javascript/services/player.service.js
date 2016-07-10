@@ -4,6 +4,7 @@ function player(){
     var playerData;
     return {
         setPlayerData: setPlayerData,
+        getPlayerData: getPlayerData,
         getPlayerName: getPlayerName,
         setPlayerName: setPlayerName,
         getPlayerMoney: getPlayerMoney
@@ -11,6 +12,10 @@ function player(){
 
     function setPlayerData (data) {
         playerData = data;
+    }
+
+    function getPlayerData() {
+        return playerData;
     }
 
     function getPlayerName() {

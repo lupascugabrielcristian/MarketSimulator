@@ -12,7 +12,13 @@
                     </div>
 
                     <div class="col-md-12">
-                        <div class="text-center meniu-btn cornerHover">Actiune 2</div>
+                        <div class="text-center meniu-btn cornerHover" ng-click="saveGame()">Save Game</div>
+
+                        <div ng-show="saveResult">Save Successful</div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="text-center meniu-btn cornerHover" ng-click="loadGame()">Load Game</div>
                     </div>
 
                 </div>

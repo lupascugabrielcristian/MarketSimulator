@@ -8,9 +8,9 @@ function timeControl(timeService, events) {
         },
         controller: function($scope) {
             $scope.dayNumber = timeService.getDayNumber();
+
             $scope.play = function() {
-                timeService.nextDay();
-                $scope.dayNumber = timeService.getDayNumber();
+                timeService.start();
             };
 
             $scope.stop = function() {

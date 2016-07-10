@@ -3,10 +3,12 @@ function dataCalls($http){
 
     var getInitialCitiesUrl = "/initialcities";
     var initializeUrl = "/initial";
+    var saveGameSituationUrl = '/save';
 
     return {
         getInitialCities: getInitialCities,
-        initialize: initialize
+        initialize: initialize,
+        saveGameSituation: saveGameSituation
     };
 
     function getInitialCities(){
@@ -15,5 +17,16 @@ function dataCalls($http){
 
     function initialize(){
         return $http.get(initializeUrl);
+    }
+
+    function saveGameSituation(currentPlayer, currentCities) {
+
+        var request = {
+            player: currentPlayer,
+            cities: currentCities,
+            ships: []
+        };
+
+        return $http.post(saveGameSituationUrl, request);
     }
 }
