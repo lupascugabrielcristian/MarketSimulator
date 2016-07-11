@@ -7,7 +7,10 @@ function player(){
         getPlayerData: getPlayerData,
         getPlayerName: getPlayerName,
         setPlayerName: setPlayerName,
-        getPlayerMoney: getPlayerMoney
+        getPlayerMoney: getPlayerMoney,
+        getPlayerShips: getPlayerShips,
+        setPlayerShips: setPlayerShips,
+        addShips: addShips
     };
 
     function setPlayerData (data) {
@@ -19,7 +22,12 @@ function player(){
     }
 
     function getPlayerName() {
-        return playerData.name;
+        if (playerData) {
+            return playerData.name;
+        }
+        else {
+            return "Unknown";
+        }
     }
 
     function setPlayerName(newName) {
@@ -27,6 +35,28 @@ function player(){
     }
 
     function getPlayerMoney() {
-        return playerData.money;
+        if(playerData) {
+            return playerData.money;
+        }
+        else {
+            return 0;
+        }
+    }
+
+    function getPlayerShips() {
+        if (playerData) {
+            return playerData.ships;
+        }
+        return [];
+    }
+
+    function setPlayerShips(ships) {
+        player.ships = ships;
+    }
+
+    function addShips(ships) {
+        ships.forEach(function(ship){
+            playerData.ships.push(ship);
+        });
     }
 }

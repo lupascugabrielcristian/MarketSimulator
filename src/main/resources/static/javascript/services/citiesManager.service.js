@@ -5,6 +5,7 @@ function citiesManager(){
 
     return {
         addCities: addCities,
+        setCities: setCities,
         getCities: getCities,
         nextDay: nextDay,
         timeStep: timeStep
@@ -14,6 +15,10 @@ function citiesManager(){
         citiesToAdd.forEach(function(c){
             cities.push(c);
         });
+    }
+
+    function setCities(newCities) {
+        cities = newCities;
     }
 
     function getCities() {

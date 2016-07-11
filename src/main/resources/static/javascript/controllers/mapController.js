@@ -1,10 +1,11 @@
 angular.module('app').controller('mapController', mapController);
 
-function mapController($scope, generatorService, drawingService, player,  dataCalls, citiesManager, events, game) {
+function mapController($scope, drawingService, citiesManager, events) {
     $scope.showPlayerDetailsModal = false;
     $scope.showShipDetailsModal = false;
     $scope.showCitypDetailsModal = false;
     $scope.allCitiesPanelIsVisible = false;
+    $scope.buyShipPanelIsVisible = false;
 
 
     var initialCities = citiesManager.getCities;
@@ -16,6 +17,10 @@ function mapController($scope, generatorService, drawingService, player,  dataCa
 
     $scope.showAllCitiesPanel = function() {
         $scope.allCitiesPanelIsVisible = !$scope.allCitiesPanelIsVisible;
+    };
+
+    $scope.showBuyShipPanel = function(){
+        $scope.buyShipPanelIsVisible = !$scope.buyShipPanelIsVisible;
     };
 
     $scope.$on(events.pointClicked, function(event, args){

@@ -7,6 +7,7 @@ import java.util.List;
 public class Player {
     private String id;
     private String name;
+    private long days;
     private long money;
     private List<Ship> ships;
     private List<Cargo> cargos;
@@ -30,6 +31,14 @@ public class Player {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public long getDays() {
+        return days;
+    }
+
+    public void setDays(long days) {
+        this.days = days;
     }
 
     public long getMoney() {

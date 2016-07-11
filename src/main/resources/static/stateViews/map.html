@@ -6,10 +6,10 @@
         <!--Left panel-->
         <div class="col-lg-2">
             <button ng-class="{'button-active': showPlayerDetailsModal}" class="left-panel-button btn" ng-click="showPlayerDetails()">See player details</button>
-            <button class="left-panel-button btn" >Buy Ship</button>
+            <button ng-class="{'button-active': buyShipPanelIsVisible}" class="left-panel-button btn" ng-click="showBuyShipPanel()">Buy Ship</button>
             <button class="left-panel-button btn">Construct Factory</button>
             <button ng-class="{'button-active': allCitiesPanelIsVisible}" class="left-panel-button btn" ng-click="showAllCitiesPanel()"> All Cities</button>
-            <button class="left-panel-button btn" ui-sref="home">Back to Main Menu</button>
+            <button class="left-panel-button btn" ui-sref="home">Main Menu</button>
 
         </div>
 
@@ -34,5 +34,6 @@
     <ship-details class="custom-modal" ng-hide="!showShipDetailsModal" point="shipClicked"></ship-details>
     <city-details class="custom-modal" ng-hide="!showCityDetailsModal" point="cityClicked"></city-details>
     <all-cities class="custom-modal" ng-hide="!allCitiesPanelIsVisible"></all-cities>
+    <buy-ship class="custom-modal" ng-show="buyShipPanelIsVisible"></buy-ship>
 
 </div>
