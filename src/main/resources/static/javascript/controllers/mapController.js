@@ -1,14 +1,27 @@
 angular.module('app').controller('mapController', mapController);
 
-function mapController($scope, drawingService, citiesManager, events) {
+function mapController($scope, drawingService, citiesManager, events, initialData, game, player) {
     $scope.showPlayerDetailsModal = false;
     $scope.showShipDetailsModal = false;
     $scope.showCitypDetailsModal = false;
     $scope.allCitiesPanelIsVisible = false;
     $scope.buyShipPanelIsVisible = false;
 
+    var initialCities = null;
+    var initialPlayer = null;
 
-    var initialCities = citiesManager.getCities;
+    if (!game.isLoaded()){
+        // Use initialData when user did not choose a saved game
+        initialCities = initialData.data.initialCities;
+        initialPlayer = initialData.data.initialPlayer;
+        citiesManager.setCities(initialCities);
+        player.setPlayerData(initialPlayer);
+    } else {
+        initialCities = citiesManager.getCities;
+    }
+
+
+
     drawingService.drawCities(initialCities);
 
     $scope.showPlayerDetails = function(){

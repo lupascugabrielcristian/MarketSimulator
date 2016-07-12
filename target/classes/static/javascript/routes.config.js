@@ -17,10 +17,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
             controller:  'mapController',
             templateUrl: '/stateViews/map.html',
             resolve: {
-                initialData: function(dataCalls, game) {
-                    if (game.isLoaded){
-                        return;
-                    }
+                initialData: function(dataCalls) {
                     return dataCalls.initialize();
                 }
             }

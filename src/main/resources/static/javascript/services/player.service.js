@@ -1,6 +1,6 @@
 angular.module('app').service('player', player);
 
-function player(){
+function player($rootScope, events){
     var playerData;
     return {
         setPlayerData: setPlayerData,
@@ -10,7 +10,7 @@ function player(){
         getPlayerMoney: getPlayerMoney,
         getPlayerShips: getPlayerShips,
         setPlayerShips: setPlayerShips,
-        addShips: addShips
+        buyShip: buyShip
     };
 
     function setPlayerData (data) {
@@ -22,12 +22,7 @@ function player(){
     }
 
     function getPlayerName() {
-        if (playerData) {
-            return playerData.name;
-        }
-        else {
-            return "Unknown";
-        }
+        return playerData.name;
     }
 
     function setPlayerName(newName) {
@@ -35,12 +30,7 @@ function player(){
     }
 
     function getPlayerMoney() {
-        if(playerData) {
-            return playerData.money;
-        }
-        else {
-            return 0;
-        }
+        return playerData.money;
     }
 
     function getPlayerShips() {
@@ -51,12 +41,21 @@ function player(){
     }
 
     function setPlayerShips(ships) {
-        player.ships = ships;
+        playerData.ships = ships;
     }
 
-    function addShips(ships) {
-        ships.forEach(function(ship){
-            playerData.ships.push(ship);
+    function buyShip(shipToBuy) {
+        playerData.money -= shipToBuy.price;
+
+        if (playerData.ships == null ){
+            playerData.ships = [];
+        }
+
+        playerData.ships.push(shipToBuy);
+
+        $rootScope.$broadcast(events.shipBought, {
+            playerShips: playerData.ships,
+            playerMoney: playerData.money
         });
     }
 }

@@ -100,7 +100,14 @@ time-control #control-buttons {
     color: #4e4738;
 }
 
+buy-ship .list-group-item{
+    background: transparent;
+    border: 1px solid white;
+}
 
+buy-ship .selected{
+    background: white;
+}
 
 /*=======================*/
 

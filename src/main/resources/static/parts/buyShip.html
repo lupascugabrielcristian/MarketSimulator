@@ -1,6 +1,9 @@
 <div class="row">
     <div class="col-md-12">
 
+        <p>Player's money: <span ng-bind="money"></span></p>
+
+
         <p>Player's Ships</p>
         <ul class="list-group">
             <li ng-repeat="ship in ships" class="list-group-item" >
@@ -10,15 +13,15 @@
 
         <hr>
 
-        <p>Buy new ship</p>
+        <p>Available ships:</p>
         <ul class="list-group">
-            <li ng-repeat="ship in availableShips" class="list-group-item" >
+            <li ng-repeat="ship in availableShips" class="list-group-item" ng-click="selectShip(ship)" ng-class="{'selected': ship == selectedShip}">
                 {{ship.name}} Cap: {{ship.capacity}} Price: {{ship.price}}
             </li>
         </ul>
 
 
-        <button class="btn btn-default">Buy</button>
+        <button class="btn btn-default" ng-click="buySelectedShip()">Buy</button>
 
     </div>
 
