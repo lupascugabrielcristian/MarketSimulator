@@ -12,19 +12,8 @@
 
         <p>Buy new ship</p>
         <ul class="list-group">
-            <li class="list-group-item" >
-                Ship A 1000
-            </li>
-
-            <li class="list-group-item" >
-                Ship B 2000
-            </li>
-            <li class="list-group-item" >
-                Ship C 3000
-            </li>
-
-            <li class="list-group-item" >
-                Ship D 24000
+            <li ng-repeat="ship in availableShips" class="list-group-item" >
+                {{ship.name}} Cap: {{ship.capacity}} Price: {{ship.price}}
             </li>
         </ul>
 

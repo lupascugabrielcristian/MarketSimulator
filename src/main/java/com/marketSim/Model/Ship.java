@@ -18,6 +18,7 @@ public class Ship {
     private List<Cargo> cargos;
     private double maxSpeed;
     private double speed;
+    private double price;
 
     public String getId() {
         return id;
@@ -65,5 +66,13 @@ public class Ship {
 
     public void setSpeed(double speed) {
         this.speed = speed;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 }

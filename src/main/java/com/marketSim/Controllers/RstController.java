@@ -4,9 +4,11 @@ import com.marketSim.Controllers.Requests.SaveGameRequest;
 import com.marketSim.Model.City;
 import com.marketSim.Model.GameSituation;
 import com.marketSim.Model.Player;
+import com.marketSim.Model.Ship;
 import com.marketSim.interfaces.ICitiesService;
 import com.marketSim.interfaces.IGameService;
 import com.marketSim.interfaces.IPlayerService;
+import com.marketSim.interfaces.IShipsService;
 import com.mongodb.MongoTimeoutException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +25,8 @@ public class RstController {
     private IPlayerService playerService;
     @Autowired
     private IGameService gameService;
+    @Autowired
+    private IShipsService shipsService;
 
     @RequestMapping(value = "/initialcities")
     public List<City> getInitialCities(){
@@ -77,5 +81,17 @@ public class RstController {
             return null;
         }
 
+    }
+
+    @RequestMapping(path = "/availableShips", method = RequestMethod.GET)
+    public List<Ship> getAvailableShips() {
+        List<Ship> availableShips = new ArrayList<>();
+        try {
+            availableShips = shipsService.getAvailableShips();
+        }
+        catch (MongoTimeoutException e) {
+            System.err.println("Nope, nu pot navele din baza de date");
+        }
+        return availableShips;
     }
 }

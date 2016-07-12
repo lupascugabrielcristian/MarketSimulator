@@ -1,0 +1,36 @@
+<parrent>
+	<ship>
+		<name>A</name>
+		<speed>100</speed>
+		<price>10</price>
+		<capacity>10</capacity>
+	</ship>
+
+	<ship>
+		<name>B</name>
+		<speed>80</speed>
+		<price>20</price>
+		<capacity>10</capacity>
+	</ship>
+
+	<ship>
+		<name>C</name>
+		<speed>500</speed>
+		<price>1</price>
+		<capacity>10</capacity>
+	</ship>
+
+	<ship>
+		<name>D</name>
+		<speed>300</speed>
+		<price>2</price>
+		<capacity>10</capacity>
+	</ship>
+
+	<ship>
+		<name>E</name>
+		<speed>30</speed>
+		<price>20</price>
+		<capacity>10</capacity>
+	</ship>
+</parrent>

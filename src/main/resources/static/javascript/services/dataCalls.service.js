@@ -6,13 +6,15 @@ function dataCalls($http){
     var saveGameSituationUrl = '/save';
     var loadAllUrl = "/loadAll";
     var loadGameByIdUrl = "/load";
+    var getAvailableShipsUrl = "/availableShips";
 
     return {
         getInitialCities: getInitialCities,
         initialize: initialize,
         saveGameSituation: saveGameSituation,
         loadAllGames: loadAllGames,
-        loadOneGame: loadOneGame
+        loadOneGame: loadOneGame,
+        getAvailableShips: getAvailableShips
     };
 
     function getInitialCities(){
@@ -40,5 +42,9 @@ function dataCalls($http){
 
     function loadOneGame(id) {
         return $http.get(loadGameByIdUrl + "?id=" + id)
+    }
+
+    function getAvailableShips() {
+        return $http.get(getAvailableShipsUrl)
     }
 }

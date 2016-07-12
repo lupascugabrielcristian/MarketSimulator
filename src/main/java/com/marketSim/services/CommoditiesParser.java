@@ -50,7 +50,6 @@ public class CommoditiesParser implements ICommoditiesParser {
 
     private List<Commodity> parseDocument(Document doc) {
         List<Commodity> commodities = new ArrayList<>();
-        System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
         NodeList nodes = doc.getElementsByTagName(COMMODITY_NODE);
 
         for (int i = 0; i < nodes.getLength(); i++) {
