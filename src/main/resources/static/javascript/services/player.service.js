@@ -45,17 +45,26 @@ function player($rootScope, events){
     }
 
     function buyShip(shipToBuy) {
-        playerData.money -= shipToBuy.price;
+        if (playerData.money >= shipToBuy.price) {
+            playerData.money -= shipToBuy.price;
 
-        if (playerData.ships == null ){
-            playerData.ships = [];
+            if (playerData.ships == null ){
+                playerData.ships = [];
+            }
+
+            playerData.ships.push(shipToBuy);
+
+            $rootScope.$broadcast(events.shipBought, {
+                playerShips: playerData.ships,
+                playerMoney: playerData.money
+            });
+        }
+        else {
+            $rootScope.$broadcast(events.message, {
+                message: "Cannot buy ship. Not enough money"
+            });
         }
 
-        playerData.ships.push(shipToBuy);
 
-        $rootScope.$broadcast(events.shipBought, {
-            playerShips: playerData.ships,
-            playerMoney: playerData.money
-        });
     }
 }

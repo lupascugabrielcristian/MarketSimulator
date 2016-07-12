@@ -5,7 +5,7 @@ body {
 .mainDiv {
 }
 
-.button-active{
+.button-active {
     background-color: #8383b4;
 }
 
@@ -18,26 +18,29 @@ body {
     margin: 50px;
 }
 
-.selectedRow{
+.selectedRow {
     color: #39adf0;
 }
 
-.menu-actions-group{
+.menu-actions-group {
     padding: 15px;
 }
 
-.meniu-btn{
+.meniu-btn {
     cursor: pointer;
     padding: 15px;
     font-size: 15px;
     font-family: 'Open Sans', sans-serif;
 }
-.meniu-btn:active{
+
+.meniu-btn:active {
     color: #244bac;
 }
-.meniu-btn:hover{
+
+.meniu-btn:hover {
 
 }
+
 /*====================*/
 #fullMapView {
     padding: 20px;
@@ -56,7 +59,7 @@ body {
     background-color: rgb(164, 164, 164)
 }
 
-.custom-modal{
+.custom-modal {
     background-color: rgba(227, 223, 223, 0.8);
     position: absolute;
     top: 10%;
@@ -71,17 +74,27 @@ body {
     cursor: pointer;
 }
 
-.close-modal-button{
+.close-modal-button {
     float: right;
 }
 
-.left-panel-button{
+.message-screen {
+    height: 50px;
+    display: block;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    box-shadow: 0 0 10px 0 #000;
+    padding: 11px;
+    color: #fff;
+}
+
+.left-panel-button {
     margin-bottom: 5px;
     margin-top: 5px;
     width: 100%;
 }
 
-time-control{
+time-control {
     color: wheat;
 }
 
@@ -93,28 +106,28 @@ time-control #control-buttons {
     font-size: 32px;
     text-align: center;
 }
-.time-control-button:hover{
+
+.time-control-button:hover {
     color: #F5DE5C;
 }
-.time-control-button:active{
+
+.time-control-button:active {
     color: #4e4738;
 }
 
-buy-ship .list-group-item{
+buy-ship .list-group-item {
     background: transparent;
     border: 1px solid white;
 }
 
-buy-ship .selected{
+buy-ship .selected {
     background: white;
 }
 
 /*=======================*/
 
-
-
 /*============================*/
-.cornerHover{
+.cornerHover {
     display: block;
     background: #fff;
     width: 200px;
@@ -126,7 +139,7 @@ buy-ship .selected{
     position: relative;
 }
 
-.cornerHover:after{
+.cornerHover:after {
     content: '';
     position: absolute;
     top: 0;
@@ -142,7 +155,7 @@ buy-ship .selected{
 
 }
 
-.cornerHover:before{
+.cornerHover:before {
     content: '';
     position: absolute;
     top: 0;
@@ -157,11 +170,11 @@ buy-ship .selected{
     transition: 0.2s;
 }
 
-.cornerHover:hover:after{
+.cornerHover:hover:after {
     width: 100%;
 }
 
-.cornerHover:hover:before{
+.cornerHover:hover:before {
     content: '';
     position: absolute;
     top: 0;
