@@ -9,6 +9,7 @@ function player($rootScope, events){
         setPlayerName: setPlayerName,
         getPlayerMoney: getPlayerMoney,
         getPlayerShips: getPlayerShips,
+        getPlayerShip: getPlayerShip,
         setPlayerShips: setPlayerShips,
         buyShip: buyShip
     };
@@ -38,6 +39,19 @@ function player($rootScope, events){
             return playerData.ships;
         }
         return [];
+    }
+
+    function getPlayerShip(shipName) {
+        try {
+            playerData.ships.forEach(function (ship) {
+                if (ship.name == shipName) {
+                    throw new Error(ship);
+                }
+            });
+        }
+        catch (e){
+            return e.data;
+        }
     }
 
     function setPlayerShips(ships) {

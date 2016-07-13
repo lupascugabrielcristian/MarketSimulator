@@ -1,6 +1,6 @@
 angular.module('app').service('timeService', timeService);
 
-function timeService(citiesManager, $interval, $rootScope, events) {
+function timeService(citiesManager, shipsManager, $interval, $rootScope, events) {
     var days = 0;
     var timeInterval;
 
@@ -14,6 +14,7 @@ function timeService(citiesManager, $interval, $rootScope, events) {
     function start() {
         timeInterval = $interval(function() {
             citiesManager.nextDay();
+            shipsManager.nextDay();
             days += 1;
             $rootScope.$broadcast(events.nextDay, days);
         }, 1000);

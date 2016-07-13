@@ -29,7 +29,7 @@ function citiesManager(){
         timeStep(1);
     }
 
-    // Unit aici vreau sa reprezinta cat % dintr-o zi sa inaintez
+    // Cat % dintr-o zi sa inaintez
     function timeStep(dayRatio) {
 
         cities.forEach(function(city){

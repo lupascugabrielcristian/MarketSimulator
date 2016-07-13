@@ -7,4 +7,5 @@ import java.util.List;
 public interface IShipsService {
     List<Ship> getAvailableShips();
 
+    List<Ship> getInitialShips();
 }

@@ -14,11 +14,15 @@ public class Ship {
 
     private String id;
     private String name;
+    private String ownerId;
     private double capacity;
     private List<Cargo> cargos;
     private double maxSpeed;
     private double speed;
     private double price;
+    private Position position;
+    private Position origin;
+    private Position destination;
 
     public String getId() {
         return id;
@@ -34,6 +38,14 @@ public class Ship {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
     }
 
     public double getCapacity() {
@@ -74,5 +86,29 @@ public class Ship {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
+    public Position getOrigin() {
+        return origin;
+    }
+
+    public void setOrigin(Position origin) {
+        this.origin = origin;
+    }
+
+    public Position getDestination() {
+        return destination;
+    }
+
+    public void setDestination(Position destination) {
+        this.destination = destination;
     }
 }

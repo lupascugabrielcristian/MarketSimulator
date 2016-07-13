@@ -1,14 +1,9 @@
 angular.module('app').controller('mapController', mapController);
 
-function mapController($scope, drawingService, citiesManager, events, initialData, game, player) {
-    $scope.showPlayerDetailsModal = false;
-    $scope.showShipDetailsModal = false;
-    $scope.showCityDetailsModal = false;
-    $scope.allCitiesPanelIsVisible = false;
-    $scope.buyShipPanelIsVisible = false;
-
+function mapController($scope, drawingService, citiesManager, shipsManager, events, initialData, game, player) {
     var initialCities = null;
     var initialPlayer = null;
+    var initialShips = null;
     var modalCreator = modals();
 
     if (!game.isLoaded()){
@@ -16,13 +11,17 @@ function mapController($scope, drawingService, citiesManager, events, initialDat
         initialCities = initialData.data.initialCities;
         initialPlayer = initialData.data.initialPlayer;
         citiesManager.setCities(initialCities);
+        shipsManager.setShipsData(initialPlayer.ships);
+        initialShips = initialPlayer.ships;
         player.setPlayerData(initialPlayer);
+
     } else {
         initialCities = citiesManager.getCities;
     }
 
 
     drawingService.drawCities(initialCities);
+    drawingService.drawShips(initialShips);
 
     $scope.showPlayerDetails = function(){
         modalCreator.switchToIndex(modalCreator.PLAYER_DETAILS);
@@ -36,11 +35,19 @@ function mapController($scope, drawingService, citiesManager, events, initialDat
         modalCreator.switchToIndex(modalCreator.BUY_SHIP);
     };
 
+    $scope.showAllShipsPanel = function() {
+        modalCreator.switchToIndex(modalCreator.ALL_SHIPS);
+    };
+
     $scope.$on(events.pointClicked, function(event, args){
         /* Aici args este punctul pe care s-a facut click */
         $scope.showCityDetailsModal = !$scope.showCityDetailsModal;
-        $scope.$applyAsync();
-        $scope.cityClicked = args;
+        // $scope.$applyAsync();
+        // $scope.cityClicked = args;
+    });
+
+    $scope.$on(events.nextDay, function(event, args){
+        drawingService.drawShips(shipsManager.getShipsData());
     });
 
 
@@ -50,11 +57,12 @@ function mapController($scope, drawingService, citiesManager, events, initialDat
             this.state = initialState;
         }
 
-        modalViews = [
+        var modalViews = [
             new ModalView("playerDetails", false),
             new ModalView("allCities", false),
             new ModalView("BuyShip", false),
-            new ModalView("CityDetails", false)];
+            new ModalView("CityDetails", false),
+            new ModalView("AllShips", false)];
 
         function switchToIndex(index){
             var viewToSwitch = modalViews[index];
@@ -75,6 +83,7 @@ function mapController($scope, drawingService, citiesManager, events, initialDat
             $scope.allCitiesPanelIsVisible = modalViews[1].state;
             $scope.buyShipPanelIsVisible = modalViews[2].state;
             $scope.showCityDetailsModal = modalViews[3].state;
+            $scope.allShipsModalIsVisible = modalViews[4].state;
         }
 
         return {
@@ -84,7 +93,8 @@ function mapController($scope, drawingService, citiesManager, events, initialDat
             PLAYER_DETAILS: 0,
             ALL_CITIES: 1,
             BUY_SHIP: 2,
-            CITY_DETAILS: 3
+            CITY_DETAILS: 3,
+            ALL_SHIPS: 4
         }
     }
 }

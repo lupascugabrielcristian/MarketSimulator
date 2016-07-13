@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-md-3">
+        <p>Player ships</p>
+
+        <div ng-repeat="ship in ships">
+            <a ng-click="getDetails(ship)">{{ship.name}}</a>
+        </div>
+
+    </div>
+
+    <div class="col-md-9" ng-show="selectedShip != null">
+        <h4 ng-bind="selectedShip.name"></h4>
+        Capacity: <span ng-bind="selectedShip.capacity"></span> <br>
+        Max Speed: <span ng-bind="selectedShip.maxSpeed"></span> <br>
+        X coordinate: <span ng-bind="selectedShip.position.x"></span> <br>
+        Y coordinate: <span ng-bind="selectedShip.position.y"></span> <br>
+
+        <div ng-show="selectedShip.cargos.length() > 0">
+            <p>Cargo on board</p>
+        </div>
+    </div>
+
+
+    <div class="col-md-9" ng-show="selectedShip == null">
+        Select a ship
+    </div>
+
+</div>

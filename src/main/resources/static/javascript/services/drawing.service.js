@@ -6,6 +6,7 @@ function drawingService($rootScope, events){
         drawPoints: drawPoints,
         removePoints: removePoints,
         drawCities: drawCities,
+        drawShips: drawShips,
         drawMessage: drawMessage,
         removeMessage: removeMessage,
         drawLines: drawLines,
@@ -43,19 +44,22 @@ function drawingService($rootScope, events){
             .on('click' , changePointColor);
     }
 
-    function changePointColor(point){
+    function drawShips(ships){
+        var svg = d3.select("#mainSvgArea");
+        var shipObjects = svg.selectAll("rect").data(ships);
 
-        // var svg = d3.select("#mainSvgArea");
-        // var circle = svg.selectAll("circle");
-        // circle.style("fill", "red");
-        $rootScope.$broadcast(events.pointClicked, point);
-        point.selected = !point.selected;
-        if (point.selected){
-            d3.select(this).style("fill", "blue");
-        }
-        else {
-            d3.select(this).style("fill", "black");
-        }
+
+        shipObjects.attr("x", function(ship){return ship.position.x});
+        shipObjects.attr("y", function(ship){return ship.position.y});
+
+
+        shipObjects.enter().append("rect")
+            .attr("x", function(ship){return ship.position.x})
+            .attr("y", function(ship){return ship.position.y})
+            .attr("width", 5)
+            .attr("height", 5)
+            .attr("fill", "yellow");
+
     }
 
     function drawMessage(message, x, y){
@@ -89,6 +93,24 @@ function drawingService($rootScope, events){
             }
         });
     }
+
+
+    function changePointColor(point){
+
+        // var svg = d3.select("#mainSvgArea");
+        // var circle = svg.selectAll("circle");
+        // circle.style("fill", "red");
+        $rootScope.$broadcast(events.pointClicked, point);
+        point.selected = !point.selected;
+        if (point.selected){
+            d3.select(this).style("fill", "blue");
+        }
+        else {
+            d3.select(this).style("fill", "black");
+        }
+    }
+
+
 
     function drawLine(point1, point2) {
         var svg = d3.select("#mainSvgArea");

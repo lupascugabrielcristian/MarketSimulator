@@ -15,6 +15,7 @@ public class City {
     private String population;
     private double latitude;
     private double longitude;
+    private Position position;
     private List<Factory> factories;
     private List<Commodity> commodities;
 
@@ -58,6 +59,14 @@ public class City {
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
     }
 
     public List<Factory> getFactories() {
