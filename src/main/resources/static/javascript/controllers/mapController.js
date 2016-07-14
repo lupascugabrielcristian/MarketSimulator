@@ -50,6 +50,12 @@ function mapController($scope, drawingService, citiesManager, shipsManager, even
         drawingService.drawShips(shipsManager.getShipsData());
     });
 
+    $scope.$on(events.modal, function(event, args){
+        var modalName = args.modal;
+        modalCreator.switchToName(modalName, args.closeOthers);
+        $scope.selectedShip = args.ship;
+    });
+
 
     function modals() {
         function ModalView(name, initialState) {
@@ -62,20 +68,42 @@ function mapController($scope, drawingService, citiesManager, shipsManager, even
             new ModalView("allCities", false),
             new ModalView("BuyShip", false),
             new ModalView("CityDetails", false),
-            new ModalView("AllShips", false)];
+            new ModalView("AllShips", false),
+            new ModalView("Destinations", false)];
 
-        function switchToIndex(index){
+        function switchToIndex(index, closeOthers){
             var viewToSwitch = modalViews[index];
-            switchModal(viewToSwitch);
+            switchModal(viewToSwitch,closeOthers);
         }
 
-        function switchModal(viewToSwitch) {
+        function switchToName(modalName, closeOthers){
+            try {
+                modalViews.forEach(function(modal, index){
+                    if (modalName == modal.name){
+                        throw index;
+                    }
+                })
+            }
+
+            catch (indexFound){
+                switchToIndex(indexFound, closeOthers);
+            }
+        }
+
+        function switchModal(viewToSwitch, closeOthers) {
+
+            if (closeOthers == undefined){
+                closeOthers = true;
+            }
+
             modalViews.forEach(function (modal) {
                 if (modal == viewToSwitch) {
                     modal.state = !modal.state;
                 }
                 else {
-                    modal.state = false;
+                    if (closeOthers) {
+                        modal.state = false;
+                    }
                 }
             });
 
@@ -84,17 +112,20 @@ function mapController($scope, drawingService, citiesManager, shipsManager, even
             $scope.buyShipPanelIsVisible = modalViews[2].state;
             $scope.showCityDetailsModal = modalViews[3].state;
             $scope.allShipsModalIsVisible = modalViews[4].state;
+            $scope.destinationsModalIsVisible = modalViews[5].state;
         }
 
         return {
             switchModal:  switchModal,
             switchToIndex: switchToIndex,
+            switchToName: switchToName,
             modalViews: modalViews,
             PLAYER_DETAILS: 0,
             ALL_CITIES: 1,
             BUY_SHIP: 2,
             CITY_DETAILS: 3,
-            ALL_SHIPS: 4
+            ALL_SHIPS: 4,
+            DESTINATIONS: 5
         }
     }
 }

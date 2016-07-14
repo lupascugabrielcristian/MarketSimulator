@@ -78,6 +78,24 @@ body {
     float: right;
 }
 
+.sideModal{
+    background-color: rgb(194, 194, 194);
+    position: absolute;
+    top: 18%;
+    left: 57%;
+    overflow-y: auto;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.sideModal #setButton {
+    float: right;
+}
+
+.selected-item{
+    color: #008515;
+}
+
 .message-screen {
     height: 50px;
     display: block;

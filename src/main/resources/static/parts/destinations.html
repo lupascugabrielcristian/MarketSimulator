@@ -1,0 +1,14 @@
+<div>
+    <div class="row">
+        <div class="col-sm-12">
+            <h4>Destinations</h4>
+
+            <ul>
+                <li ng-class="{'selected-item':selectedCity == city}" ng-repeat="city in cities" ng-click="selectCity(city)">{{city.name}}</li>
+            </ul>
+
+            <button id=setButton" class="btn btn-default" ng-click="setDestination()" ng-show="selectedCity">Set</button>
+        </div>
+
+    </div>
+</div>

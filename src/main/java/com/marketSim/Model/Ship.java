@@ -21,8 +21,8 @@ public class Ship {
     private double speed;
     private double price;
     private Position position;
-    private Position origin;
-    private Position destination;
+    private City destinationCity;
+    private City originCity;
 
     public String getId() {
         return id;
@@ -96,19 +96,19 @@ public class Ship {
         this.position = position;
     }
 
-    public Position getOrigin() {
-        return origin;
+    public City getDestinationCity() {
+        return destinationCity;
     }
 
-    public void setOrigin(Position origin) {
-        this.origin = origin;
+    public void setDestinationCity(City destinationCity) {
+        this.destinationCity = destinationCity;
     }
 
-    public Position getDestination() {
-        return destination;
+    public City getOriginCity() {
+        return originCity;
     }
 
-    public void setDestination(Position destination) {
-        this.destination = destination;
+    public void setOriginCity(City originCity) {
+        this.originCity = originCity;
     }
 }
