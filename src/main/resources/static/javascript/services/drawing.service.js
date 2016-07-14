@@ -32,13 +32,13 @@ function drawingService($rootScope, events){
     function drawCities(cities) {
         var svg = d3.select("#mainSvgArea");
         var circle = svg.selectAll("circle").data(cities);
-        circle.attr("cx", function(city) {return city.longitude;});
-        circle.attr("cy", function(city) {return city.latitude;});
+        circle.attr("cx", function(city) {return city.position.x;});
+        circle.attr("cy", function(city) {return city.position.y;});
 
 
         circle.enter().append("circle")
-            .attr("cx", function(city) {return city.longitude;})
-            .attr("cy", function(city) {return city.latitude;})
+            .attr("cx", function(city) {return city.position.x;})
+            .attr("cy", function(city) {return city.position.y;})
             .attr("r", 4)
             .style("fill", "black")
             .on('click' , changePointColor);

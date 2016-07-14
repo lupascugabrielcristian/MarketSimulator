@@ -51,16 +51,17 @@ function shipsManager() {
 
 
     function advanceShip(ship, dayRatio){
-        if (!ship.destination){
+        if (!ship.destinationCity){
             return;
         }
 
-        var distance = lineDistance(ship.position, ship.destination);
-        distance = distance / dayRatio;
-        var angle = calculateAngle(ship.position, ship.destination);
+        var destination = ship.destinationCity.position;
+        //var distance = lineDistance(ship.position, destination);
+        var distance = ship.maxSpeed / dayRatio;//distance / dayRatio;
+        var angle = calculateAngle(ship.position, destination);
         var newPosition = getFinalPosition(distance, angle, ship.position);
-        ship.position.x = newPosition.x;
-        ship.position.y = newPosition.y;
+        ship.position.x = newPosition.finalX;
+        ship.position.y = newPosition.finalY;
     }
 
     function lineDistance( point1, point2 )
@@ -91,6 +92,9 @@ function shipsManager() {
     function getFinalPosition(distance, angle, originalPosition) {
         var x = Math.cos(angle) * distance + originalPosition.x;
         var y = Math.sin(angle) * distance + originalPosition.y;
+
+        x = Math.round(x * 1000) / 1000;
+        y = Math.round(y * 1000) / 1000;
 
         return {
             finalX:x,

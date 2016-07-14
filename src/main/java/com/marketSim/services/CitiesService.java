@@ -3,6 +3,7 @@ package com.marketSim.services;
 import com.marketSim.Model.City;
 import com.marketSim.Model.Commodity;
 import com.marketSim.Model.Factory;
+import com.marketSim.Model.Position;
 import com.marketSim.Repositories.CitiesRepository;
 import com.marketSim.interfaces.ICitiesService;
 import com.marketSim.interfaces.ICommoditiesParser;
@@ -45,8 +46,10 @@ public class CitiesService implements ICitiesService {
 
         City newCity = new City();
         newCity.setName(getRandomCityName());
-        newCity.setLatitude(random.nextInt(500));
-        newCity.setLongitude(random.nextInt(900));
+        Position cityPosition = new Position();
+        cityPosition.setY(random.nextInt(500));
+        cityPosition.setX(random.nextInt(900));
+        newCity.setPosition(cityPosition);
 
 
         Factory factory = factoriesService.getRandomFactory();

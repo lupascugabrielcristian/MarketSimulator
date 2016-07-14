@@ -78,7 +78,7 @@ body {
     float: right;
 }
 
-.sideModal{
+.side-modal {
     background-color: rgb(194, 194, 194);
     position: absolute;
     top: 18%;
@@ -88,7 +88,7 @@ body {
     padding: 15px;
 }
 
-.sideModal #setButton {
+.side-modal #setButton {
     float: right;
 }
 

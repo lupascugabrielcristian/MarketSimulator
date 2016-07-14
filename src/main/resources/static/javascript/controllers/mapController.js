@@ -42,8 +42,8 @@ function mapController($scope, drawingService, citiesManager, shipsManager, even
     $scope.$on(events.pointClicked, function(event, args){
         /* Aici args este punctul pe care s-a facut click */
         $scope.showCityDetailsModal = !$scope.showCityDetailsModal;
-        // $scope.$applyAsync();
-        // $scope.cityClicked = args;
+        $scope.$applyAsync();
+        $scope.cityClicked = args;
     });
 
     $scope.$on(events.nextDay, function(event, args){

@@ -13,8 +13,6 @@ public class City {
     private String id;
     private String name;
     private String population;
-    private double latitude;
-    private double longitude;
     private Position position;
     private List<Factory> factories;
     private List<Commodity> commodities;
@@ -43,22 +41,6 @@ public class City {
 
     public void setPopulation(String population) {
         this.population = population;
-    }
-
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
     }
 
     public Position getPosition() {
