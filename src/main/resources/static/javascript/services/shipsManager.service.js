@@ -56,8 +56,15 @@ function shipsManager() {
         }
 
         var destination = ship.destinationCity.position;
-        //var distance = lineDistance(ship.position, destination);
-        var distance = ship.maxSpeed / dayRatio;//distance / dayRatio;
+        var distanceToGo = lineDistance(ship.position, destination);
+        var distance = ship.maxSpeed / dayRatio;
+
+        if (distanceToGo <= distance) {
+            ship.position.x = destination.x;
+            ship.position.y = destination.y;
+            ship.destinationCity = null;
+        }
+
         var angle = calculateAngle(ship.position, destination);
         var newPosition = getFinalPosition(distance, angle, ship.position);
         ship.position.x = newPosition.finalX;

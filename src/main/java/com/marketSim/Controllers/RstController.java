@@ -30,12 +30,12 @@ public class RstController {
 
     @RequestMapping(value = "/initialcities")
     public List<City> getInitialCities(){
-        return citiesService.generateRandomCities(10);
+        return citiesService.generateRandomCities(10, "/static/stuff/city_names.txt");
     }
 
     @RequestMapping(value = "/initial")
     public Object initialSetUp(){
-        List<City> cities = citiesService.generateRandomCities(10);
+        List<City> cities = citiesService.generateRandomCities(10, "/static/stuff/city_names.txt");
         List<Ship> ships = shipsService.getInitialShips();
         Player player = playerService.initializePlayer();
         player.setShips(ships);

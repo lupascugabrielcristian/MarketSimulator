@@ -10,6 +10,7 @@ import com.marketSim.interfaces.ICommoditiesParser;
 import com.marketSim.interfaces.IFactoriesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
@@ -31,21 +32,21 @@ public class CitiesService implements ICitiesService {
     }
 
     @Override
-    public List<City> generateRandomCities(int numberOfCities) {
+    public List<City> generateRandomCities(int numberOfCities, String namesFilePath) {
         List<City> result = new ArrayList<>();
 
         while (result.size() < numberOfCities) {
-            result.add(createCity());
+            result.add(createCity(namesFilePath));
         }
 
         return result;
     }
 
-    private City createCity() {
+    private City createCity(String path) {
         Random random = new Random();
 
         City newCity = new City();
-        newCity.setName(getRandomCityName());
+        newCity.setName(getRandomCityName(path));
         Position cityPosition = new Position();
         cityPosition.setY(random.nextInt(500));
         cityPosition.setX(random.nextInt(900));
@@ -68,19 +69,20 @@ public class CitiesService implements ICitiesService {
         return factory;
     }
 
-    private String getRandomCityName(){
-        List<String> allNames = readCityNames();
+    private String getRandomCityName(String path){
+        List<String> allNames = readCityNames(path);
         Random random = new Random();
         int chosenIndex = random.nextInt(allNames.size() - 1);
         return allNames.get(chosenIndex);
     }
 
-    private List<String> readCityNames(){
+    private List<String> readCityNames(String path){
         List<String> cityNames = new ArrayList<>();
+        String adresa = "-";
 
-        Resource rsrc = new ClassPathResource("/static/stuff/city_names.txt");
+        Resource rsrc = new ClassPathResource(path);
         try {
-            String adresa = rsrc.getFile().getAbsolutePath();
+            adresa = rsrc.getFile().getAbsolutePath();
             BufferedReader reader = new BufferedReader(new FileReader(adresa));
             while (true) {
                 String cityName = reader.readLine();
@@ -90,7 +92,8 @@ public class CitiesService implements ICitiesService {
                 else break;
             }
         } catch (IOException e) {
-            System.err.println("Nop");
+            System.err.println("Cannot read city_names.txt");
+            System.err.println("Path: " + adresa);
         }
 
         return cityNames;

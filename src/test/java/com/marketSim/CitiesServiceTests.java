@@ -23,7 +23,7 @@ public class CitiesServiceTests {
         ICitiesService citiesService = new CitiesService(factoriesService);
 
         // Act
-        List<City>generatedCities = citiesService.generateRandomCities(1);
+        List<City>generatedCities = citiesService.generateRandomCities(1, "/static/stuff/city_names.txt");
 
         //Assert
         assertNotNull("Should have name", generatedCities.get(0).getName());
@@ -37,7 +37,7 @@ public class CitiesServiceTests {
         ICitiesService citiesService = new CitiesService(factoriesService);
 
         // Act
-        List<City>generatedCities = citiesService.generateRandomCities(1);
+        List<City>generatedCities = citiesService.generateRandomCities(1, "/static/stuff/city_names.txt");
 
         //Assert
         assertNotNull("Should have factory", generatedCities.get(0).getFactories().size() > 0);

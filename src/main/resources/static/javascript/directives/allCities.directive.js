@@ -9,9 +9,10 @@ function allCities(citiesManager){
         controller: function($scope){
             $scope.allCities = citiesManager.getCities();
             $scope.getDetails = function(citySelected) {
-                $scope.selectedCityName = citySelected.name;
-                $scope.factories =  citySelected.factories;
-                $scope.commodities = citySelected.commodities;
+                var selectedCity = citiesManager.getCityByName(citySelected.name);
+                $scope.selectedCityName = selectedCity.name;
+                $scope.factories =  selectedCity.factories;
+                $scope.commodities = selectedCity.commodities;
             };
         }
     }

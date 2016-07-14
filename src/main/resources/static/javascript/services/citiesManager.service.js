@@ -7,6 +7,7 @@ function citiesManager(){
         addCities: addCities,
         setCities: setCities,
         getCities: getCities,
+        getCityByName: getCityByName,
         nextDay: nextDay,
         timeStep: timeStep
     };
@@ -23,6 +24,20 @@ function citiesManager(){
 
     function getCities() {
         return cities;
+    }
+
+    function getCityByName(cityName) {
+        try {
+            cities.forEach(function (city) {
+                if (city.name == cityName){
+                    throw city;
+                }
+            });
+            return null;
+        }
+        catch (city){
+            return city;
+        }
     }
 
     function nextDay() {
