@@ -3,7 +3,7 @@
         <p>Player ships</p>
 
         <ul ng-repeat="ship in ships">
-            <li ng-class="{'selected-item':selectedShip == ship}" ng-click="getDetails(ship)">{{ship.name}}</li>
+            <li ng-class="{'selected-item':selectedShip == ship}" ng-click="getShipDetails(ship)">{{ship.name}}</li>
         </ul>
 
     </div>

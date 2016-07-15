@@ -10,7 +10,7 @@ function allShips(player, citiesManager, $rootScope, events, shipsManager) {
         },
         controller: function($scope){
             $scope.allCities = citiesManager.getCities();
-            $scope.getDetails = function(ship) {
+            $scope.getShipDetails = function(ship) {
                 ship = shipsManager.getShipByName(ship.name);
                 $scope.selectedShip = ship;
             };

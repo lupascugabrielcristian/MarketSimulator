@@ -1,11 +1,11 @@
-<div>
+<div ng-click="clickMessage()">
         <h4>All Cities</h4>
 
         <div class="row">
 
                 <div class="col-md-4">
-                        <div ng-repeat="city in allCities" ng-click="getDetails(city)">
-                                <a>{{city.name}}</a>
+                        <div ng-repeat="city in allCities">
+                                <span class="city-row" ng-class="{'selectedRow}" ng-click="getCityDetails(city)" ng-bind="city.name"></span>
                         </div>
                 </div>
 

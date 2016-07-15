@@ -32,11 +32,11 @@
     </div>
     <message class="message-screen"></message>
 
-    <player-details class="custom-modal" ng-hide="!showPlayerDetailsModal"></player-details>
-    <ship-details class="custom-modal" ng-hide="!showShipDetailsModal" point="shipClicked"></ship-details>
-    <city-details class="custom-modal" ng-hide="!showCityDetailsModal" point="cityClicked"></city-details>
-    <all-cities class="custom-modal" ng-hide="!allCitiesPanelIsVisible"></all-cities>
-    <buy-ship class="custom-modal" ng-show="buyShipPanelIsVisible"></buy-ship>
-    <all-ships class="custom-modal" ng-show="allShipsModalIsVisible"></all-ships>
-    <destinations class="side-modal" ng-show="destinationsModalIsVisible" ></destinations>
+    <player-details class="custom-modal" ng-hide="!showPlayerDetailsModal" ng-class="{'collapsed': !showPlayerDetailsModal, 'to-front': showPlayerDetailsModal}"></player-details>
+    <ship-details class="custom-modal" ng-hide="!showShipDetailsModal" ng-class="{'collapsed': !showShipDetailsModal, 'to-front': showShipDetailsModal}" point="shipClicked"></ship-details>
+    <city-details class="custom-modal" ng-hide="!showCityDetailsModal" ng-class="{'collapsed': !showCityDetailsModal, 'to-front': showCityDetailsModal}"point="cityClicked"></city-details>
+    <buy-ship class="custom-modal" ng-show="buyShipPanelIsVisible" ng-class="{'collapsed': !buyShipPanelIsVisible, 'to-front': buyShipPanelIsVisible}"></buy-ship>
+    <all-ships class="custom-modal" ng-show="allShipsModalIsVisible" ng-class="{'collapsed': !allShipsModalIsVisible, 'to-front': allShipsModalIsVisible}"></all-ships>
+    <destinations class="side-modal" ng-show="destinationsModalIsVisible" ng-class="{'collapsed': !destinationsModalIsVisible, 'to-front': destinationsModalIsVisible}"></destinations>
+    <all-cities class="custom-modal" ng-hide="!allCitiesPanelIsVisible" ng-class="{'collapsed': !allCitiesPanelIsVisible, 'to-front': allCitiesPanelIsVisible}"></all-cities>
 </div>

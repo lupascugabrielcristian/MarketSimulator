@@ -41,6 +41,15 @@ body {
 
 }
 
+.collapsed {
+    visibility: collapse;
+    z-index: 0;
+}
+
+.to-front {
+    z-index: 1000;
+}
+
 /*====================*/
 #fullMapView {
     padding: 20px;
