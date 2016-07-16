@@ -24,9 +24,16 @@ function allShips(player, citiesManager, $rootScope, events, shipsManager, $stat
             };
 
             $scope.gotoCargoOperations = function() {
+                if (!$scope.selectedShip || !$scope.selectedShip.currentCity.id) {
+                    $scope.$broadcast(events.message, {
+                        message : "Cannot put together ship and city id"
+                    });
+                    return;
+                }
+
                 $state.go('CargoOperations', {
                     shipId: $scope.selectedShip.id,
-                    cityId: $scope.selectedCity.id
+                    cityId: $scope.selectedShip.currentCity.id
                 });
             };
         }

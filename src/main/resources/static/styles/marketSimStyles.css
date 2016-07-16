@@ -224,3 +224,10 @@ buy-ship .selected {
     -o-transition: 0.2s;
     transition: 0.2s;
 }
+
+
+/*======= Cargo operations =====*/
+#cargoOperationsView {
+    padding: 20px;
+    background-image: url("../images/circuits2.jpg");
+}
