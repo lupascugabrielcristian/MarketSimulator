@@ -1,6 +1,6 @@
 angular.module('app').directive('allShips', allShips);
 
-function allShips(player, citiesManager, $rootScope, events, shipsManager) {
+function allShips(player, citiesManager, $rootScope, events, shipsManager, $state, ngAudio) {
     return {
         restrict: 'AE',
         templateUrl: '/parts/allShips.html',
@@ -20,6 +20,13 @@ function allShips(player, citiesManager, $rootScope, events, shipsManager) {
                     modal: "Destinations",
                     closeOthers: false,
                     ship: $scope.selectedShip
+                });
+            };
+
+            $scope.gotoCargoOperations = function() {
+                $state.go('CargoOperations', {
+                    shipId: $scope.selectedShip.id,
+                    cityId: $scope.selectedCity.id
                 });
             };
         }

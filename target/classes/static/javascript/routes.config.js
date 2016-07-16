@@ -24,13 +24,12 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
         })
         .state('CargoOperations', {
             url: '/cargoOperations',
+            params: {
+                shipId: null,
+                cityId: null
+            },
             controller:  'cargoOperationsController',
-            templateUrl: '/stateViews/cargoOperations.html',
-            resolve: {
-                initialData: function() {
-                    return null;
-                }
-            }
+            templateUrl: '/stateViews/cargoOperations.html'
         });
 
 });

@@ -8,6 +8,7 @@ function citiesManager(){
         setCities: setCities,
         getCities: getCities,
         getCityByName: getCityByName,
+        getCityById: getCityById,
         nextDay: nextDay,
         timeStep: timeStep
     };
@@ -30,6 +31,20 @@ function citiesManager(){
         try {
             cities.forEach(function (city) {
                 if (city.name == cityName){
+                    throw city;
+                }
+            });
+            return null;
+        }
+        catch (city){
+            return city;
+        }
+    }
+
+    function getCityById(id) {
+        try {
+            cities.forEach(function (city) {
+                if (city.id == id){
                     throw city;
                 }
             });

@@ -5,12 +5,12 @@
 
         <!--Left panel-->
         <div class="col-lg-2">
-            <button ng-class="{'button-active': showPlayerDetailsModal}" class="left-panel-button btn" ng-click="showPlayerDetails()">See player details</button>
-            <button ng-class="{'button-active': buyShipPanelIsVisible}" class="left-panel-button btn" ng-click="showBuyShipPanel()">Buy Ship</button>
+            <button ng-class="{'button-active': showPlayerDetailsModal}" class="left-panel-button btn" ng-click="showPlayerDetails()"  ng-audio="/sounds/click-main.mp3">See player details</button>
+            <button ng-class="{'button-active': buyShipPanelIsVisible}" class="left-panel-button btn" ng-click="showBuyShipPanel()" ng-audio="/sounds/click-main.mp3">Buy Ship</button>
             <button class="left-panel-button btn">Construct Factory</button>
-            <button ng-class="{'button-active': allCitiesPanelIsVisible}" class="left-panel-button btn" ng-click="showAllCitiesPanel()"> All Cities</button>
-            <button ng-class="{'button-active': allShipsModalIsVisible}" class="left-panel-button btn" ng-click="showAllShipsPanel()">All Ships</button>
-            <button class="left-panel-button btn" ui-sref="home">Main Menu</button>
+            <button ng-class="{'button-active': allCitiesPanelIsVisible}" class="left-panel-button btn" ng-click="showAllCitiesPanel()" ng-audio="/sounds/click-main.mp3"> All Cities</button>
+            <button ng-class="{'button-active': allShipsModalIsVisible}" class="left-panel-button btn" ng-click="showAllShipsPanel()" ng-audio="/sounds/click-main.mp3">All Ships</button>
+            <button class="left-panel-button btn" ui-sref="home" ng-audio="/sounds/click-main.mp3">Main Menu</button>
 
         </div>
 

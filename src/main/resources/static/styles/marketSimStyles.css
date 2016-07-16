@@ -157,7 +157,11 @@ buy-ship .selected {
 }
 
 /*=======================*/
-
+/*Generale*/
+.small-margin {
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
 /*============================*/
 .cornerHover {
     display: block;

@@ -7,6 +7,7 @@ function shipsManager() {
         setShipsData: setShipsData,
         getShipsData: getShipsData,
         getShipByName: getShipByName,
+        getShipById: getShipById,
         addShip: addShip,
         timeStep: timeStep,
         nextDay: nextDay
@@ -31,6 +32,21 @@ function shipsManager() {
         }
         catch (e){
             shipFound = e;
+        }
+        return shipFound;
+    }
+
+    function getShipById(id) {
+        var shipFound = null;
+        try {
+            ships.forEach(function (ship) {
+                if (ship.id == id) {
+                    throw ship;
+                }
+            });
+        }
+        catch (found){
+            shipFound = found;
         }
         return shipFound;
     }

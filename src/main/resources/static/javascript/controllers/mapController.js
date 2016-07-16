@@ -1,6 +1,6 @@
 angular.module('app').controller('mapController', mapController);
 
-function mapController($scope, drawingService, citiesManager, shipsManager, events, initialData, game, player) {
+function mapController($scope, drawingService, citiesManager, shipsManager, events, initialData, game, player, ngAudio) {
     var initialCities = null;
     var initialPlayer = null;
     var initialShips = null;
@@ -16,7 +16,8 @@ function mapController($scope, drawingService, citiesManager, shipsManager, even
         player.setPlayerData(initialPlayer);
 
     } else {
-        initialCities = citiesManager.getCities;
+        initialCities = citiesManager.getCities();
+        initialShips = shipsManager.getShipsData();
     }
 
 

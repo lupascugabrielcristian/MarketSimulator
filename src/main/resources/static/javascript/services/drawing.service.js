@@ -30,6 +30,8 @@ function drawingService($rootScope, events){
     }
 
     function drawCities(cities) {
+        if (!cities) return;
+
         var svg = d3.select("#mainSvgArea");
         var circle = svg.selectAll("circle").data(cities);
         circle.attr("cx", function(city) {return city.position.x;});
@@ -45,6 +47,9 @@ function drawingService($rootScope, events){
     }
 
     function drawShips(ships){
+
+        if (!ships) return;
+
         var svg = d3.select("#mainSvgArea");
         var shipObjects = svg.selectAll("rect").data(ships);
 
