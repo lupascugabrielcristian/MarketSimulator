@@ -4,7 +4,7 @@
             <h4>Destinations</h4>
 
             <ul>
-                <li ng-class="{'selected-item':selectedCity == city}" ng-repeat="city in cities" ng-click="selectCity(city)">{{city.name}}</li>
+                <li ng-class="{'selected-item':selectedCity == city}" class="some-list" ng-repeat="city in cities" ng-click="selectCity(city)">{{city.name}}</li>
             </ul>
 
             <button id=setButton" class="btn btn-default" ng-click="setDestination()" ng-show="selectedCity">Set</button>

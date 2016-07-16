@@ -22,6 +22,11 @@ body {
     color: #39adf0;
 }
 
+.some-list {
+    cursor: pointer;
+    color: black;
+}
+
 .menu-actions-group {
     padding: 15px;
 }

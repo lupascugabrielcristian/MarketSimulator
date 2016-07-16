@@ -62,7 +62,12 @@ function shipsManager() {
         if (distanceToGo <= distance) {
             ship.position.x = destination.x;
             ship.position.y = destination.y;
+            ship.currentCity = ship.destinationCity;
             ship.destinationCity = null;
+            return;
+        }
+        else {
+            ship.currentCity = null;
         }
 
         var angle = calculateAngle(ship.position, destination);

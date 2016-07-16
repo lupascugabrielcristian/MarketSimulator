@@ -21,6 +21,7 @@ public class Ship {
     private double speed;
     private double price;
     private Position position;
+    private City currentCity;
     private City destinationCity;
     private City originCity;
 
@@ -94,6 +95,14 @@ public class Ship {
 
     public void setPosition(Position position) {
         this.position = position;
+    }
+
+    public City getCurrentCity() {
+        return currentCity;
+    }
+
+    public void setCurrentCity(City currentCity) {
+        this.currentCity = currentCity;
     }
 
     public City getDestinationCity() {

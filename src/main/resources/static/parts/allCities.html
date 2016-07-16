@@ -4,8 +4,8 @@
         <div class="row">
 
                 <div class="col-md-4">
-                        <div ng-repeat="city in allCities">
-                                <span class="city-row" ng-class="{'selectedRow}" ng-click="getCityDetails(city)" ng-bind="city.name"></span>
+                        <div ng-repeat="city in allCities" class="some-list">
+                                <span class="city-row" ng-class="{'selected-item': city.name == selectedCityName}" ng-click="getCityDetails(city)" ng-bind="city.name"></span>
                         </div>
                 </div>
 

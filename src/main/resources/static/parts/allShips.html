@@ -25,12 +25,18 @@
         <div>
             <p ng-show="!selectedShip.destinationCity.name">No destination</p>
         </div>
+        <div>
+            <p ng-show="selectedShip.currentCity">Arrived at <span ng-bind="selectedShip.currentCity.name"></span></p>
+        </div>
 
     </div>
 
     <div class="col-md-4" ng-show="selectedShip">
         <div>
             <button class="btn btn-default" ng-click="showDestinationsModal()">Set destination</button>
+        </div>
+        <div>
+            <button ng-show="selectedShip.currentCity" class="btn btn-primary" ui-sref="CargoOperations">CargoOperations</button>
         </div>
     </div>
 

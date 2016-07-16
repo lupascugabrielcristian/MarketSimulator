@@ -21,6 +21,16 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
                     return dataCalls.initialize();
                 }
             }
+        })
+        .state('CargoOperations', {
+            url: '/cargoOperations',
+            controller:  'cargoOperationsController',
+            templateUrl: '/stateViews/cargoOperations.html',
+            resolve: {
+                initialData: function() {
+                    return null;
+                }
+            }
         });
 
 });
