@@ -1,5 +1,5 @@
 angular.module('app').service('game', game);
-function game(dataCalls, player, citiesManager, timeService) {
+function game(dataCalls, player, citiesManager, shipsManager, timeService) {
     var loaded = false;
     return {
         saveGame: saveGame,
@@ -10,9 +10,10 @@ function game(dataCalls, player, citiesManager, timeService) {
 
     function saveGame(){
         var playerObj = player.getPlayerData();
-        playerObj.days = timeService.getDayNumber();
         var cities = citiesManager.getCities();
-        var saveResponse = dataCalls.saveGameSituation(playerObj, cities);
+        var ships = shipsManager.getShipsData();
+        playerObj.days = timeService.getDayNumber();
+        var saveResponse = dataCalls.saveGameSituation(playerObj, cities, ships);
         return saveResponse;
     }
 
@@ -20,6 +21,7 @@ function game(dataCalls, player, citiesManager, timeService) {
         player.setPlayerData(gameSituation.player);
         timeService.setDayNumber(gameSituation.player.days);
         citiesManager.setCities(gameSituation.cities);
+        shipsManager.setShipsData(gameSituation.ships);
         loaded = true;
     }
 
