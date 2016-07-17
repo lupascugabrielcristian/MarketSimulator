@@ -1,14 +1,141 @@
-<div id="cargoOperationsView">
-    <div class="row">
-        <div class="col-lg-4">
-            {{ship.name}} <br>
+<div class="page-wrapper">
+    <div id="cargoOperationsView">
+        <div class="row">
+            <div class="col-lg-6">
 
-            {{city.name}}
+                <div class="half-side">
+                    <div class="half-side-title">
+                        <h4>The Ship: <strong>{{ship.name}}</strong></h4>
+                    </div>
+
+                    <div id="cargoOnBoard">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <div ng-show="ship.cargos.length > 0">
+                                    <p>Cargo on board</p>
+
+                                    <div>
+                                        <!--Aici sa fac lista de commodities available-->
+                                        <div ng-repeat="cargo in ship.cargos">
+                                            <input type="checkbox" ng-change="checkCargo(cargo, $index)"/>{{cargo.name}}<br>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                                <div ng-show="!ship.cargos || ship.cargos.length == 0">
+                                    <p>There is no cargo on board</p>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="dropdown">
+                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        Actions
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                        <li><a ng-click="discharge()">Discharge</a></li>
+                                        <li><a ng-click="sell()">Sell To City</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="shipDetails">
+                        <div class="row">
+                            <!--Asta este pentru fuel si pentru spatiu ramas-->
+
+
+                            <div class="col-sm-6">
+                                <div class="bordered-panel">
+                                    <semi-title>Fuel</semi-title>
+
+                                    <border-panel-line>Capacity:</border-panel-line>
+                                    <border-panel-line> Remaining:</border-panel-line>
+
+                                    <div class="normal-margin centered">
+                                        <button class="btn-sm btn-default">Buy Fuel</button>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                <div class="bordered-panel">
+                                    <semi-title>Remaining space</semi-title>
+
+                                    <div class="centered">
+                                        <h3> 2000 50%</h3>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="col-lg-6">
+                <div class="half-side">
+
+
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="half-side-title">
+                                <h4>The city: <strong>{{city.name}}</strong></h4>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div id="actions-city">
+                                <div class="dropdown">
+                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        Actions
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                        <li><a ng-click="loadCommodity()">Load</a></li>
+                                        <li><a ng-click="buyCommodity()">Buy</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div ng-show="city.commodities.length > 0">
+                                <p>Commodities available:</p>
+
+
+                                <div ng-repeat="commodity in city.commodities">
+
+                                    <input type="checkbox" ng-click="checkCargo(commodity, $index, $value)"
+                                           ng-model="valueOfselection"
+                                           ng-true-value="Checked"
+                                           ng-false-value="Not checked "/>{{commodity.quantity}} of {{commodity.name}}<br>
+                                </div>
+                            </div>
+
+                            <div ng-show="!city.commodities || city.commodities.length == 0">
+                                There is nothing to buy here
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
         </div>
-
-        <div class="col-lg-8">
-
-        </div>
-
     </div>
 </div>

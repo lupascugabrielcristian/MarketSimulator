@@ -162,6 +162,21 @@ buy-ship .selected {
     margin-bottom: 5px;
     margin-top: 5px;
 }
+
+.normal-margin {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.centered {
+    text-align: center;
+}
+
+.page-wrapper {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
 /*============================*/
 .cornerHover {
     display: block;
@@ -229,5 +244,56 @@ buy-ship .selected {
 /*======= Cargo operations =====*/
 #cargoOperationsView {
     padding: 20px;
-    background-image: url("../images/circuits2.jpg");
+    background: url("../images/circuits2.jpg") center top;
+    background-position-x: 50%;
+    background-position-y: 0%;
+    color: white;
+    height:100%;
+    font-size: larger;
+}
+
+.half-side {
+    padding: 20px;
+    margin-right: 5px;
+    margin-left: 5px;
+    border: solid 1px white;
+    min-height: 600px;
+}
+
+.half-side-title {
+    padding: 15px;
+    font-size: larger;
+}
+
+#cargoOnBoard{
+    min-height: 200px;
+    max-height: 300px;
+}
+
+#shipDetails{
+    position: absolute;
+    width:85%;
+    bottom: 15px;
+}
+
+#actions-city {
+    margin-top: 25px;
+}
+
+.bordered-panel {
+    border: solid 1px white;
+    padding: 15px;
+    margin-right: 3px;
+    margin-left: 3px;
+    background-color: rgba(17, 15, 13, 0.45);
+    min-height: 150px;
+}
+
+semi-title {
+    color: #b8c7f3;
+    font-size: larger;
+}
+
+border-panel-line {
+    display: block;
 }
