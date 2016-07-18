@@ -15,6 +15,7 @@ public class Commodity {
     private double defaultPrice;
     private double currentPrice;
     private double quantity;
+    private double volumeCoefficient;
 
     public String getId() {
         return id;
@@ -54,5 +55,13 @@ public class Commodity {
 
     public void setQuantity(double quantity) {
         this.quantity = quantity;
+    }
+
+    public double getVolumeCoefficient() {
+        return volumeCoefficient;
+    }
+
+    public void setVolumeCoefficient(double volumeCoefficient) {
+        this.volumeCoefficient = volumeCoefficient;
     }
 }

@@ -11,7 +11,8 @@ function player($rootScope, events){
         getPlayerShips: getPlayerShips,
         getPlayerShip: getPlayerShip,
         setPlayerShips: setPlayerShips,
-        buyShip: buyShip
+        buyShip: buyShip,
+        payIfPossible: payIfPossible
     };
 
     function setPlayerData (data) {
@@ -78,7 +79,17 @@ function player($rootScope, events){
                 message: "Cannot buy ship. Not enough money"
             });
         }
+    }
 
+    function payIfPossible(sum) {
+        if (haveMoney(sum)){
+            playerData.money -= sum;
+            return true;
+        }
+        return false;
+    }
 
+    function haveMoney(sum) {
+        return playerData.money >= sum;
     }
 }

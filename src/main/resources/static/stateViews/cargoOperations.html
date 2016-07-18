@@ -17,7 +17,11 @@
                                     <div>
                                         <!--Aici sa fac lista de commodities available-->
                                         <div ng-repeat="cargo in ship.cargos">
-                                            <input type="checkbox" ng-change="checkCargo(cargo, $index)"/>{{cargo.name}}<br>
+                                            <input type="checkbox"
+                                                   ng-click="checkCargo(cargo, $index)"
+                                                    ng-model="cargo.selected"
+                                                    ng-true-value="'YES'"
+                                                    ng-false-value="'NO'"/>{{cargo.commodity.quantity}} of {{cargo.commodity.name}}<br>
                                         </div>
 
 
@@ -32,7 +36,9 @@
 
                             <div class="col-md-3">
                                 <div class="dropdown">
-                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <button class="btn btn-default dropdown-toggle" type="button"
+                                            id="dropdownMenu1" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="true">
                                         Actions
                                         <span class="caret"></span>
                                     </button>
@@ -69,9 +75,14 @@
                                 <div class="bordered-panel">
                                     <semi-title>Remaining space</semi-title>
 
-                                    <div class="centered">
-                                        <h3> 2000 50%</h3>
+                                    <div class="centered" ng-show="ship.remainingSpace">
+                                        <h3> {{ship.remainingSpace}} 50%</h3>
                                     </div>
+
+                                    <div class="centered" ng-show="!ship.remainingSpace">
+                                        <h3 class="alert"> NO SPACE </h3>
+                                    </div>
+
                                 </div>
                             </div>
 
@@ -96,7 +107,9 @@
                         <div class="col-md-3">
                             <div id="actions-city">
                                 <div class="dropdown">
-                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <button class="btn btn-default dropdown-toggle" type="button"
+                                            id="dropdownMenu2" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="true">
                                         Actions
                                         <span class="caret"></span>
                                     </button>
@@ -119,10 +132,12 @@
 
                                 <div ng-repeat="commodity in city.commodities">
 
-                                    <input type="checkbox" ng-click="checkCargo(commodity, $index, $value)"
-                                           ng-model="valueOfselection"
-                                           ng-true-value="Checked"
-                                           ng-false-value="Not checked "/>{{commodity.quantity}} of {{commodity.name}}<br>
+                                    <input type="checkbox"
+                                           ng-click="checkCommodity(commodity, $index, $value)"
+                                           ng-model="commodity.selected"
+                                           ng-true-value="'YES'"
+                                           ng-false-value="'NO'"/>{{commodity.quantity}} of
+                                    {{commodity.name}}<br>
                                 </div>
                             </div>
 
@@ -136,6 +151,17 @@
                 </div>
             </div>
 
+        </div>
+        <div class="row">
+            <div class="col-lg-11">
+                <message class="message-screen"></message>
+            </div>
+
+            <div class="col-lg-1">
+                <div class="big-margin to-right">
+                    <button class="btn btn-default" ui-sref="map">Map</button>
+                </diV>
+            </div>
         </div>
     </div>
 </div>

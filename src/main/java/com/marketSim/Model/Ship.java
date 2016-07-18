@@ -16,6 +16,7 @@ public class Ship {
     private String name;
     private String ownerId;
     private double capacity;
+    private double occupiedVolume;
     private List<Cargo> cargos;
     private double maxSpeed;
     private double speed;
@@ -55,6 +56,14 @@ public class Ship {
 
     public void setCapacity(double capacity) {
         this.capacity = capacity;
+    }
+
+    public double getOccupiedVolume() {
+        return occupiedVolume;
+    }
+
+    public void setOccupiedVolume(double occupiedVolume) {
+        this.occupiedVolume = occupiedVolume;
     }
 
     public List<Cargo> getCargos() {
