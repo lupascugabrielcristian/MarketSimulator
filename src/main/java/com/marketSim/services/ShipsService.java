@@ -33,6 +33,7 @@ public class ShipsService implements IShipsService{
         ship.setName("First ship");
         ship.setMaxSpeed(25);
         ship.setPosition(new Position(10, 10));
+        ship.setCapacity(50000);
         initialShips.add(ship);
 
         return  initialShips;

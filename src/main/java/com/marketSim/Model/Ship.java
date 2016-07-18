@@ -8,10 +8,6 @@ import java.util.List;
 @Entity
 public class Ship {
 
-    public Ship() {
-        id = ObjectId.get().toString();
-    }
-
     private String id;
     private String name;
     private String ownerId;
@@ -25,6 +21,13 @@ public class Ship {
     private City currentCity;
     private City destinationCity;
     private City originCity;
+
+    public Ship() {
+        id = ObjectId.get().toString();
+        occupiedVolume = 0;
+    }
+
+
 
     public String getId() {
         return id;
