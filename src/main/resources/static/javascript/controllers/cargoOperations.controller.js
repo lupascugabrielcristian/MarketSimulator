@@ -5,6 +5,7 @@ function cargoOperationsController($scope, $stateParams, shipsManager, citiesMan
     $scope.city = citiesManager.getCityById($stateParams.cityId);
     var selectedCityCommodities = [];
     var selectedShipsCommodities = [];
+    calculateRemainingSpace();
 
     $scope.checkCommodity = function(commodity, index){
         var selected = commodity.selected;
@@ -105,20 +106,30 @@ function cargoOperationsController($scope, $stateParams, shipsManager, citiesMan
         }
 
         var value = price * commodity.quantity;
-        player.payIfPossible(value);
+        player.justPay(value);
     }
 
     function checkForMoney(commodity){
-        var price = commodity.currentPrice;
-        if (!price) {
-            price = commodity.defaultPrice;
+        var unitPrice = commodity.currentPrice;
+        if (!unitPrice) {
+            unitPrice = commodity.defaultPrice;
         }
+        var price = unitPrice * commodity.quantity;
         var playerMoney = player.getPlayerData().money;
 
          return playerMoney >= price;
     }
 
     function checkForVolume(commodity) {
+        var totalOccupiedVolume = calculateRemainingSpace();
+
+        var requiredVolume = commodity.quantity * commodity.volumeCoefficient;
+        var remainingVolume = $scope.ship.capacity - totalOccupiedVolume;
+
+        return remainingVolume > 0 && remainingVolume >= requiredVolume;
+    }
+
+    function calculateRemainingSpace() {
         var totalOccupiedVolume = 0;
         function addVolume (cargo){
             var volume = cargo.commodity.quantity * cargo.commodity.volumeCoefficient;
@@ -130,11 +141,8 @@ function cargoOperationsController($scope, $stateParams, shipsManager, citiesMan
         }
 
         $scope.ship.occupiedVolume = totalOccupiedVolume;
-
-        var requiredVolume = commodity.quantity * commodity.volumeCoefficient;
-        var remainingVolume = $scope.ship.capacity - totalOccupiedVolume;
-
-        return remainingVolume > 0 && remainingVolume >= requiredVolume;
+        $scope.ship.remainingSpace = $scope.ship.capacity - totalOccupiedVolume;
+        return totalOccupiedVolume;
     }
 
     function removeCommodityFromSelection(commodity) {

@@ -5,7 +5,8 @@ function game(dataCalls, player, citiesManager, shipsManager, timeService) {
         saveGame: saveGame,
         loadGame: loadGame,
         isLoaded: isLoaded,
-        makeLoaded: makeLoaded
+        makeLoaded: makeLoaded,
+        setLoaded: setLoaded
     };
 
     function saveGame(){
@@ -31,5 +32,9 @@ function game(dataCalls, player, citiesManager, shipsManager, timeService) {
 
     function makeLoaded() {
         loaded = true;
+    }
+
+    function setLoaded(loadedValue) {
+        loaded = loadedValue;
     }
 }

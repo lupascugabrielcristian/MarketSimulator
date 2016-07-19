@@ -9,6 +9,7 @@ import com.marketSim.interfaces.ICommoditiesParser;
 import com.marketSim.interfaces.IShipsParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.dao.DataAccessResourceFailureException;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -39,27 +40,30 @@ public class DatabaseSeeder implements CommandLineRunner {
     }
 
     private void seedDatabase() {
-        if (applicationProperties.isRecreateDatabase()){
-            System.err.println("Recreating database");
+        try {
+            if (applicationProperties.isRecreateDatabase()) {
+                System.err.println("Recreating database");
 
-            shipsRepository.deleteAll();
-            List<Ship> availableShips = shipsParser.parseFile("/static/stuff/default_ships.xml");
-            shipsRepository.save(availableShips);
+                shipsRepository.deleteAll();
+                List<Ship> availableShips = shipsParser.parseFile("/static/stuff/default_ships.xml");
+                shipsRepository.save(availableShips);
 
-            commoditiesRepository.deleteAll();
-            List<Commodity> availableCommodities = commoditiesParser.parseFile("/static/stuff/commodities.xml");
-            commoditiesRepository.save(availableCommodities);
-        }
-        else {
-          System.err.println("Database will NOT be recreated.");
-        }
+                commoditiesRepository.deleteAll();
+                List<Commodity> availableCommodities = commoditiesParser.parseFile("/static/stuff/commodities.xml");
+                commoditiesRepository.save(availableCommodities);
+            } else {
+                System.err.println("Database will NOT be recreated.");
+            }
 
-        if (applicationProperties.isRemoveSavedGames()) {
-            System.err.println("Removing saved games");
-            gameSituationRepository.deleteAll();
+            if (applicationProperties.isRemoveSavedGames()) {
+                System.err.println("Removing saved games");
+                gameSituationRepository.deleteAll();
+            } else {
+                System.out.println("Saved games will not be removed");
+            }
         }
-        else {
-            System.out.println("Saved games will not be removed");
+        catch (DataAccessResourceFailureException e) {
+            System.err.println("Cannot connect to database. Maybe mongod is not running.");
         }
     }
 }

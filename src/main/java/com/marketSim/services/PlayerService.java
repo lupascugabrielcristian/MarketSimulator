@@ -15,7 +15,7 @@ public class PlayerService implements IPlayerService {
     @Override
     public Player initializePlayer() {
         Player player = new Player();
-        player.setMoney(10000);
+        player.setMoney(100000);
         player.setName("Anonymous");
         return player;
     }

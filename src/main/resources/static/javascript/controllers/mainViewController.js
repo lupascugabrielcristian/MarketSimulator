@@ -1,8 +1,15 @@
 angular.module('app').controller('mainViewController', mainViewController);
 
-function mainViewController($scope, game, $timeout) {
+function mainViewController($scope, game, $timeout, $state) {
 	$scope.saveResult = false;
 	$scope.loadModalIsVisible = false;
+
+	$scope.newGame = function() {
+		game.setLoaded(false);
+		$state.go('map', {
+			gameId: 0
+		});
+	};
 
 	$scope.saveGame = function(){
 		var result = game.saveGame();

@@ -12,7 +12,8 @@ function player($rootScope, events){
         getPlayerShip: getPlayerShip,
         setPlayerShips: setPlayerShips,
         buyShip: buyShip,
-        payIfPossible: payIfPossible
+        payIfPossible: payIfPossible,
+        justPay: justPay
     };
 
     function setPlayerData (data) {
@@ -24,7 +25,10 @@ function player($rootScope, events){
     }
 
     function getPlayerName() {
-        return playerData.name;
+        if (playerData) {
+            return playerData.name;
+        }
+        else return "Unknown";
     }
 
     function setPlayerName(newName) {
@@ -32,7 +36,10 @@ function player($rootScope, events){
     }
 
     function getPlayerMoney() {
-        return playerData.money;
+        if (playerData) {
+            return playerData.money;
+        }
+        else return 0;
     }
 
     function getPlayerShips() {
@@ -79,6 +86,10 @@ function player($rootScope, events){
                 message: "Cannot buy ship. Not enough money"
             });
         }
+    }
+
+    function justPay(sum){
+        playerData.money -= sum;
     }
 
     function payIfPossible(sum) {

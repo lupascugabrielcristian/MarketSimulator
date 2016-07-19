@@ -1,6 +1,6 @@
 angular.module('app').directive('loadGames', loadGames);
 
-function loadGames(dataCalls, game, $state) {
+function loadGames(dataCalls, $state) {
     return {
         restrict: 'AE',
         templateUrl: "/parts/loadGames.html",
@@ -17,11 +17,8 @@ function loadGames(dataCalls, game, $state) {
             };
 
             $scope.loadSelectedGame = function(){
-                var gamePromise = dataCalls.loadOneGame($scope.selectedGame.id);
-                gamePromise.then(function(result) {
-                    var gameSituation = result.data;
-                    game.loadGame(gameSituation);
-                    $state.go('map');
+                $state.go('map', {
+                    gameId: $scope.selectedGame.id
                 });
             }
         }

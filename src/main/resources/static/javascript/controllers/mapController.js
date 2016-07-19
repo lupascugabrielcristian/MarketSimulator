@@ -1,28 +1,14 @@
 angular.module('app').controller('mapController', mapController);
 
-function mapController($scope, drawingService, citiesManager, shipsManager, events, initialData, game, player, ngAudio) {
+function mapController($scope, drawingService, citiesManager, shipsManager, events, initialData, game, player, ngAudio, $stateParams, dataCalls) {
     var initialCities = null;
     var initialPlayer = null;
     var initialShips = null;
     var modalCreator = modals();
 
-    if (!game.isLoaded()){
-        // Use initialData when user did not choose a saved game
-        initialCities = initialData.data.initialCities;
-        initialPlayer = initialData.data.initialPlayer;
-        citiesManager.setCities(initialCities);
-        shipsManager.setShipsData(initialPlayer.ships);
-        initialShips = initialPlayer.ships;
-        player.setPlayerData(initialPlayer);
+    var gameId = $stateParams.gameId;
 
-    } else {
-        initialCities = citiesManager.getCities();
-        initialShips = shipsManager.getShipsData();
-    }
-
-
-    drawingService.drawCities(initialCities);
-    drawingService.drawShips(initialShips);
+    createGameForId(gameId, drawElements);
 
     $scope.showPlayerDetails = function(){
         modalCreator.switchToIndex(modalCreator.PLAYER_DETAILS);
@@ -57,6 +43,34 @@ function mapController($scope, drawingService, citiesManager, shipsManager, even
         $scope.selectedShip = args.ship;
     });
 
+    function drawElements() {
+        drawingService.drawCities(initialCities);
+        drawingService.drawShips(initialShips);
+    }
+
+    function createGameForId(gameId, drawElemtsFc) {
+        if (gameId) {
+            var gamePromise = dataCalls.loadOneGame(gameId);
+            gamePromise.then(function(result) {
+                var gameSituation = result.data;
+                game.loadGame(gameSituation);
+                initialCities = citiesManager.getCities();
+                initialShips = shipsManager.getShipsData();
+                drawElemtsFc();
+                $scope.$applyAsync();
+            });
+        }
+        else {
+            // Create new game
+            initialCities = initialData.data.initialCities;
+            initialPlayer = initialData.data.initialPlayer;
+            citiesManager.setCities(initialCities);
+            shipsManager.setShipsData(initialPlayer.ships);
+            initialShips = initialPlayer.ships;
+            player.setPlayerData(initialPlayer);
+            drawElemtsFc();
+        }
+    }
 
     function modals() {
         function ModalView(name, initialState) {

@@ -14,6 +14,9 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
         
         .state('map', {
             url: '/map',
+            params: {
+                gameId: null
+            },
             controller:  'mapController',
             templateUrl: '/stateViews/map.html',
             resolve: {

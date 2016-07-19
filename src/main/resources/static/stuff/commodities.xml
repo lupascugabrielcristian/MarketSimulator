@@ -3,29 +3,34 @@
 		<name>Lemn</name>
 		<production>100</production>
 		<price>10</price>
+		<volumeCoefficient>5</volumeCoefficient>
 	</commodity>
 
 	<commodity>
 		<name>Sticla</name>
 		<production>80</production>
 		<price>20</price>
+		<volumeCoefficient>2</volumeCoefficient>
 	</commodity>
 
 	<commodity>
 		<name>Grau</name>
 		<production>500</production>
 		<price>1</price>
+		<volumeCoefficient>7</volumeCoefficient>
 	</commodity>
 
 	<commodity>
 		<name>Alimente</name>
 		<production>300</production>
 		<price>2</price>
+		<volumeCoefficient>4</volumeCoefficient>
 	</commodity>
 
 	<commodity>
 		<name>Electronice</name>
 		<production>30</production>
 		<price>20</price>
+		<volumeCoefficient>1</volumeCoefficient>
 	</commodity>
 </parrent>

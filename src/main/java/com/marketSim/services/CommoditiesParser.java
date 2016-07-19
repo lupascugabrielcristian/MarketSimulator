@@ -77,10 +77,18 @@ public class CommoditiesParser implements ICommoditiesParser {
             price = 0;
         }
 
+        double volumeCoefficient;
+        try {
+            volumeCoefficient = Double.parseDouble(element.getElementsByTagName(VOLUME_COEF_NODE).item(0).getTextContent());
+        }catch (NumberFormatException e) {
+            volumeCoefficient = 0;
+        }
+
         Commodity commodity = new Commodity();
         commodity.setName(name);
         commodity.setDefaultPrice(price);
         commodity.setQuantity(production);
+        commodity.setVolumeCoefficient(volumeCoefficient);
         return commodity;
     }
 
@@ -88,5 +96,6 @@ public class CommoditiesParser implements ICommoditiesParser {
     private final String NAME_NODE = "name";
     private final String PRODUCTION_NODE = "production";
     private final String PRICE_NODE = "price";
+    private final String VOLUME_COEF_NODE = "volumeCoefficient";
 
 }

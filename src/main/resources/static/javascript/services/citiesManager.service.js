@@ -69,33 +69,40 @@ function citiesManager(){
 
     function advanceCity(city, dayRatio) {
         var factories = city.factories;
-        var commodities = city.commodities;
 
         factories.forEach(function(factory){
-            var commodity = getProduction(factory, dayRatio);
-            addToCityCommodities(commodity, commodities);
+            var quantityProduced = factory.productionRate * dayRatio;
+
+            increaseQuantityInCity(quantityProduced, factory.commodity, city);
         });
     }
 
-    function getProduction(factory, dayRation) {
-        var quantityProduced = factory.productionRate * dayRation;
-        return {
-            name: factory.commodity.name,
-            quantity: quantityProduced
-        }
+
+    function increaseQuantityInCity(byQuantity, forCommodity, inCity) {
+
+        var cityCommodity = getCommodityOrCreate(forCommodity, inCity);
+        cityCommodity.quantity += byQuantity;
     }
 
-    function addToCityCommodities(commodity, cityCommodities) {
-        var commodityExists = false;
-        cityCommodities.forEach(function(cityCommodity){
-            if (cityCommodity.name.localeCompare(commodity.name) == 0) {
-                cityCommodity.quantity += commodity.quantity;
-                commodityExists = true;
-            }
-        });
-
-        if (!commodityExists) {
-            cityCommodities.push(commodity);
+    function getCommodityOrCreate(forCommodity, inCity){
+        try {
+            inCity.commodities.forEach(function(commodity){
+                if (commodity.name == forCommodity.name) {
+                    throw commodity;
+                }
+            });
         }
+        catch (commodityFound) {
+            return commodityFound;
+        }
+
+        if (!inCity.commodities) {
+            inCity.commodities = [];
+        }
+
+        var commodityClone = angular.copy(forCommodity);
+        commodityClone.quantity = 0;
+        inCity.commodities.push(commodityClone);
+        return commodityClone;
     }
 }
