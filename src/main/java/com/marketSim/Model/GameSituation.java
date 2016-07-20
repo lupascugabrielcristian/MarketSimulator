@@ -1,10 +1,12 @@
 package com.marketSim.Model;
 
 import org.bson.types.ObjectId;
+import org.mongodb.morphia.annotations.Id;
 
 import java.util.List;
 
 public class GameSituation {
+    @Id
     private String id;
     private Player player;
     private List<City> cities;

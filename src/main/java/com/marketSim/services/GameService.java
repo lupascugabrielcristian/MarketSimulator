@@ -16,6 +16,10 @@ public class GameService implements IGameService {
 
     @Override
     public void saveGame(GameSituation gameSituation) {
+        GameSituation previous = gameRepository.findOneById(gameSituation.getId());
+        if (previous != null) {
+          gameRepository.delete(previous);
+        }
         gameRepository.save(gameSituation);
     }
 
@@ -26,6 +30,7 @@ public class GameService implements IGameService {
 
     @Override
     public GameSituation loadGame(String id) {
-        return gameRepository.findOneById(id);
+        GameSituation foundGame = gameRepository.findOneById(id);
+        return foundGame;
     }
 }

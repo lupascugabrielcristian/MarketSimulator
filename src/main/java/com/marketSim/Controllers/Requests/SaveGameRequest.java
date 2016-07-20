@@ -10,6 +10,7 @@ public class SaveGameRequest {
     private Player player;
     private List<City> cities;
     private List<Ship> ships;
+    private String gameId;
 
     public Player getPlayer() {
         return player;
@@ -33,5 +34,13 @@ public class SaveGameRequest {
 
     public void setShips(List<Ship> ships) {
         this.ships = ships;
+    }
+
+    public void setGameId(String gameId){
+      this.gameId = gameId;
+    }
+
+    public String getGameId() {
+      return this.gameId;
     }
 }

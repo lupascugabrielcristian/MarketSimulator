@@ -61,20 +61,37 @@ function cargoOperationsController($scope, $stateParams, shipsManager, citiesMan
     }
 
     function putCommodityOnShip(commodity){
-        if (!$scope.ship.cargos){
-            $scope.ship.cargos = [];
-        }
 
-        var cargo = {
-            commodity: commodity,
-            shipId: $scope.ship.id,
-            departureCityId: $scope.city.id
-        };
-
-        $scope.ship.cargos.push(cargo);
+        var cargo = findCargoOnShipOrCreate(commodity);
+        cargo.commodity.quantity += commodity.quantity;
         var volumeRequired = commodity.quantity * commodity.volumeCoefficient;
         $scope.ship.occupiedVolume += volumeRequired;
         $scope.ship.remainingSpace = $scope.ship.capacity - $scope.ship.occupiedVolume;
+    }
+
+    function findCargoOnShipOrCreate(commodity) {
+      if (!$scope.ship.cargos){
+          $scope.ship.cargos = [];
+      }
+      try {
+        $scope.ship.cargos.forEach(function(cargo){
+            if (cargo.commodity.name == commodity.name) {
+              throw cargo;
+            }
+        });
+      }
+      catch(foundCargo) {
+        return foundCargo;
+      }
+
+      var newCargo = {
+          commodity: commodity,
+          shipId: $scope.ship.id,
+          departureCityId: $scope.city.id
+      };
+      newCargo.commodity.quantity = 0;
+      $scope.ship.cargos.push(newCargo);
+      return newCargo;
     }
 
     function selectCityCommodity(commodity) {

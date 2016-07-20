@@ -4,6 +4,9 @@ function loadGames(dataCalls, $state) {
     return {
         restrict: 'AE',
         templateUrl: "/parts/loadGames.html",
+        scope: {
+          loadFc :"="
+        },
         link: function($scope) {
             var allGamesPromise = dataCalls.loadAllGames();
             allGamesPromise.then(function(result){
@@ -17,9 +20,7 @@ function loadGames(dataCalls, $state) {
             };
 
             $scope.loadSelectedGame = function(){
-                $state.go('map', {
-                    gameId: $scope.selectedGame.id
-                });
+                $scope.loadFc($scope.selectedGame.id);
             }
         }
     }

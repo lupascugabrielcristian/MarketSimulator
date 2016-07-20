@@ -52,6 +52,7 @@ public class RstController {
         gameSituation.setPlayer(request.getPlayer());
         gameSituation.setCities(request.getCities());
         gameSituation.setShips(request.getShips());
+        gameSituation.setId(request.getGameId());
 
         try {
             gameService.saveGame(gameSituation);

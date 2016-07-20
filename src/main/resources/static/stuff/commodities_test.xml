@@ -3,10 +3,12 @@
 		<name>Comm1</name>
 		<production>100</production>
 		<price>10</price>
+		<volumeCoefficient>5</volumeCoefficient>
 	</commodity>
 	<commodity>
 		<name>Comm2</name>
 		<production>200</production>
 		<price>20</price>
+		<volumeCoefficient>5</volumeCoefficient>
 	</commodity>
 </parrent>

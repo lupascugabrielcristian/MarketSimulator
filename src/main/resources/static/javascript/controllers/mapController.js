@@ -1,14 +1,12 @@
 angular.module('app').controller('mapController', mapController);
 
-function mapController($scope, drawingService, citiesManager, shipsManager, events, initialData, game, player, ngAudio, $stateParams, dataCalls) {
+function mapController($scope, drawingService, citiesManager, shipsManager, events, initialData, game, player, ngAudio) {
     var initialCities = null;
     var initialPlayer = null;
     var initialShips = null;
     var modalCreator = modals();
 
-    var gameId = $stateParams.gameId;
-
-    createGameForId(gameId, drawElements);
+    drawElements();
 
     $scope.showPlayerDetails = function(){
         modalCreator.switchToIndex(modalCreator.PLAYER_DETAILS);
@@ -44,32 +42,10 @@ function mapController($scope, drawingService, citiesManager, shipsManager, even
     });
 
     function drawElements() {
-        drawingService.drawCities(initialCities);
-        drawingService.drawShips(initialShips);
-    }
-
-    function createGameForId(gameId, drawElemtsFc) {
-        if (gameId) {
-            var gamePromise = dataCalls.loadOneGame(gameId);
-            gamePromise.then(function(result) {
-                var gameSituation = result.data;
-                game.loadGame(gameSituation);
-                initialCities = citiesManager.getCities();
-                initialShips = shipsManager.getShipsData();
-                drawElemtsFc();
-                $scope.$applyAsync();
-            });
-        }
-        else {
-            // Create new game
-            initialCities = initialData.data.initialCities;
-            initialPlayer = initialData.data.initialPlayer;
-            citiesManager.setCities(initialCities);
-            shipsManager.setShipsData(initialPlayer.ships);
-            initialShips = initialPlayer.ships;
-            player.setPlayerData(initialPlayer);
-            drawElemtsFc();
-        }
+      initialCities = citiesManager.getCities();
+      initialShips = shipsManager.getShipsData();
+      drawingService.drawCities(initialCities);
+      drawingService.drawShips(initialShips);
     }
 
     function modals() {

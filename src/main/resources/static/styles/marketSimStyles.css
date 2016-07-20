@@ -73,6 +73,38 @@ body {
     background-color: rgb(164, 164, 164)
 }
 
+#fullMapView .btn {
+  background: rgba(75, 75, 69, 0.43);
+  color: #cac6c6;
+  border: solid 1px #cac6c6;
+  border-radius: 0;
+}
+
+#fullMapView .btn:hover {
+  color: #a3c1f0;
+  border: solid 1px #6088c4;
+  outline-color: #6088c4;
+  outline-width: 3px;
+  outline-style: auto;
+}
+
+#fullMapView  .custom-modal .btn,
+#fullMapView  .side-modal .btn {
+  background: rgba(149, 149, 140, 0.37);
+  color:black;
+  border: solid 1px #625f5f;
+  border-radius: 0;
+}
+
+#fullMapView  .custom-modal .btn:hover,
+#fullMapView  .side-modal .btn:hover {
+  color: #062b63;
+  border: solid 1px #6088c4;
+  outline-color: #6088c4;
+  outline-width: 3px;
+  outline-style: auto;
+}
+
 .custom-modal {
     background-color: rgba(227, 223, 223, 0.8);
     position: absolute;

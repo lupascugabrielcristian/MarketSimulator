@@ -25,9 +25,10 @@ function dataCalls($http){
         return $http.get(initializeUrl);
     }
 
-    function saveGameSituation(currentPlayer, currentCities, currentShips) {
+    function saveGameSituation(currentPlayer, currentCities, currentShips, id) {
 
         var request = {
+            gameId: id,
             player: currentPlayer,
             cities: currentCities,
             ships: currentShips
