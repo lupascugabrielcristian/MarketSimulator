@@ -223,6 +223,10 @@ buy-ship .selected {
 .alert {
     color: #ff9567;
 }
+
+.straight-corner {
+    border-radius: 0;
+}
 /*============================*/
 .cornerHover {
     display: block;
@@ -346,4 +350,20 @@ semi-title {
 
 border-panel-line {
     display: block;
+}
+
+.dropdown-menu.special{
+    background-color: #181818;
+    border: 1px solid #fff;
+}
+
+.dropdown-menu.special > li > a:hover, .dropdown-menu > li > a:focus {
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #5d5b5b;
+    cursor: pointer;
+}
+
+.dropdown-menu.special > li > a {
+    color: #f2ecec;
 }
