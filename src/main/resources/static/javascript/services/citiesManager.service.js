@@ -10,7 +10,8 @@ function citiesManager(){
         getCityByName: getCityByName,
         getCityById: getCityById,
         nextDay: nextDay,
-        timeStep: timeStep
+        timeStep: timeStep,
+        addCommodity: addCommodity
     };
 
     function addCities(citiesToAdd) {
@@ -65,6 +66,11 @@ function citiesManager(){
         cities.forEach(function(city){
             advanceCity(city, dayRatio);
         });
+    }
+
+    function addCommodity(commodity, city) {
+        var cityCommodity = getCommodityOrCreate(commodity, city);
+        cityCommodity.quantity += commodity.quantity;
     }
 
     function advanceCity(city, dayRatio) {

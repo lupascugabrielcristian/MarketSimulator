@@ -1,23 +1,40 @@
 angular.module('app').controller('cargoOperationsController', cargoOperationsController);
 
-function cargoOperationsController($scope, $stateParams, shipsManager, citiesManager, player, ngAudio, events) {
+function cargoOperationsController($scope, $stateParams, shipsManager, shipOperator, citiesManager, cityOperator, financeOperator, player, ngAudio, events) {
     $scope.ship = shipsManager.getShipById($stateParams.shipId);
     $scope.city = citiesManager.getCityById($stateParams.cityId);
     var selectedCityCommodities = [];
-    var selectedShipsCommodities = [];
+    var selectedShipsCargos = [];
     calculateRemainingSpace();
 
-    $scope.checkCommodity = function(commodity, index){
+    $scope.checkCommodity = function(commodity, index, value){
         var selected = commodity.selected;
         if (selected == "YES") {
-            selectCityCommodity(commodity);
+            // selectCityCommodity(commodity);
+            putObjectInArray(commodity, selectedCityCommodities);
         }
         else if (selected == "NO"){
-            deselectCityCommodity(commodity);
+            // deselectCityCommodity(commodity);
+            removeObjectFromArray(commodity, selectedCityCommodities);
         }
         else {
             $scope.$broadcast(events.message, {
-                message: "Weird option received at checkbox selection"
+                message: "Weird option received at commodity checkbox selection"
+            });
+        }
+    };
+
+    $scope.checkCargo = function(cargo, index, value) {
+        var selected = cargo.selected;
+        if (selected == "YES") {
+            putObjectInArray(cargo, selectedShipsCargos);
+        }
+        else if (selected == "NO"){
+            removeObjectFromArray(cargo, selectedShipsCargos);
+        }
+        else {
+            $scope.$broadcast(events.message, {
+                message: "Weird option received at cargo checkbox selection"
             });
         }
     };
@@ -25,6 +42,21 @@ function cargoOperationsController($scope, $stateParams, shipsManager, citiesMan
     $scope.buyCommodity = function() {
         selectedCityCommodities.forEach(processDesiredCommodity);
     };
+
+    $scope.sellToCity = function() {
+        selectedShipsCargos.forEach(processCargo);
+    };
+
+    $scope.discharge = function() {
+        console.log("Not implemented");
+    };
+
+    function processCargo(cargo){
+        financeOperator.makeSellTransaction(cargo);
+        cityOperator.putCargo($scope.city, cargo);
+        shipOperator.removeCargoFromShip($scope.ship, cargo);
+        removeObjectFromArray(cargo, selectedShipsCargos);
+    }
 
     function processDesiredCommodity(commodity) {
         if (!checkForMoney(commodity)){
@@ -69,51 +101,55 @@ function cargoOperationsController($scope, $stateParams, shipsManager, citiesMan
         $scope.ship.remainingSpace = $scope.ship.capacity - $scope.ship.occupiedVolume;
     }
 
+
     function findCargoOnShipOrCreate(commodity) {
-      if (!$scope.ship.cargos){
-          $scope.ship.cargos = [];
-      }
-      try {
-        $scope.ship.cargos.forEach(function(cargo){
-            if (cargo.commodity.name == commodity.name) {
-              throw cargo;
-            }
-        });
-      }
-      catch(foundCargo) {
-        return foundCargo;
-      }
-
-      var newCargo = {
-          commodity: commodity,
-          shipId: $scope.ship.id,
-          departureCityId: $scope.city.id
-      };
-      newCargo.commodity.quantity = 0;
-      $scope.ship.cargos.push(newCargo);
-      return newCargo;
-    }
-
-    function selectCityCommodity(commodity) {
-        if (selectedCityCommodities.indexOf(commodity) != -1){
-            // Somehow is already in the selected list. Should not be though
-            return;
+        var commodityClone = angular.copy(commodity);
+        if (!$scope.ship.cargos) {
+            $scope.ship.cargos = [];
         }
-
-        selectedCityCommodities.push(commodity);
-    }
-
-    function deselectCityCommodity(commodity) {
         try {
-            selectedCityCommodities.forEach(function(cmdity, index){
-                if (cmdity == commodity) {
-                    throw index;
+            $scope.ship.cargos.forEach(function (cargo) {
+                if (cargo.commodity.name == commodityClone.name) {
+                    throw cargo;
                 }
             });
         }
-        catch (foundIndex){
-            selectedCityCommodities.splice(foundIndex, 1);
+        catch (foundCargo) {
+            return foundCargo;
         }
+
+        var newCargo = {
+            commodity: commodityClone,
+            shipId: $scope.ship.id,
+            departureCityId: $scope.city.id
+        };
+        newCargo.commodity.quantity = 0;
+        $scope.ship.cargos.push(newCargo);
+        return newCargo;
+    }
+
+    function putObjectInArray(object, array) {
+        if (array.indexOf(object) != -1){
+            return;
+        }
+
+        array.push(object);
+    }
+
+    function removeObjectFromArray(object, array) {
+        try {
+            array.forEach(function(item, index){
+               if (item == object){
+                   throw index;
+               }
+            });
+        }
+        catch (foundIndex) {
+            array.splice(foundIndex, 1);
+            return;
+        }
+
+        console.log("Could not find this object to remove it");
     }
 
     function makeTransaction(commodity) {
@@ -147,6 +183,10 @@ function cargoOperationsController($scope, $stateParams, shipsManager, citiesMan
     }
 
     function calculateRemainingSpace() {
+        if (!$scope.ship) {
+            return 0;
+        }
+
         var totalOccupiedVolume = 0;
         function addVolume (cargo){
             var volume = cargo.commodity.quantity * cargo.commodity.volumeCoefficient;

@@ -18,7 +18,7 @@
                                         <!--Aici sa fac lista de commodities available-->
                                         <div ng-repeat="cargo in ship.cargos">
                                             <input type="checkbox"
-                                                   ng-click="checkCargo(cargo, $index)"
+                                                   ng-click="checkCargo(cargo, $index, $value)"
                                                     ng-model="cargo.selected"
                                                     ng-true-value="'YES'"
                                                     ng-false-value="'NO'"/>{{cargo.commodity.quantity}} of {{cargo.commodity.name}}<br>
@@ -44,7 +44,7 @@
                                     </button>
                                     <ul class="dropdown-menu special straight-corner" aria-labelledby="dropdownMenu1">
                                         <li><a ng-click="discharge()">Discharge</a></li>
-                                        <li><a ng-click="sell()">Sell To City</a></li>
+                                        <li><a ng-click="sellToCity()">Sell To City</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -53,8 +53,6 @@
 
                     <div id="shipDetails">
                         <div class="row">
-                            <!--Asta este pentru fuel si pentru spatiu ramas-->
-
 
                             <div class="col-sm-6">
                                 <div class="bordered-panel">
@@ -76,7 +74,7 @@
                                     <semi-title>Remaining space</semi-title>
 
                                     <div class="centered" ng-show="ship.remainingSpace">
-                                        <h3> {{ship.remainingSpace}} 50%</h3>
+                                        <h3> {{ship.remainingSpace}} Vol</h3>
                                     </div>
 
                                     <div class="centered" ng-show="!ship.remainingSpace">

@@ -13,7 +13,8 @@ function player($rootScope, events){
         setPlayerShips: setPlayerShips,
         buyShip: buyShip,
         payIfPossible: payIfPossible,
-        justPay: justPay
+        justPay: justPay,
+        receivePayment: receivePayment
     };
 
     function setPlayerData (data) {
@@ -102,5 +103,14 @@ function player($rootScope, events){
 
     function haveMoney(sum) {
         return playerData.money >= sum;
+    }
+
+    function receivePayment(sum) {
+        if (sum < 0) {
+            console.log("Only positive payments accepted!");
+            return;
+        }
+
+        player.money += sum;
     }
 }
