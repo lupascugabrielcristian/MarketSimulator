@@ -10,11 +10,9 @@ function cargoOperationsController($scope, $stateParams, shipsManager, shipOpera
     $scope.checkCommodity = function(commodity, index, value){
         var selected = commodity.selected;
         if (selected == "YES") {
-            // selectCityCommodity(commodity);
             putObjectInArray(commodity, selectedCityCommodities);
         }
         else if (selected == "NO"){
-            // deselectCityCommodity(commodity);
             removeObjectFromArray(commodity, selectedCityCommodities);
         }
         else {

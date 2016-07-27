@@ -1,0 +1,75 @@
+<div id="cargoOperationsView2" class="">
+    <div class="container">
+        <div class="row">
+
+            <!--Ship part-->
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-image content-card-special">
+                        <div ng-show="ship.cargos.length > 0">
+                            <p>Cargo on board</p>
+
+                            <div>
+                                <!--Aici sa fac lista de commodities available-->
+                                <div ng-repeat="cargo in ship.cargos">
+                                    <input type="checkbox"
+                                           ng-click="checkCargo(cargo, $index, $value)"
+                                           ng-model="cargo.selected"
+                                           ng-true-value="'YES'"
+                                           ng-false-value="'NO'"/>{{cargo.commodity.quantity}} of {{cargo.commodity.name}}<br>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <div ng-show="!ship.cargos || ship.cargos.length == 0">
+                            <p>There is no cargo on board</p>
+                        </div>
+                        <span class="card-title ship">The Ship: <strong>{{ship.name}}</strong></span>
+                        <span class="card-subtitle">Remaining volume: {{ship.remainingSpace}} <br>
+                            Money: {{player.money}}
+                        </span>
+                    </div>
+
+                    <div class="card-content">
+                        <p>This is your fucking ship. Go and make money</p>
+                    </div>
+
+                    <div class="card-action">
+                        <a ng-click="buyCommodity()">Sell</a>
+                        <!--<a href="#" target="new_blank">Link</a>-->
+                        <!--<a href="#" target="new_blank">Link</a>-->
+                        <!--<a href="#" target="new_blank">Link</a>-->
+                        <a ui-sref="map" >Map</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--City part-->
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-image">
+                        <img class="img-responsive"
+                             src="../images/abstract1.jpg">
+                        <span class="card-title city">The city: <strong>{{city.name}}</strong></span>
+                    </div>
+
+                    <div class="card-content">
+                        <p>Cards for display in portfolio style material design by Google.</p>
+                    </div>
+
+                    <div class="card-action">
+                        <a href="#" target="new_blank">Link</a>
+                        <a href="#" target="new_blank">Link</a>
+                        <a href="#" target="new_blank">Link</a>
+                        <a href="#" target="new_blank">Link</a>
+                        <a href="#" target="new_blank">Link</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

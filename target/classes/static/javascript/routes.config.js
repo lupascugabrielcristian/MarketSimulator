@@ -29,7 +29,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
                 cityId: null
             },
             controller:  'cargoOperationsController',
-            templateUrl: '/stateViews/cargoOperations.html'
+            templateUrl: '/stateViews/cargoOperations2.html'
         });
 
 });
