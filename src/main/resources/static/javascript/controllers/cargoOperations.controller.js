@@ -1,6 +1,6 @@
 angular.module('app').controller('cargoOperationsController', cargoOperationsController);
 
-function cargoOperationsController($scope, $stateParams, shipsManager, shipOperator, citiesManager, cityOperator, financeOperator, player, ngAudio, events) {
+function cargoOperationsController($scope, $rootScope, $stateParams, shipsManager, shipOperator, citiesManager, cityOperator, financeOperator, player, ngAudio, events) {
     $scope.ship = shipsManager.getShipById($stateParams.shipId);
     $scope.city = citiesManager.getCityById($stateParams.cityId);
     $scope.playerMoney = player.getMoney();
@@ -49,6 +49,10 @@ function cargoOperationsController($scope, $stateParams, shipsManager, shipOpera
     $scope.discharge = function() {
         console.log("Not implemented");
     };
+
+    $scope.testAlert = function(){
+      $rootScope.$broadcast(events.alert, "Test de alert");
+    }
 
     function processCargo(cargo){
         financeOperator.makeSellTransaction(cargo);

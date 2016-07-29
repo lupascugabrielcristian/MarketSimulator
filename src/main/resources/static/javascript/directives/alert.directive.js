@@ -1,6 +1,6 @@
 angular.module('app').directive('alert', alert);
 
-function alert() {
+function alert(events) {
   return {
     restrict: 'AE',
     templateUrl:'/parts/alert.html',
@@ -8,7 +8,17 @@ function alert() {
 
     },
     controller: function($scope) {
-      $scope.test = "Test OK"
+      $scope.isShown = true;
+      $scope.message = "Test OK";
+
+      $scope.close = function() {
+        $scope.isShown = false;
+      }
+
+      $scope.$on(events.alert, function(event, message){
+        $scope.message = message;
+        $scope.isShown = true;
+      });
     }
   }
 }
