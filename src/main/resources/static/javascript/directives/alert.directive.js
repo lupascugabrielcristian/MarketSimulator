@@ -8,7 +8,7 @@ function alert(events) {
 
     },
     controller: function($scope) {
-      $scope.isShown = true;
+      $scope.isShown = false;
       $scope.message = "Test OK";
 
       $scope.close = function() {

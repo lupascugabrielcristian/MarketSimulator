@@ -12,7 +12,7 @@ public class City {
     @Id
     private String id;
     private String name;
-    private String population;
+    private long population;
     private Position position;
     private List<Factory> factories;
     private List<Commodity> commodities;
@@ -35,11 +35,11 @@ public class City {
         this.name = name;
     }
 
-    public String getPopulation() {
+    public long getPopulation() {
         return population;
     }
 
-    public void setPopulation(String population) {
+    public void setPopulation(long population) {
         this.population = population;
     }
 
