@@ -3,6 +3,7 @@ angular.module('app').controller('cargoOperationsController', cargoOperationsCon
 function cargoOperationsController($scope, $stateParams, shipsManager, shipOperator, citiesManager, cityOperator, financeOperator, player, ngAudio, events) {
     $scope.ship = shipsManager.getShipById($stateParams.shipId);
     $scope.city = citiesManager.getCityById($stateParams.cityId);
+    $scope.playerMoney = player.getMoney();
     var selectedCityCommodities = [];
     var selectedShipsCargos = [];
     calculateRemainingSpace();
@@ -54,6 +55,7 @@ function cargoOperationsController($scope, $stateParams, shipsManager, shipOpera
         cityOperator.putCargo($scope.city, cargo);
         shipOperator.removeCargoFromShip($scope.ship, cargo);
         removeObjectFromArray(cargo, selectedShipsCargos);
+        $scope.playerMoney = player.getMoney();
     }
 
     function processDesiredCommodity(commodity) {
@@ -75,6 +77,7 @@ function cargoOperationsController($scope, $stateParams, shipsManager, shipOpera
         putCommodityOnShip(commodity);
         removeCommodityFromCity(commodity);
         removeCommodityFromSelection(commodity);
+        $scope.playerMoney = player.getMoney();
     }
 
     function removeCommodityFromCity(commodity) {

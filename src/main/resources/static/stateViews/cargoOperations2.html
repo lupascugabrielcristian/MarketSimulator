@@ -28,7 +28,8 @@
                         </div>
                         <span class="card-title ship">The Ship: <strong>{{ship.name}}</strong></span>
                         <span class="card-subtitle">Remaining volume: {{ship.remainingSpace}} <br>
-                            Money: {{player.money}}
+                            <div ng-show="playerMoney">Money: {{playerMoney}}</div>
+                            <div ng-show="!playerMoney">No money</div>
                         </span>
                     </div>
 
@@ -50,26 +51,46 @@
             <!--City part-->
             <div class="col-lg-6">
                 <div class="card">
-                    <div class="card-image">
-                        <img class="img-responsive"
-                             src="../images/abstract1.jpg">
+                    <div class="card-image  content-card-special">
+                        <div ng-show="city.commodities.length > 0">
+                            <p>Commodities available:</p>
+
+
+                            <div ng-repeat="commodity in city.commodities">
+
+                                <input type="checkbox"
+                                       ng-click="checkCommodity(commodity, $index, $value)"
+                                       ng-model="commodity.selected"
+                                       ng-true-value="'YES'"
+                                       ng-false-value="'NO'"/>{{commodity.quantity}} of
+                                {{commodity.name}}<br>
+                            </div>
+                        </div>
+
+                        <div ng-show="!city.commodities || city.commodities.length == 0">
+                            There is nothing to buy here
+                        </div>
+
+
                         <span class="card-title city">The city: <strong>{{city.name}}</strong></span>
                     </div>
 
                     <div class="card-content">
-                        <p>Cards for display in portfolio style material design by Google.</p>
+                        <p>Buy commodities to sell in other cities</p>
                     </div>
 
                     <div class="card-action">
-                        <a href="#" target="new_blank">Link</a>
-                        <a href="#" target="new_blank">Link</a>
-                        <a href="#" target="new_blank">Link</a>
-                        <a href="#" target="new_blank">Link</a>
-                        <a href="#" target="new_blank">Link</a>
+                        <a ng-click="buyCommodity()">Buy</a>
+                        <!--<a href="#" target="new_blank">Link</a>-->
+                        <!--<a href="#" target="new_blank">Link</a>-->
+                        <!--<a href="#" target="new_blank">Link</a>-->
+                        <!--<a href="#" target="new_blank">Link</a>-->
                     </div>
                 </div>
             </div>
 
         </div>
     </div>
+
+    <alert class="custom-modal"></alert>
 </div>

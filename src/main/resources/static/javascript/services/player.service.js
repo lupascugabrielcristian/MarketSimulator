@@ -14,7 +14,8 @@ function player($rootScope, events){
         buyShip: buyShip,
         payIfPossible: payIfPossible,
         justPay: justPay,
-        receivePayment: receivePayment
+        receivePayment: receivePayment,
+        getMoney: getMoney
     };
 
     function setPlayerData (data) {
@@ -112,5 +113,12 @@ function player($rootScope, events){
         }
 
         player.money += sum;
+    }
+
+    function getMoney() {
+        if (playerData) {
+            return playerData.money;
+        }
+        return 0;
     }
 }

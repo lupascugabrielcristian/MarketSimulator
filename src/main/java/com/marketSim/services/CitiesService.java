@@ -72,6 +72,7 @@ public class CitiesService implements ICitiesService {
     private String getRandomCityName(String path){
         List<String> allNames = readCityNames(path);
         Random random = new Random();
+
         int chosenIndex = random.nextInt(allNames.size() - 1);
         return allNames.get(chosenIndex);
     }
