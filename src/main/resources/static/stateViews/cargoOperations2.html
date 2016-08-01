@@ -16,7 +16,7 @@
                                            ng-click="checkCargo(cargo, $index, $value)"
                                            ng-model="cargo.selected"
                                            ng-true-value="'YES'"
-                                           ng-false-value="'NO'"/>{{cargo.commodity.quantity}} of {{cargo.commodity.name}}<br>
+                                           ng-false-value="'NO'"/>{{cargo.commodity.quantity}} of {{cargo.commodity.name}} for {{cargo.commodity.currentPrice}}<br>
                                 </div>
 
 
@@ -62,8 +62,7 @@
                                        ng-click="checkCommodity(commodity, $index, $value)"
                                        ng-model="commodity.selected"
                                        ng-true-value="'YES'"
-                                       ng-false-value="'NO'"/>{{commodity.quantity}} of
-                                {{commodity.name}}<br>
+                                       ng-false-value="'NO'"/>{{commodity.quantity}} of {{commodity.name}} for {{commodity.currentPrice}}<br>
                             </div>
                         </div>
 
