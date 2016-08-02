@@ -19,18 +19,14 @@ function market(citiesManager) {
         */
 
         updateCommoditiesByName();
-
-
-        city.population;
-        var thereIsFactory = hasFactoryFor(commodity, city);
-
-        var productionRate = thereIsFactory.factory.productionRate;
-        var totalCommototiesOfThisType = commoditiesByName[commodity.name];
-
-
         var needCoeficient = calculateNeedCoeficient(commodity, city);
-        var finalPrice = commodity.defaultPrice * needCoeficient * populationCoeficient * factoryCoeficient * rarityCoeficient * productionCoeficient;
+        var populationCoeficient = calculatePopulationCoefficient(commodity, city);
+        var factoryCoeficient = calculateFactoryCoefficient(commodity, city);
+        var rarityCoeficient = calculateRarityCoefficient(commodity, city);
+        var productionCoeficient = calculateProductionCoefficient(commodity, city);
 
+        commodity.currentPrice = Math.round(commodity.defaultPrice * needCoeficient * populationCoeficient * factoryCoeficient * rarityCoeficient * productionCoeficient);
+        return commodity.currentPrice;
     }
 
     function getBuyPriceForCommodity(commodity, city) {
@@ -48,12 +44,52 @@ function market(citiesManager) {
         var quantityInCity = citiesManager.getCommodityInCity(commodity, city);
         var unitsPerPopulation = 1; // Aici sa fac sa iau de pe server, sau ca marfa respectiva sa contine si un astfel de field. Sau sa aiba o functie de populatie
         // As putea sa fac o pagina in care sa editez marfurile si proprietatile lor. Sa creez marfuri.
-
-        // Formula de aici este ca qc = 1(adica nu are nici un efect) atunci cand quantityInCity este 200% din necesar
-        // formula este f(x)=0.0001x2−0.035x+4
+        if (!city.population) city.population = 1;
         var necessaryQuantity = city.population * unitsPerPopulation;
         var satisfiedRatio = (quantityInCity * 100) / necessaryQuantity;
-        return 0.0001 * satisfiedRatio * satisfiedRatio - 0.035 * satisfiedRatio + 4;
+
+        // Formula de aici este ca qc = 1(adica nu are nici un efect) atunci cand quantityInCity este 200% din necesar
+        // formula este f(x)=x2/20000 - x/40 + 4
+        var result = satisfiedRatio * satisfiedRatio / 20000 - satisfiedRatio / 40 + 4;
+        return result;
+    }
+
+    function calculatePopulationCoefficient(commodity, city) {
+        return 1;
+    }
+
+    function calculateFactoryCoefficient(commodity, city) {
+        var thereIsFactory = hasFactoryFor(commodity, city);
+        if (thereIsFactory) {
+            return 1;
+        }
+        else {
+            return 1.5;
+        }
+    }
+
+    function calculateRarityCoefficient(commodity, city) {
+        var totalQuantity = commoditiesByName[commodity.name];
+        if (!totalQuantity) totalQuantity = 0;
+
+        var totalPopulation = citiesManager.getTotalPopulation();
+        if (!commodity.unitsPerPopulation) commodity.unitsPerPopulation = 1;
+        var overallSatisfaction = totalPopulation * commodity.unitsPerPopulation;
+
+        // Formula pentru asta este
+        // 2.67857×10^-17 x^6-9.97024×10^-14 x^5+1.44494×10^-10 x^4-1.02098×10^-7 x^3+0.0000369274 x^2-0.00780655 x+1.5
+        var result = 2.67857  * Math.pow(10, -17) * Math.pow(overallSatisfaction, 6) -
+                    9.97024 * Math.pow(10, -14) * Math.pow(overallSatisfaction, 5) +
+                    1.44494 * Math.pow(10, -10) * Math.pow(overallSatisfaction, 4) -
+                    1.02098 * Math.pow(10, -7) * Math.pow(overallSatisfaction, 3) +
+                    0.0000369274 * Math.pow(overallSatisfaction, 2) -
+                    0.00780655 * overallSatisfaction + 1.5;
+
+         return result;
+    }
+
+    function calculateProductionCoefficient(commodity, city) {
+        return 1;
     }
 
     function hasFactoryFor(commodity, city) {

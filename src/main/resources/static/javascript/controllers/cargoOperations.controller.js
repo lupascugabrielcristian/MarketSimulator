@@ -1,12 +1,13 @@
 angular.module('app').controller('cargoOperationsController', cargoOperationsController);
 
-function cargoOperationsController($scope, $rootScope, $stateParams, shipsManager, shipOperator, citiesManager, cityOperator, financeOperator, player, ngAudio, events) {
+function cargoOperationsController($scope, $rootScope, $stateParams, shipsManager, shipOperator, citiesManager, cityOperator, financeOperator, player, market, ngAudio, events) {
     $scope.ship = shipsManager.getShipById($stateParams.shipId);
     $scope.city = citiesManager.getCityById($stateParams.cityId);
     $scope.playerMoney = player.getMoney();
     var selectedCityCommodities = [];
     var selectedShipsCargos = [];
     calculateRemainingSpace();
+    calculatePrices();
 
     $scope.checkCommodity = function(commodity, index, value){
         var selected = commodity.selected;
@@ -205,6 +206,17 @@ function cargoOperationsController($scope, $rootScope, $stateParams, shipsManage
         $scope.ship.occupiedVolume = totalOccupiedVolume;
         $scope.ship.remainingSpace = $scope.ship.capacity - totalOccupiedVolume;
         return totalOccupiedVolume;
+    }
+
+    function calculatePrices() {
+        if ($scope.ship && $scope.ship.cargos) {
+            // Pentru marfa din nava
+            $scope.ship.cargos.forEach(function (cargo) {
+                market.getSellPriceForCommodity(cargo.commodity, $scope.city);
+            });
+        }
+
+        // Pentru marfa din oras
     }
 
     function removeCommodityFromSelection(commodity) {

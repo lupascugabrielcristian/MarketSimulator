@@ -11,8 +11,10 @@ function citiesManager(){
         getCityById: getCityById,
         nextDay: nextDay,
         timeStep: timeStep,
-        addCommodity: addCommodity
-        getCommodityInCity: getCommodityInCity
+        addCommodity: addCommodity,
+        getCommodityInCity: getCommodityInCity,
+        getPopulationInCity: getPopulationInCity,
+        getTotalPopulation: getTotalPopulation
     };
 
     function addCities(citiesToAdd) {
@@ -74,10 +76,10 @@ function citiesManager(){
         cityCommodity.quantity += commodity.quantity;
     }
 
-    function getCommodityInCity(commodity, inCity) {
+    function getCommodityInCity(shipCommodity, inCity) {
         try {
             inCity.commodities.forEach(function(commodity){
-                if (commodity.name == forCommodity.name) {
+                if (shipCommodity.name == commodity.name) {
                     throw commodity;
                 }
             });
@@ -87,6 +89,31 @@ function citiesManager(){
         }
 
         return 0;
+    }
+
+    function getPopulationInCity(inCity) {
+        try {
+            cities.forEach(function(city){
+                if (inCity.name == city.name) {
+                    throw city;
+                }
+            });
+        }
+        catch (cityFound) {
+            return cityFound.population;
+        }
+
+        return 0;
+    }
+
+    function getTotalPopulation() {
+        function add (previous, currentValue) {
+            return previous.population + currentValue.population;
+        }
+
+        var total = cities.reduce(add);
+        if (!total) total = 1;
+        return total;
     }
 
     function advanceCity(city, dayRatio) {

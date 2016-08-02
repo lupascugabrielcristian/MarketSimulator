@@ -18,9 +18,10 @@ public class City {
     private List<Commodity> commodities;
 
     public City() {
-        id = ObjectId.get().toString();
-        factories = new ArrayList<>();
-        commodities = new ArrayList<>();
+        this.id = ObjectId.get().toString();
+        this.factories = new ArrayList<>();
+        this.commodities = new ArrayList<>();
+        this.population = 1;
     }
 
     public String getId() {
