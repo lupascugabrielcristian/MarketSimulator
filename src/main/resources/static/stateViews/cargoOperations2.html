@@ -38,7 +38,7 @@
                     </div>
 
                     <div class="card-action">
-                        <a ng-click="buyCommodity()">Sell</a>
+                        <a ng-click="sellToCity()">Sell</a>
                         <!--<a href="#" target="new_blank">Link</a>-->
                         <!--<a href="#" target="new_blank">Link</a>-->
                         <!--<a href="#" target="new_blank">Link</a>-->
@@ -72,6 +72,9 @@
 
 
                         <span class="card-title city">The city: <strong>{{city.name}}</strong></span>
+                        <span class="card-subtitle">
+                            <div ng-show="requiredMoney && requiredMoney > 0">Required money: {{requiredMoney}}</div>
+                        </span>
                     </div>
 
                     <div class="card-content">

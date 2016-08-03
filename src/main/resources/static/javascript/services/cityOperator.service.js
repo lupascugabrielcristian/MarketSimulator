@@ -15,7 +15,19 @@ function cityOperator() {
 
 
     function removeCommodity(city, commodity) {
-        console.log("Not implemented");
+        try {
+            city.commodities.forEach(function (cmdity, index) {
+                if (cmdity.name == commodity.name || cmdity == commodity) {
+                    throw index;
+                }
+            });
+        }
+        catch (index){
+            city.commodity[index].quantity -= commodity.quantity;
+            if (city.commodity.quantity == 0) {
+                city.commodities.splice(index, 1);
+            }
+        }
     }
 
     function findCommodityInCityOrCreate(city, cargo) {

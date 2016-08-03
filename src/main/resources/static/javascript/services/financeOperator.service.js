@@ -12,8 +12,14 @@ function financeOperator(player) {
         console.log("Not implemented");
     }
 
-    function makePaymentToCity(city, sum) {
-        console.log("Not implemented");
+    function makePaymentToCity(city, commodity) {
+        var price = commodity.currentPrice;
+        if (!price) {
+            price = commodity.defaultPrice;
+        }
+
+        var value = price * commodity.quantity;
+        player.justPay(value);
     }
 
     function makeSellTransaction(cargo) {

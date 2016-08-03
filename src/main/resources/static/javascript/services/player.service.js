@@ -112,7 +112,7 @@ function player($rootScope, events){
             return;
         }
 
-        player.money += sum;
+        playerData.money += sum;
     }
 
     function getMoney() {

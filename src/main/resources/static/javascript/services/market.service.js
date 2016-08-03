@@ -25,7 +25,8 @@ function market(citiesManager) {
         var rarityCoeficient = calculateRarityCoefficient(commodity, city);
         var productionCoeficient = calculateProductionCoefficient(commodity, city);
 
-        commodity.currentPrice = Math.round(commodity.defaultPrice * needCoeficient * populationCoeficient * factoryCoeficient * rarityCoeficient * productionCoeficient);
+        var sellPrice = commodity.defaultPrice * needCoeficient * populationCoeficient * factoryCoeficient * rarityCoeficient * productionCoeficient;
+        commodity.currentPrice = Math.round(sellPrice * 100) / 100;
         return commodity.currentPrice;
     }
 
@@ -36,6 +37,15 @@ function market(citiesManager) {
         - cat de greu se produce ( productionCoeficient )
         - daca are fabrica in oras (factoryCoeficient )
         */
+
+        updateCommoditiesByName();
+        var scarceCoeficient = calculateScarceCoefficient(commodity, city);
+        var productionCoeficient = calculateProductionCoefficient(commodity, city);
+        var factoryCoeficient = calculateFactoryCoefficient(commodity, city);
+
+        var buyPrice = commodity.defaultPrice * scarceCoeficient * productionCoeficient * factoryCoeficient
+        commodity.currentPrice = Math.round(buyPrice * 100) / 100;
+        return commodity.currentPrice;
     }
 
 
@@ -90,6 +100,14 @@ function market(citiesManager) {
 
     function calculateProductionCoefficient(commodity, city) {
         return 1;
+    }
+
+    function calculateScarceCoefficient(commodity, city) {
+        // Vreau ca, cu cat este mai mare satisfiedRatio cu atat sa fie mai rezultatul
+        // result = 1 nu face nici o diferenta, < 1 scade pretul, >1 creste pretul
+
+        // Pentru ca deocamdata seamana cu coeficientul de raritate, returnez acelasi rezultat
+        return calculateRarityCoefficient(commodity, city);
     }
 
     function hasFactoryFor(commodity, city) {

@@ -4,6 +4,7 @@ function cargoOperationsController($scope, $rootScope, $stateParams, shipsManage
     $scope.ship = shipsManager.getShipById($stateParams.shipId);
     $scope.city = citiesManager.getCityById($stateParams.cityId);
     $scope.playerMoney = player.getMoney();
+    $scope.requiredMoney = 0;
     var selectedCityCommodities = [];
     var selectedShipsCargos = [];
     calculateRemainingSpace();
@@ -22,6 +23,7 @@ function cargoOperationsController($scope, $rootScope, $stateParams, shipsManage
                 message: "Weird option received at commodity checkbox selection"
             });
         }
+        upadateRequiredMoney();
     };
 
     $scope.checkCargo = function(cargo, index, value) {
@@ -55,6 +57,13 @@ function cargoOperationsController($scope, $rootScope, $stateParams, shipsManage
       $rootScope.$broadcast(events.alert, "Test de alert");
     }
 
+    function upadateRequiredMoney() {
+        $scope.requiredMoney = 0;
+        selectedCityCommodities.forEach(function(cityCommodity){
+            $scope.requiredMoney += cityCommodity.currentPrice * cityCommodity.quantity;
+        });
+    }
+
     function processCargo(cargo){
         financeOperator.makeSellTransaction(cargo);
         cityOperator.putCargo($scope.city, cargo);
@@ -65,73 +74,24 @@ function cargoOperationsController($scope, $rootScope, $stateParams, shipsManage
 
     function processDesiredCommodity(commodity) {
         if (!checkForMoney(commodity)){
-            $scope.$broadcast(events.message, {
-                message: "Cannot buy " + commodity.name + ". You don't have enough money"
-            });
+            $roorScope.$broadcast(events.alert,
+                "Cannot buy " + commodity.name + ". You don't have enough money"
+            );
             return;
         }
 
         if (!checkForVolume(commodity)){
-            $scope.$broadcast(events.message, {
-                message: "Cannot buy " + commodity.name + ". You don't have enough space"
-            });
+            $rootScope.$broadcast(events.alert,
+                "Cannot buy " + commodity.name + ". You don't have enough space"
+            );
             return;
         }
 
-        makeTransaction(commodity);
-        putCommodityOnShip(commodity);
-        removeCommodityFromCity(commodity);
+        financeOperator.makePaymentToCity(commodity);
+        shipOperator.putCommodityOnShip($scope.ship, commodity, $scope.city);
+        cityOperator.removeCommodityFromCity($scope.city, commodity);
         removeCommodityFromSelection(commodity);
         $scope.playerMoney = player.getMoney();
-    }
-
-    function removeCommodityFromCity(commodity) {
-        try {
-            $scope.city.commodities.forEach(function (cmdity, index) {
-                if (cmdity == commodity) {
-                    throw index;
-                }
-            });
-        }
-        catch (index){
-            $scope.city.commodities.splice(index, 1);
-        }
-    }
-
-    function putCommodityOnShip(commodity){
-
-        var cargo = findCargoOnShipOrCreate(commodity);
-        cargo.commodity.quantity += commodity.quantity;
-        var volumeRequired = commodity.quantity * commodity.volumeCoefficient;
-        $scope.ship.occupiedVolume += volumeRequired;
-        $scope.ship.remainingSpace = $scope.ship.capacity - $scope.ship.occupiedVolume;
-    }
-
-
-    function findCargoOnShipOrCreate(commodity) {
-        var commodityClone = angular.copy(commodity);
-        if (!$scope.ship.cargos) {
-            $scope.ship.cargos = [];
-        }
-        try {
-            $scope.ship.cargos.forEach(function (cargo) {
-                if (cargo.commodity.name == commodityClone.name) {
-                    throw cargo;
-                }
-            });
-        }
-        catch (foundCargo) {
-            return foundCargo;
-        }
-
-        var newCargo = {
-            commodity: commodityClone,
-            shipId: $scope.ship.id,
-            departureCityId: $scope.city.id
-        };
-        newCargo.commodity.quantity = 0;
-        $scope.ship.cargos.push(newCargo);
-        return newCargo;
     }
 
     function putObjectInArray(object, array) {
@@ -158,15 +118,7 @@ function cargoOperationsController($scope, $rootScope, $stateParams, shipsManage
         console.log("Could not find this object to remove it");
     }
 
-    function makeTransaction(commodity) {
-        var price = commodity.currentPrice;
-        if (!price) {
-            price = commodity.defaultPrice;
-        }
 
-        var value = price * commodity.quantity;
-        player.justPay(value);
-    }
 
     function checkForMoney(commodity){
         var unitPrice = commodity.currentPrice;
@@ -209,14 +161,19 @@ function cargoOperationsController($scope, $rootScope, $stateParams, shipsManage
     }
 
     function calculatePrices() {
+        // Pentru marfa din nava
         if ($scope.ship && $scope.ship.cargos) {
-            // Pentru marfa din nava
             $scope.ship.cargos.forEach(function (cargo) {
                 market.getSellPriceForCommodity(cargo.commodity, $scope.city);
             });
         }
 
         // Pentru marfa din oras
+        if ($scope.city && $scope.city.commodities) {
+            $scope.city.commodities.forEach(function(commodity){
+                market.getBuyPriceForCommodity(commodity);
+            });
+        }
     }
 
     function removeCommodityFromSelection(commodity) {

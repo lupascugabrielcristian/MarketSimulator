@@ -41,7 +41,7 @@
     padding: 16px;
 }
 .card .card-image span.card-title.city{
-    bottom: 0;
+    bottom: 22px;
 }
 
 .card .card-image span.card-title.ship{

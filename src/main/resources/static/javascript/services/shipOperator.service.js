@@ -2,13 +2,43 @@ angular.module('app').service('shipOperator', shipOperator);
 
 function shipOperator() {
     return {
-        putCargoOnShip: putCargoOnShip,
+        putCommodityOnShip: putCommodityOnShip,
         removeCargoFromShip: removeCargoFromShip
     };
 
 
-    function putCargoOnShip(ship, cargo) {
+    function putCommodityOnShip(ship, commodity, city) {
+        var cargo = findCargoOnShipOrCreate(ship, commodity, city);
+        cargo.commodity.quantity += commodity.quantity;
+        var volumeRequired = commodity.quantity * commodity.volumeCoefficient;
+        ship.occupiedVolume += volumeRequired;
+        ship.remainingSpace = ship.capacity - ship.occupiedVolume;
+    }
 
+    function findCargoOnShipOrCreate(ship, commodity, city) {
+        var commodityClone = angular.copy(commodity);
+        if (!ship.cargos) {
+            ship.cargos = [];
+        }
+        try {
+            ship.cargos.forEach(function (cargo) {
+                if (cargo.commodity.name == commodityClone.name) {
+                    throw cargo;
+                }
+            });
+        }
+        catch (foundCargo) {
+            return foundCargo;
+        }
+
+        var newCargo = {
+            commodity: commodityClone,
+            shipId: ship.id,
+            departureCityId: city.id
+        };
+        newCargo.commodity.quantity = 0;
+        ship.cargos.push(newCargo);
+        return newCargo;
     }
 
     function removeCargoFromShip(ship, cargo) {
