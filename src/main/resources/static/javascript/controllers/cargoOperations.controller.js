@@ -23,7 +23,7 @@ function cargoOperationsController($scope, $rootScope, $stateParams, shipsManage
                 message: "Weird option received at commodity checkbox selection"
             });
         }
-        upadateRequiredMoney();
+        updateRequiredMoney();
     };
 
     $scope.checkCargo = function(cargo, index, value) {
@@ -55,9 +55,9 @@ function cargoOperationsController($scope, $rootScope, $stateParams, shipsManage
 
     $scope.testAlert = function(){
       $rootScope.$broadcast(events.alert, "Test de alert");
-    }
+    };
 
-    function upadateRequiredMoney() {
+    function updateRequiredMoney() {
         $scope.requiredMoney = 0;
         selectedCityCommodities.forEach(function(cityCommodity){
             $scope.requiredMoney += cityCommodity.currentPrice * cityCommodity.quantity;
@@ -74,15 +74,16 @@ function cargoOperationsController($scope, $rootScope, $stateParams, shipsManage
 
     function processDesiredCommodity(commodity) {
         if (!checkForMoney(commodity)){
-            $roorScope.$broadcast(events.alert,
+            $rootScope.$broadcast(events.alert,
                 "Cannot buy " + commodity.name + ". You don't have enough money"
             );
             return;
         }
 
         if (!checkForVolume(commodity)){
+            var requiredVolume = commodity.quantity * commodity.volumeCoefficient;
             $rootScope.$broadcast(events.alert,
-                "Cannot buy " + commodity.name + ". You don't have enough space"
+                "Cannot buy " + commodity.name + ". \nYou don't have enough space. You need " + requiredVolume
             );
             return;
         }
