@@ -2,14 +2,21 @@ angular.module('app').service('financeOperator', financeOperator);
 
 function financeOperator(player) {
     return  {
-        canPay: canPay,
+        canBuyCommodity: canBuyCommodity,
         makePaymentToCity: makePaymentToCity,
         makeSellTransaction: makeSellTransaction
     };
 
 
-    function canPay(sum) {
-        console.log("Not implemented");
+    function canBuyCommodity(commodity) {
+        var unitPrice = commodity.currentPrice;
+        if (!unitPrice) {
+            unitPrice = commodity.defaultPrice;
+        }
+        var price = unitPrice * commodity.quantity;
+        var playerMoney = player.getPlayerData().money;
+
+        return playerMoney >= price;
     }
 
     function makePaymentToCity(city, commodity) {

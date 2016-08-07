@@ -67,21 +67,28 @@ public class CommoditiesParser implements ICommoditiesParser {
         try {
             production = Double.parseDouble(element.getElementsByTagName(PRODUCTION_NODE).item(0).getTextContent());
         } catch (NumberFormatException e) {
-            production = 0;
+            production = 1;
         }
 
         double price;
         try {
             price = Double.parseDouble(element.getElementsByTagName(PRICE_NODE).item(0).getTextContent());
         }catch (NumberFormatException e) {
-            price = 0;
+            price = 1;
         }
 
         double volumeCoefficient;
         try {
             volumeCoefficient = Double.parseDouble(element.getElementsByTagName(VOLUME_COEF_NODE).item(0).getTextContent());
         }catch (NumberFormatException e) {
-            volumeCoefficient = 0;
+            volumeCoefficient = 1;
+        }
+
+        double unitPerPopulation;
+        try {
+            unitPerPopulation = Double.parseDouble(element.getElementsByTagName(UNIT_PER_POPULATION).item(0).getTextContent());
+        }catch (NumberFormatException e) {
+            unitPerPopulation = 1;
         }
 
         Commodity commodity = new Commodity();
@@ -89,6 +96,7 @@ public class CommoditiesParser implements ICommoditiesParser {
         commodity.setDefaultPrice(price);
         commodity.setQuantity(production);
         commodity.setVolumeCoefficient(volumeCoefficient);
+        commodity.setUnitPerPopulation(unitPerPopulation);
         return commodity;
     }
 
@@ -97,5 +105,7 @@ public class CommoditiesParser implements ICommoditiesParser {
     private final String PRODUCTION_NODE = "production";
     private final String PRICE_NODE = "price";
     private final String VOLUME_COEF_NODE = "volumeCoefficient";
+    private final String UNIT_PER_POPULATION = "unitperpopulation";
+
 
 }

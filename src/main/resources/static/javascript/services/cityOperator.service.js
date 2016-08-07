@@ -23,8 +23,8 @@ function cityOperator() {
             });
         }
         catch (index){
-            city.commodity[index].quantity -= commodity.quantity;
-            if (city.commodity.quantity == 0) {
+            city.commodities[index].quantity -= commodity.quantity;
+            if (city.commodities[0].quantity == 0) {
                 city.commodities.splice(index, 1);
             }
         }

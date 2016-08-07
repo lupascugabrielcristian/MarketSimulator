@@ -1,6 +1,6 @@
 angular.module('app').service('player', player);
 
-function player($rootScope, events){
+function player($rootScope, events, shipsManager){
     var playerData;
     return {
         setPlayerData: setPlayerData,
@@ -77,6 +77,7 @@ function player($rootScope, events){
             }
 
             playerData.ships.push(shipToBuy);
+            shipsManager.addShip(shipToBuy);
 
             $rootScope.$broadcast(events.shipBought, {
                 playerShips: playerData.ships,

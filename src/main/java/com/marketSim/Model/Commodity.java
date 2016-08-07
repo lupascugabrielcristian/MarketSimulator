@@ -16,6 +16,7 @@ public class Commodity {
     private double currentPrice;
     private double quantity;
     private double volumeCoefficient;
+    private double unitPerPopulation;
 
     public String getId() {
         return id;
@@ -63,5 +64,13 @@ public class Commodity {
 
     public void setVolumeCoefficient(double volumeCoefficient) {
         this.volumeCoefficient = volumeCoefficient;
+    }
+
+    public double getUnitPerPopulation() {
+        return unitPerPopulation;
+    }
+
+    public void setUnitPerPopulation(double unitPerPopulation) {
+        this.unitPerPopulation = unitPerPopulation;
     }
 }

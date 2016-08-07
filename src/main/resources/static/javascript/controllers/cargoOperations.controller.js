@@ -7,7 +7,7 @@ function cargoOperationsController($scope, $rootScope, $stateParams, shipsManage
     $scope.requiredMoney = 0;
     var selectedCityCommodities = [];
     var selectedShipsCargos = [];
-    calculateRemainingSpace();
+    shipOperator.calculateRemainingSpace($scope.ship);
     calculatePrices();
 
     $scope.checkCommodity = function(commodity, index, value){
@@ -73,14 +73,14 @@ function cargoOperationsController($scope, $rootScope, $stateParams, shipsManage
     }
 
     function processDesiredCommodity(commodity) {
-        if (!checkForMoney(commodity)){
+        if (!financeOperator.canBuyCommodity(commodity)){
             $rootScope.$broadcast(events.alert,
                 "Cannot buy " + commodity.name + ". You don't have enough money"
             );
             return;
         }
 
-        if (!checkForVolume(commodity)){
+        if (!shipsManager.haveVolumeForCommodity($scope.ship, commodity)){
             var requiredVolume = commodity.quantity * commodity.volumeCoefficient;
             $rootScope.$broadcast(events.alert,
                 "Cannot buy " + commodity.name + ". \nYou don't have enough space. You need " + requiredVolume
@@ -88,11 +88,12 @@ function cargoOperationsController($scope, $rootScope, $stateParams, shipsManage
             return;
         }
 
-        financeOperator.makePaymentToCity(commodity);
+        financeOperator.makePaymentToCity($scope.city, commodity);
         shipOperator.putCommodityOnShip($scope.ship, commodity, $scope.city);
-        cityOperator.removeCommodityFromCity($scope.city, commodity);
+        cityOperator.removeCommodity($scope.city, commodity);
         removeCommodityFromSelection(commodity);
         $scope.playerMoney = player.getMoney();
+        updateRequiredMoney();
     }
 
     function putObjectInArray(object, array) {
@@ -119,47 +120,34 @@ function cargoOperationsController($scope, $rootScope, $stateParams, shipsManage
         console.log("Could not find this object to remove it");
     }
 
+    // function checkForVolume(commodity) {
+    //     var totalOccupiedVolume = calculateRemainingSpace();
+    //
+    //     var requiredVolume = commodity.quantity * commodity.volumeCoefficient;
+    //     var remainingVolume = $scope.ship.capacity - totalOccupiedVolume;
+    //
+    //     return remainingVolume > 0 && remainingVolume >= requiredVolume;
+    // }
 
-
-    function checkForMoney(commodity){
-        var unitPrice = commodity.currentPrice;
-        if (!unitPrice) {
-            unitPrice = commodity.defaultPrice;
-        }
-        var price = unitPrice * commodity.quantity;
-        var playerMoney = player.getPlayerData().money;
-
-         return playerMoney >= price;
-    }
-
-    function checkForVolume(commodity) {
-        var totalOccupiedVolume = calculateRemainingSpace();
-
-        var requiredVolume = commodity.quantity * commodity.volumeCoefficient;
-        var remainingVolume = $scope.ship.capacity - totalOccupiedVolume;
-
-        return remainingVolume > 0 && remainingVolume >= requiredVolume;
-    }
-
-    function calculateRemainingSpace() {
-        if (!$scope.ship) {
-            return 0;
-        }
-
-        var totalOccupiedVolume = 0;
-        function addVolume (cargo){
-            var volume = cargo.commodity.quantity * cargo.commodity.volumeCoefficient;
-            totalOccupiedVolume += volume;
-        }
-
-        if ($scope.ship.cargos){
-            $scope.ship.cargos.forEach(addVolume);
-        }
-
-        $scope.ship.occupiedVolume = totalOccupiedVolume;
-        $scope.ship.remainingSpace = $scope.ship.capacity - totalOccupiedVolume;
-        return totalOccupiedVolume;
-    }
+    // function calculateRemainingSpace() {
+    //     if (!$scope.ship) {
+    //         return 0;
+    //     }
+    //
+    //     var totalOccupiedVolume = 0;
+    //     function addVolume (cargo){
+    //         var volume = cargo.commodity.quantity * cargo.commodity.volumeCoefficient;
+    //         totalOccupiedVolume += volume;
+    //     }
+    //
+    //     if ($scope.ship.cargos){
+    //         $scope.ship.cargos.forEach(addVolume);
+    //     }
+    //
+    //     $scope.ship.occupiedVolume = totalOccupiedVolume;
+    //     $scope.ship.remainingSpace = $scope.ship.capacity - totalOccupiedVolume;
+    //     return totalOccupiedVolume;
+    // }
 
     function calculatePrices() {
         // Pentru marfa din nava

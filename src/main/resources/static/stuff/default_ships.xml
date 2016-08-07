@@ -2,35 +2,35 @@
     <ship>
         <name>A</name>
         <speed>22</speed>
-        <price>30000</price>
+        <price>300000</price>
         <capacity>1000</capacity>
     </ship>
 
     <ship>
         <name>B</name>
         <speed>28</speed>
-        <price>32000</price>
+        <price>320000</price>
         <capacity>800</capacity>
     </ship>
 
     <ship>
         <name>C</name>
         <speed>18</speed>
-        <price>28000</price>
+        <price>280000</price>
         <capacity>1500</capacity>
     </ship>
 
     <ship>
         <name>D</name>
         <speed>19</speed>
-        <price>22000</price>
+        <price>220000</price>
         <capacity>850</capacity>
     </ship>
 
     <ship>
         <name>E</name>
         <speed>15</speed>
-        <price>20000</price>
+        <price>200000</price>
         <capacity>500</capacity>
     </ship>
 </parrent>

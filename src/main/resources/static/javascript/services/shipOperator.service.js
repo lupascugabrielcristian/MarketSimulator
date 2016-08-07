@@ -3,7 +3,9 @@ angular.module('app').service('shipOperator', shipOperator);
 function shipOperator() {
     return {
         putCommodityOnShip: putCommodityOnShip,
-        removeCargoFromShip: removeCargoFromShip
+        removeCargoFromShip: removeCargoFromShip,
+        haveVolumeForCommodity: haveVolumeForCommodity,
+        calculateRemainingSpace: calculateRemainingSpace
     };
 
 
@@ -13,6 +15,35 @@ function shipOperator() {
         var volumeRequired = commodity.quantity * commodity.volumeCoefficient;
         ship.occupiedVolume += volumeRequired;
         ship.remainingSpace = ship.capacity - ship.occupiedVolume;
+    }
+
+    function haveVolumeForCommodity(ship, commodity){
+        var totalOccupiedVolume = calculateRemainingSpace(ship);
+
+        var requiredVolume = commodity.quantity * commodity.volumeCoefficient;
+        var remainingVolume = ship.capacity - totalOccupiedVolume;
+
+        return remainingVolume > 0 && remainingVolume >= requiredVolume;
+    }
+
+    function calculateRemainingSpace(ship) {
+        if (!ship) {
+            return 0;
+        }
+
+        var totalOccupiedVolume = 0;
+        function addVolume (cargo){
+            var volume = cargo.commodity.quantity * cargo.commodity.volumeCoefficient;
+            totalOccupiedVolume += volume;
+        }
+
+        if (ship.cargos){
+            ship.cargos.forEach(addVolume);
+        }
+
+        ship.occupiedVolume = totalOccupiedVolume;
+        ship.remainingSpace = ship.capacity - totalOccupiedVolume;
+        return totalOccupiedVolume;
     }
 
     function findCargoOnShipOrCreate(ship, commodity, city) {
