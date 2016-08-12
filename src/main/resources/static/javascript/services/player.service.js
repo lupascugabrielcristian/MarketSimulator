@@ -76,6 +76,8 @@ function player($rootScope, events, shipsManager){
                 playerData.ships = [];
             }
 
+            checkShipPosition(shipToBuy);
+
             playerData.ships.push(shipToBuy);
             shipsManager.addShip(shipToBuy);
 
@@ -121,5 +123,14 @@ function player($rootScope, events, shipsManager){
             return playerData.money;
         }
         return 0;
+    }
+
+    function checkShipPosition(ship){
+        if (!ship.position){
+            ship.position = {
+                x: 10,
+                y: 10
+            }
+        }
     }
 }

@@ -62,7 +62,7 @@
                                        ng-click="checkCommodity(commodity, $index, $value)"
                                        ng-model="commodity.selected"
                                        ng-true-value="'YES'"
-                                       ng-false-value="'NO'"/>{{commodity.quantity}} of {{commodity.name}} for {{commodity.currentPrice}}<br>
+                                       ng-false-value="'NO'"/>{{commodity.quantity}} of {{commodity.name}} for {{commodity.currentPrice}}  <span class="to-right small-text-button" ng-click="openFractionModal(commodity)">Fraction</span><br>
                             </div>
                         </div>
 
@@ -89,6 +89,9 @@
                     </div>
                 </div>
             </div>
+
+
+            <buy-partially class="custom-modal" ng-hide="!visibility" ng-class="{'collapsed': !visibility, 'to-front': visibility}"></buy-partially>
 
         </div>
     </div>

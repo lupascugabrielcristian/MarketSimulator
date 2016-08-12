@@ -242,6 +242,19 @@ buy-ship .selected {
 .straight-corner {
     border-radius: 0;
 }
+
+.more-space-buttons {
+    margin-right: 10px;
+    margin-top: 15px;
+}
+
+.make-button{
+    color: #a3c2f4;
+    cursor: pointer;
+}
+.make-button:hover {
+    color: #fff;
+}
 /*============================*/
 .cornerHover {
     display: block;

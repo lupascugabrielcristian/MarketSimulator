@@ -7,6 +7,8 @@ function events(){
         shipBought: "ship_is_bought",
         message: "message_to_show", // Ar trebui sa fie de forma {message: "msg"}
         alert:"alert",
-        modal: "switch_modal_visibility"
+        modal: "switch_modal_visibility" // O folosesc pe asta in map.html ca sa arat unul din modal-urile alea
+                                        // si in cargoOperations2.html. Ii dau la args pr map.html modal, closeOthers si ship.
+                                        // La cargoOperations.html ii dau id-ul modalului care vreau sa il afisez, commodity, ship
     }
 }

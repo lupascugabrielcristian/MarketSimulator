@@ -100,3 +100,38 @@
 .card strong{
     color: #fffcb1;
 }
+
+
+.small-text-button {
+    font-size: 14px;
+    color: #a3c2f4;
+    cursor: pointer;
+}
+.small-text-button:hover {
+    color: #fff;
+}
+
+centered-table {
+    display: table;
+    width: 100%;
+}
+
+centered-table.fraction-modal{
+    margin-top: 16px;
+}
+
+centered-table-row{
+    display: table-row;
+}
+
+centered-table-cell {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    margin: 0 auto;
+    font-size: 30px;
+}
+
+centered-table-cell.fraction-modal {
+    font-size: 35px;
+}

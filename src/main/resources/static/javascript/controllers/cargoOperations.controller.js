@@ -57,6 +57,14 @@ function cargoOperationsController($scope, $rootScope, $stateParams, shipsManage
       $rootScope.$broadcast(events.alert, "Test de alert");
     };
 
+    $scope.openFractionModal = function(commodity){
+        $rootScope.$broadcast(events.modal, {
+            id: "buy_partially_directive",
+            commodity: commodity,
+            ship: $scope.ship
+        });
+    };
+
     function updateRequiredMoney() {
         $scope.requiredMoney = 0;
         selectedCityCommodities.forEach(function(cityCommodity){
@@ -119,35 +127,6 @@ function cargoOperationsController($scope, $rootScope, $stateParams, shipsManage
 
         console.log("Could not find this object to remove it");
     }
-
-    // function checkForVolume(commodity) {
-    //     var totalOccupiedVolume = calculateRemainingSpace();
-    //
-    //     var requiredVolume = commodity.quantity * commodity.volumeCoefficient;
-    //     var remainingVolume = $scope.ship.capacity - totalOccupiedVolume;
-    //
-    //     return remainingVolume > 0 && remainingVolume >= requiredVolume;
-    // }
-
-    // function calculateRemainingSpace() {
-    //     if (!$scope.ship) {
-    //         return 0;
-    //     }
-    //
-    //     var totalOccupiedVolume = 0;
-    //     function addVolume (cargo){
-    //         var volume = cargo.commodity.quantity * cargo.commodity.volumeCoefficient;
-    //         totalOccupiedVolume += volume;
-    //     }
-    //
-    //     if ($scope.ship.cargos){
-    //         $scope.ship.cargos.forEach(addVolume);
-    //     }
-    //
-    //     $scope.ship.occupiedVolume = totalOccupiedVolume;
-    //     $scope.ship.remainingSpace = $scope.ship.capacity - totalOccupiedVolume;
-    //     return totalOccupiedVolume;
-    // }
 
     function calculatePrices() {
         // Pentru marfa din nava

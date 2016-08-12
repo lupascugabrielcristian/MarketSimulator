@@ -33,4 +33,11 @@
         <price>200000</price>
         <capacity>500</capacity>
     </ship>
+
+    <ship>
+        <name>Test Ship</name>
+        <speed>20</speed>
+        <price>1000</price>
+        <capacity>100</capacity>
+    </ship>
 </parrent>
