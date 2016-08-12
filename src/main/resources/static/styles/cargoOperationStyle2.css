@@ -135,3 +135,21 @@ centered-table-cell {
 centered-table-cell.fraction-modal {
     font-size: 35px;
 }
+
+.make-button.fraction-modal {
+    font-size: 14px;
+    color: black;
+}
+.make-button.fraction-modal:hover {
+    color: #c3c3c3;
+    text-shadow: 0 0 0.1em #4b4a54, 0 0 0.1em #4b4a54,
+    0 0 0.1em #4b4a54
+}
+
+#volume-change {
+    font-size: 20px;
+}
+
+#volume-indicator{
+    font-size: 32px;
+}

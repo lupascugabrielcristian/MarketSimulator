@@ -4,12 +4,12 @@
         <centered-table class="fraction-modal">
             <centered-table-row>
                 <centered-table-cell>
-                    <div>
-                        20%
+                    <div id="volume-indicator">
+                        {{ratio}}%
                     </div>
-                    <div>
-                        <i class="fa fa-plus-square" aria-hidden="true"></i>
-                        <i class="fa fa-minus-square" aria-hidden="true"></i>
+                    <div id="volume-change">
+                        <i class="fa fa-plus-square" aria-hidden="true" ng-click="increaseRatio()"></i>
+                        <i class="fa fa-minus-square" aria-hidden="true" ng-click="decreaseRatio()"></i>
                     </div>
                 </centered-table-cell>
             </centered-table-row>
@@ -19,17 +19,17 @@
     <div class="col-md-6">
 
         <centered-table>
-            <centered-centered-table-row>
+            <centered-table-row>
                 <centered-table-cell>
                     <div style="font-size: 24px">
-                        1024 <span style="font-size: small">Vol</span> <br>
-                        4500 <span style="font-size: small">Price</span> <br>
+                        {{necessaryVolume}} <span style="font-size: small">Vol</span> <br>
+                        {{necessaryMoney}} <span style="font-size: small">Price</span> <br>
                     </div>
 
-                    <div class="to-right more-space-buttons make-button">Buy</div>
-                    <div class="to-right more-space-buttons make-button">Cancel</div>
+                    <div class="to-right more-space-buttons make-button fraction-modal">Buy</div>
+                    <div class="to-right more-space-buttons make-button fraction-modal">Cancel</div>
                 </centered-table-cell>
-            </centered-centered-table-row>
+            </centered-table-row>
         </centered-table>
 
 
