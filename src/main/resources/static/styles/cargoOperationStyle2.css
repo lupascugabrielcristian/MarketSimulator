@@ -157,3 +157,14 @@ centered-table-cell.fraction-modal {
 centered-table-cell .alert{
     color:#a20000;
 }
+
+#drawingArea {
+    margin: 50px;
+    width: 500px;
+    height: 500px;
+}
+
+#svgArea {
+    width: 100%;
+    height: 100%;
+}

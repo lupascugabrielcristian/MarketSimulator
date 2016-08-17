@@ -43,10 +43,12 @@ function cargoOperationsController($scope, $rootScope, $stateParams, shipsManage
 
     $scope.buyCommodity = function() {
         selectedCityCommodities.forEach(processDesiredCommodity);
+        $scope.updateLoadingDisplay();
     };
 
     $scope.sellToCity = function() {
         selectedShipsCargos.forEach(processCargo);
+        $scope.updateLoadingDisplay();
     };
 
     $scope.discharge = function() {
@@ -65,6 +67,39 @@ function cargoOperationsController($scope, $rootScope, $stateParams, shipsManage
             city: $scope.city
         });
     };
+
+    $scope.updateLoadingDisplay = function(filledRatio){
+        if (!filledRatio && $scope.ship) {
+            filledRatio = Math.round($scope.ship.remainingSpace / $scope.ship.capacity * 100);
+        }
+
+        if (!filledRatio) {
+            filledRatio = 0;
+        }
+
+        var width = 500;
+        var height = 150;
+        var filledHeight = Math.round(filledRatio * height / 100);
+
+
+        var svg = d3.select("#svgArea");
+        svg.append("rect")
+            .attr("x", 0)
+            .attr("y", 0)
+            .attr("width", width)
+            .attr("height", height)
+            .attr("style", "fill-opacity: 0;stroke-width:1;stroke:rgb(22, 29, 40)");
+
+        if (filledHeight > 0) {
+            svg.append("rect")
+                .attr("x", 1)
+                .attr("y", height - filledHeight)
+                .attr("width", width - 2)
+                .attr("height", filledHeight)
+                .attr("style", "fill-opacity: 0.5;stroke-width:1;stroke:rgb(0,0,0)")
+        }
+    };
+    $scope.updateLoadingDisplay();
 
     function updateRequiredMoney() {
         $scope.requiredMoney = 0;

@@ -10,7 +10,7 @@ function buyPartially(){
         },
         controller: function ($scope, events, shipOperator, cityOperator, player){
             $scope.id = "buy_partially_directive";
-            $scope.visibility = true;
+            $scope.visibility = false;
             $scope.ratio = 0;
             $scope.necessaryVolume = 0;
             $scope.necessaryMoney = 0;
@@ -58,6 +58,7 @@ function buyPartially(){
                 $scope.necessaryVolume = 0;
                 $scope.visibility = false;
                 $scope.$parent.playerMoney = player.getMoney();
+                $scope.$parent.updateLoadingDisplay();
             };
 
             $scope.cancel = function() {
