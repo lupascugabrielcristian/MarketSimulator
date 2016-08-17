@@ -61,7 +61,8 @@ function cargoOperationsController($scope, $rootScope, $stateParams, shipsManage
         $rootScope.$broadcast(events.modal, {
             id: "buy_partially_directive",
             commodity: commodity,
-            ship: $scope.ship
+            ship: $scope.ship,
+            city: $scope.city
         });
     };
 

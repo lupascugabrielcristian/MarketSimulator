@@ -153,3 +153,7 @@ centered-table-cell.fraction-modal {
 #volume-indicator{
     font-size: 32px;
 }
+
+centered-table-cell .alert{
+    color:#a20000;
+}

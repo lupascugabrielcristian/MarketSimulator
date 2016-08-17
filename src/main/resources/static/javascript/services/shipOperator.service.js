@@ -5,6 +5,7 @@ function shipOperator() {
         putCommodityOnShip: putCommodityOnShip,
         removeCargoFromShip: removeCargoFromShip,
         haveVolumeForCommodity: haveVolumeForCommodity,
+        haveVolume: haveVolume,
         calculateRemainingSpace: calculateRemainingSpace
     };
 
@@ -24,6 +25,12 @@ function shipOperator() {
         var remainingVolume = ship.capacity - totalOccupiedVolume;
 
         return remainingVolume > 0 && remainingVolume >= requiredVolume;
+    }
+
+    function haveVolume(ship, volume) {
+        var totalOccupiedVolume = calculateRemainingSpace(ship);
+        var remainingVolume = ship.capacity - totalOccupiedVolume;
+        return remainingVolume > 0 && remainingVolume >= volume;
     }
 
     function calculateRemainingSpace(ship) {

@@ -18,16 +18,28 @@
 
     <div class="col-md-6">
 
-        <centered-table>
+        <centered-table ng-show="commodity">
             <centered-table-row>
                 <centered-table-cell>
                     <div style="font-size: 24px">
-                        {{necessaryVolume}} <span style="font-size: small">Vol</span> <br>
-                        {{necessaryMoney}} <span style="font-size: small">Price</span> <br>
+                        <span ng-class="{'alert': volumeExceeded}">{{necessaryVolume}} <span style="font-size: small">Vol</span></span> <br>
+                        <span ng-class="{'alert': priceExceeded}">{{necessaryMoney}} <span style="font-size: small">Price</span></span> <br>
                     </div>
 
-                    <div class="to-right more-space-buttons make-button fraction-modal">Buy</div>
-                    <div class="to-right more-space-buttons make-button fraction-modal">Cancel</div>
+                    <div class="to-right more-space-buttons make-button fraction-modal" ng-click="buy()">Buy</div>
+                    <div class="to-right more-space-buttons make-button fraction-modal" ng-click="cancel()">Cancel</div>
+                </centered-table-cell>
+            </centered-table-row>
+        </centered-table>
+
+        <centered-table ng-show="!commodity">
+            <centered-table-row>
+                <centered-table-cell>
+                    <div style="font-size: 24px">
+                        No commodity<br>
+                        Error
+                    </div>
+
                 </centered-table-cell>
             </centered-table-row>
         </centered-table>

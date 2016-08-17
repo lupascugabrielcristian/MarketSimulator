@@ -15,7 +15,8 @@ function player($rootScope, events, shipsManager){
         payIfPossible: payIfPossible,
         justPay: justPay,
         receivePayment: receivePayment,
-        getMoney: getMoney
+        getMoney: getMoney,
+        haveMoney: haveMoney
     };
 
     function setPlayerData (data) {
