@@ -13,7 +13,7 @@ function alert(events) {
 
       $scope.close = function() {
         $scope.isShown = false;
-      }
+      };
 
       $scope.$on(events.alert, function(event, message){
         $scope.message = message;
