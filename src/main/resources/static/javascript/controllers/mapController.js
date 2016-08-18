@@ -1,8 +1,7 @@
 angular.module('app').controller('mapController', mapController);
 
-function mapController($scope, drawingService, citiesManager, shipsManager, events, initialData, game, player, ngAudio) {
+function mapController($scope, drawingService, citiesManager, shipsManager, events) {
     var initialCities = null;
-    var initialPlayer = null;
     var initialShips = null;
     var modalCreator = modals();
 

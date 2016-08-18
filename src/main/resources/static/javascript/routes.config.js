@@ -16,11 +16,6 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
             url: '/map',
             controller:  'mapController',
             templateUrl: '/stateViews/map.html',
-            resolve: {
-                initialData: function(dataCalls) {
-                    return dataCalls.initialize();
-                }
-            }
         })
         .state('CargoOperations', {
             url: '/cargoOperations',
@@ -30,6 +25,10 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
             },
             controller:  'cargoOperationsController',
             templateUrl: '/stateViews/cargoOperations2.html'
+        })
+        .state('CommoditiesView', {
+            url: '/commoditiesView',
+            controller:  'commoditiesViewController',
+            templateUrl: '/stateViews/commoditiesView.html'
         });
-
 });

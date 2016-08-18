@@ -31,7 +31,7 @@ function mainViewController($scope, game, $timeout, $state, dataCalls, citiesMan
 				game.loadGame(gameSituation);
 				$state.go('map');
 		});
-	}
+	};
 
 	function createNewGame() {
 		dataCalls.initialize().then(function(result){
