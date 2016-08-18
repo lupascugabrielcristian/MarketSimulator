@@ -5,8 +5,8 @@ function buyPartially(){
         restrict: 'AE',
         scope: true,
         templateUrl: '/parts/buyPartially.html',
-        link: function() {
-
+        link: function($scope, element, attributes) {
+                $scope.updateLoadFc = attributes.loadChange;
         },
         controller: function ($scope, events, shipOperator, cityOperator, player){
             $scope.id = "buy_partially_directive";
@@ -58,7 +58,7 @@ function buyPartially(){
                 $scope.necessaryVolume = 0;
                 $scope.visibility = false;
                 $scope.$parent.playerMoney = player.getMoney();
-                $scope.$parent.updateLoadingDisplay();
+                $scope.$parent[$scope.updateLoadFc]();
             };
 
             $scope.cancel = function() {
