@@ -14,11 +14,8 @@
                             <div class="subtitle">
                                 Select commodity<br>
 
-                                <select>
-                                    <option value="volvo">Volvo</option>
-                                    <option value="saab">Saab</option>
-                                    <option value="mercedes">Mercedes</option>
-                                    <option value="audi">Audi</option>
+                                <select ng-change="findCommodity()" ng-model="selectedCommodityName">
+                                    <option ng-repeat="commodity in availableCommodities">{{commodity.name}}</option>
                                 </select>
 
                             </div>
@@ -29,13 +26,35 @@
 
                     <centered-table-row>
 
-                        <centered-table-cell>
-                                Part 1
-                        </centered-table-cell>
+                        <centered-table>
 
-                        <centered-table-cell>
-                                Part 2
-                        </centered-table-cell>
+                            <centered-table-row  class="content">
+
+
+                                <div class="row">
+                                    <div class="col-md-offset-3 col-md-3">
+                                        <div class="subtitle">Characteristics</div>
+                                        <div class="verticalLineRight">
+                                            <div class="small-margin"><span class="to-left">Volume coefficient</span><span class="to-right" ng-bind="selectedCommodity.volumeCoefficient"></span><br></div>
+                                            <div class="small-margin"><span class="to-left">Unit/Pop</span><span class="to-right" ng-bind="selectedCommodity.unitPerPopulation"></span><br></div>
+                                            <div class="small-margin"><span class="to-left">Default Price</span><span class="to-right" ng-bind="selectedCommodity.defaultPrice"></span><br></div>
+                                            <div class="small-margin"><span class="to-left">Production</span><span class="to-right" ng-bind="selectedCommodity.quantity"></span><br></div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-3">
+                                        <div class="subtitle">Prices all over</div>
+                                        <div ng-repeat="price in prices" >
+                                            <div class="small-margin"><span class="to-left">{{price.city}}</span><span class="to-right">{{price.value}}</span><br></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </centered-table-row>
+
+                        </centered-table>
 
                     </centered-table-row>
 

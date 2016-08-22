@@ -1,8 +1,43 @@
 #commodityView{
     padding: 30px;
+    background: url("../images/abstract2.jpg");
+    background-size: cover;
+    color: white;
+    height: 100vh;
 }
 
+#commodityView select {
+    color: black;
+}
 
 .subtitle{
     font-size: 18px;
+}
+
+centered-table-row.content {
+    font-size: 16px;
+}
+
+centered-table-row .col-md-6 {
+    width: 50%;
+    text-align: center;
+}
+
+#commodityView .subtitle {
+    text-align: center;
+    font-size: 17px;
+    padding: 10px;
+}
+
+.verticalLineLeft {
+    border-left: 1px solid #fff;
+    padding-left: 20px;
+}
+.verticalLineRight {
+    border-right: 1px solid #fff;
+    padding-right: 20px;
+}
+
+description-row {
+    margin-bottom: 5px;
 }

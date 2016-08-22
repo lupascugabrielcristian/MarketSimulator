@@ -235,6 +235,10 @@ buy-ship .selected {
   float: right;
 }
 
+.to-left {
+    float: left;
+}
+
 .alert {
     color: #ff9567;
 }

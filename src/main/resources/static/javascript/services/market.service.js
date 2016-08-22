@@ -1,7 +1,7 @@
 angular.module('app').service('market', market);
 
 function market(citiesManager) {
-    var commoditiesByName = {}
+    var commoditiesByName = {};
 
     return {
         getSellPriceForCommodity: getSellPriceForCommodity,

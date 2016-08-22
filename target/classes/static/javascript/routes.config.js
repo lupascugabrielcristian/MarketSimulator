@@ -29,6 +29,11 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
         .state('CommoditiesView', {
             url: '/commoditiesView',
             controller:  'commoditiesViewController',
-            templateUrl: '/stateViews/commoditiesView.html'
+            templateUrl: '/stateViews/commoditiesView.html',
+            resolve: {
+                initialData: function (dataCalls){
+                    return dataCalls.getAvailableCommodities();
+                }
+            }
         });
 });

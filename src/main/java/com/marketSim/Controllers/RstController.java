@@ -1,14 +1,8 @@
 package com.marketSim.Controllers;
 
 import com.marketSim.Controllers.Requests.SaveGameRequest;
-import com.marketSim.Model.City;
-import com.marketSim.Model.GameSituation;
-import com.marketSim.Model.Player;
-import com.marketSim.Model.Ship;
-import com.marketSim.interfaces.ICitiesService;
-import com.marketSim.interfaces.IGameService;
-import com.marketSim.interfaces.IPlayerService;
-import com.marketSim.interfaces.IShipsService;
+import com.marketSim.Model.*;
+import com.marketSim.interfaces.*;
 import com.mongodb.MongoTimeoutException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +21,8 @@ public class RstController {
     private IGameService gameService;
     @Autowired
     private IShipsService shipsService;
+    @Autowired
+    private ICommoditiesService commoditiesService;
 
     @RequestMapping(value = "/initialcities")
     public List<City> getInitialCities(){
@@ -93,8 +89,20 @@ public class RstController {
             availableShips = shipsService.getAvailableShips();
         }
         catch (MongoTimeoutException e) {
-            System.err.println("Nope, nu pot navele din baza de date");
+            System.err.println("Nope, nu pot lua navele din baza de date");
         }
         return availableShips;
+    }
+
+    @RequestMapping(path = "/availableCommodities", method = RequestMethod.GET)
+    public List<Commodity> getAvailableCommodities () {
+        List<Commodity> availableCommodities = new ArrayList<>();
+        try {
+            availableCommodities = commoditiesService.getAllAvailableCommodities();
+        }
+        catch (MongoTimeoutException e){
+            System.err.println("Nope, nu pot gasi baza de date");
+        }
+        return availableCommodities;
     }
 }

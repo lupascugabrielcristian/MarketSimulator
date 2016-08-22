@@ -122,6 +122,7 @@ centered-table.fraction-modal{
 
 centered-table-row{
     display: table-row;
+    font-size: 30px;
 }
 
 centered-table-cell {
@@ -129,7 +130,6 @@ centered-table-cell {
     vertical-align: middle;
     text-align: center;
     margin: 0 auto;
-    font-size: 30px;
 }
 
 centered-table-cell.fraction-modal {
