@@ -1,0 +1,77 @@
+<div class="row">
+    <div class="col-md-12">
+        <h4>Edit commodity properties</h4>
+
+
+        <div ng-show="commodityForEdit">
+            <!--Volume coefficient-->
+            <div class="row">
+                <div class="col-sm-6 centered">
+                    Volume coefficient
+                </div>
+
+
+                <div class="col-sm-6">
+                    <input type="number" class="form-control" ng-model="commodityForEdit.volumeCoefficient">
+                </div>
+            </div>
+
+            <!--Unit/Pop-->
+            <div class="row">
+                <div class="col-sm-6 centered">
+                    Unit/Pop
+                </div>
+
+
+                <div class="col-sm-6">
+                    <input type="number" class="form-control" ng-model="commodityForEdit.unitPerPopulation">
+                </div>
+            </div>
+
+
+            <!--Default Price-->
+            <div class="row">
+                <div class="col-sm-6 centered">
+                    Default Price
+                </div>
+
+
+                <div class="col-sm-6">
+                    <input type="number" class="form-control" ng-model="commodityForEdit.defaultPrice">
+                </div>
+            </div>
+
+
+            <!--Production-->
+            <div class="row">
+                <div class="col-sm-6 centered">
+                    Production
+                </div>
+
+
+                <div class="col-sm-6">
+                    <input type="number" class="form-control" ng-model="commodityForEdit.quantity">
+                </div>
+            </div>
+
+
+            <div class="row actions-row">
+                <span class="action" ng-click="cancel()">Cancel</span>
+                <span class="action" ng-click="save()">Save</span>
+            </div>
+
+
+        </div>
+
+        <div ng-show="!commodityForEdit">
+            <h4 class="alert">Select a commodity</h4>
+
+            <div class="row actions-row">
+                <span class="action" ng-click="cancel()">Cancel</span>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+

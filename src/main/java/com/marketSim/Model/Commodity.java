@@ -2,6 +2,7 @@ package com.marketSim.Model;
 
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
 
 @Entity
 public class Commodity {
@@ -10,6 +11,7 @@ public class Commodity {
         id = ObjectId.get().toString();
     }
 
+    @Id
     private String id;
     private String name;
     private double defaultPrice;

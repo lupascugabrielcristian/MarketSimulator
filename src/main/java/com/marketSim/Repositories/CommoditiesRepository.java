@@ -4,4 +4,5 @@ import com.marketSim.Model.Commodity;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface CommoditiesRepository extends MongoRepository<Commodity, Long>{
+    Commodity findOneById(String id);
 }

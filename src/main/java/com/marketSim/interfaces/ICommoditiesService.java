@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface ICommoditiesService {
     List<Commodity> getAllAvailableCommodities() throws MongoTimeoutException;
+
+    boolean saveCommodity(Commodity commodity);
 }

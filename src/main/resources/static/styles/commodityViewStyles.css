@@ -41,3 +41,32 @@ centered-table-row .col-md-6 {
 description-row {
     margin-bottom: 5px;
 }
+
+.commodity-view-button{
+    cursor: pointer;
+    margin-top: 30px;
+    margin-right: 30px;
+    font-size: 18px;
+}
+
+.glow-button {
+
+}
+
+.glow-button:hover {
+    text-shadow: 0 0 0.2em #7b71d3, 0 0 0.2em #7b71d3, 0 0 0.2em #7b71d3;
+}
+
+#commodityView h4{
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+#commodityView input[type=number]{
+    width: 150px;
+    font-size: 18px;
+}
+
+#commodityView .custom-modal {
+    background-color: rgba(227, 223, 223, 1);
+}

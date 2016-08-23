@@ -1,5 +1,6 @@
 package com.marketSim.Controllers;
 
+import com.marketSim.Controllers.Requests.SaveCommodityRequest;
 import com.marketSim.Controllers.Requests.SaveGameRequest;
 import com.marketSim.Model.*;
 import com.marketSim.interfaces.*;
@@ -104,5 +105,10 @@ public class RstController {
             System.err.println("Nope, nu pot gasi baza de date");
         }
         return availableCommodities;
+    }
+
+    @RequestMapping(path = "/saveCommodity", method = RequestMethod.POST)
+    public boolean saveCommodity(@RequestBody SaveCommodityRequest request) {
+        return commoditiesService.saveCommodity(request.getCommodity());
     }
 }

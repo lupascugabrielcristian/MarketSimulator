@@ -107,14 +107,15 @@ body {
 }
 
 .custom-modal {
-    background-color: rgba(227, 223, 223, 0.8);
+    background-color: rgba(227, 223, 223, 0.9);
+    color: black;
     position: absolute;
     top: 10%;
     left: 30%;
     width: 500px;
     overflow-y: auto;
     border-radius: 10px;
-    padding: 15px;
+    padding: 17px;
     z-index: 1;
 }
 
@@ -204,8 +205,8 @@ buy-ship .selected {
     background: white;
 }
 
-/*=======================*/
-/*Generale*/
+/*========== Generale =============*/
+
 .small-margin {
     margin-bottom: 5px;
     margin-top: 5px;
@@ -259,7 +260,33 @@ buy-ship .selected {
 .make-button:hover {
     color: #fff;
 }
+
+.decrease-visibility {
+    opacity: 0.8;
+}
+
 /*============================*/
+
+
+/*======== Actions ====== */
+.actions-row {
+    text-align: right;
+    padding: 10px;
+    margin-top: 15px;
+    margin-right: 7px;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.action {
+    margin:4px;
+}
+.action:hover {
+    text-shadow: 0 0 0.4em #a097ee, 0 0 0.2em #c6c1f0, 0 0 0.2em #c6c1f0
+}
+
+/*======== Actions End ====== */
+
 .cornerHover {
     display: block;
     background: #fff;

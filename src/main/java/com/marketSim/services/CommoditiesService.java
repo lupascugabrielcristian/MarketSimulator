@@ -23,4 +23,17 @@ public class CommoditiesService implements ICommoditiesService {
         List<Commodity> all = this.repository.findAll();
         return all;
     }
+
+    @Override
+    public boolean saveCommodity(Commodity commodity) {
+
+        try {
+            this.repository.delete(commodity);
+            this.repository.save(commodity);
+            return true;
+        }
+        catch (MongoTimeoutException e){
+            return false;
+        }
+    }
 }

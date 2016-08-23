@@ -60,6 +60,12 @@
 
                 </centered-table>
             </div>
+
+
+            <div class="to-right big-margin commodity-view-button glow-button" ng-click="editCommodity()">Change</div>
+            <div class="to-right big-margin commodity-view-button glow-button" ui-sref="home">Main menu</div>
         </div>
+
+        <commodity-edit class="custom-modal" ng-class="{'collapsed': !editCommodityModalVisible, 'to-front': editCommodityModalVisible}"></commodity-edit>
     </div>
 </div>

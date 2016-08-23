@@ -5,6 +5,7 @@ function commoditiesViewController($scope, initialData, citiesManager) {
     $scope.selectedCommodityName = null;
     $scope.selectedCommodity = null;
     $scope.prices = [];
+    $scope.editCommodityModalVisible = false;
 
     $scope.findCommodity = function() {
         try {
@@ -18,6 +19,12 @@ function commoditiesViewController($scope, initialData, citiesManager) {
             $scope.selectedCommodity = commodity;
             $scope.prices = findPrices()
         }
+    };
+
+
+    $scope.editCommodity = function(){
+        $scope.commodityForEdit = angular.copy($scope.selectedCommodity);
+        $scope.editCommodityModalVisible = true;
     };
 
 
@@ -45,6 +52,8 @@ function commoditiesViewController($scope, initialData, citiesManager) {
 
         return pricesObjects;
     }
+
+
 
 
 }
