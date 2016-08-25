@@ -14,10 +14,6 @@ function allCities(citiesManager){
                 $scope.factories =  selectedCity.factories;
                 $scope.commodities = selectedCity.commodities;
             };
-
-            $scope.clickMessage = function(){
-                console.log("Click on all cities");
-            }
         }
     }
 }

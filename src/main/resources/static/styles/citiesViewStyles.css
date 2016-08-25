@@ -1,0 +1,43 @@
+#cityView{
+    padding: 30px;
+    background: url("../images/abstract2.jpg");
+    background-size: cover;
+    color: white;
+    font-size: 16px;
+    height: 100vh;
+}
+
+#cityView .col-lg-3, .col-lg-9 {
+    text-align: center;
+}
+
+#cityView button{
+    background: grey;
+    color: white;
+    width: 500px;
+    padding: 10px;
+    margin-top:20px;
+}
+
+#cityView .well {
+    background-color: #373737;
+
+}
+city {
+    cursor:pointer;
+    display: block;
+    font-size: 21px;
+}
+
+city:hover{
+    color:cyan;
+    text-shadow: 0 0 0.2em #7b71d3, 0 0 0.2em #7b71d3, 0 0 0.2em #7b71d3;
+}
+
+city:active{
+    color:blue;
+}
+
+.cities-area{
+    /*background-color: #1b6d85;*/
+}

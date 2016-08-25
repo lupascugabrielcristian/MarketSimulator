@@ -1,0 +1,54 @@
+<div id="cityView">
+
+    <div class="container">
+
+        <div>
+            <a ui-sref="home">Main Menu</a>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-3">
+
+                <div class="cities-area" ng-show="allCities && allCities.length > 0">
+                    <p class="subtitle">All Cities</p>
+
+                    <cities>
+                        <city ng-repeat="city in allCities">{{city.name}}</city>
+                    </cities>
+                </div>
+
+                <div ng-show="!allCities || allCities.length <= 0">
+                    <p>There are no cities loaded</p>
+                </div>
+            </div>
+
+            <div class="col-lg-9">
+
+                <div class="btn-group-vertical" role="group">
+
+                    <p>City Name</p>
+
+                    <button type="button" class="btn btn-default"
+                            ng-click="detailsVisible = !detailsVisible">Details
+                    </button>
+
+                    <div ng-show="detailsVisible" class="well well-lg">Details about the city</div>
+
+                    <button type="button" class="btn btn-default"
+                            ng-click="factoriesVisible = !factoriesVisible">Factories
+                    </button>
+
+                    <div ng-show="factoriesVisible" class="well well-lg">Factories in the city</div>
+
+                    <button type="button" class="btn btn-default"
+                            ng-click="commoditiesVisible = !commoditiesVisible">Commodities
+                    </button>
+
+                    <div ng-show="commoditiesVisible" class="well well-lg">Commodities in this city
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
