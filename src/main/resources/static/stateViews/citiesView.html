@@ -2,53 +2,77 @@
 
     <div class="container">
 
-        <div>
-            <a ui-sref="home">Main Menu</a>
-        </div>
-
         <div class="row">
             <div class="col-lg-3">
 
                 <div class="cities-area" ng-show="allCities && allCities.length > 0">
-                    <p class="subtitle">All Cities</p>
-
                     <cities>
-                        <city ng-repeat="city in allCities">{{city.name}}</city>
+                        <city ng-repeat="city in allCities" ng-click="showCity(city)">{{city.name}}</city>
                     </cities>
                 </div>
 
                 <div ng-show="!allCities || allCities.length <= 0">
-                    <p>There are no cities loaded</p>
+                    <h3 class="alert">There are no cities loaded</h3>
                 </div>
+
             </div>
 
-            <div class="col-lg-9">
+            <div class="col-lg-8" ng-show="selectedCity">
 
                 <div class="btn-group-vertical" role="group">
 
-                    <p>City Name</p>
+                    <h3><span ng-bind="selectedCity.name"></span></h3>
 
                     <button type="button" class="btn btn-default"
                             ng-click="detailsVisible = !detailsVisible">Details
                     </button>
 
-                    <div ng-show="detailsVisible" class="well well-lg">Details about the city</div>
+                    <div ng-show="detailsVisible" class="well well-lg">
+
+                        <div class="to-left">Population: <span ng-bind="selectedCity.population"></span></div> <br>
+                        <div class="to-left">Latitude: <span ng-bind="selectedCity.position.y"></span></div> <br>
+                        <div class="to-left">Longitude: <span ng-bind="selectedCity.position.x"></span></div> <br>
+                    </div>
 
                     <button type="button" class="btn btn-default"
                             ng-click="factoriesVisible = !factoriesVisible">Factories
                     </button>
 
-                    <div ng-show="factoriesVisible" class="well well-lg">Factories in the city</div>
+                    <div ng-show="factoriesVisible" class="well well-lg">
+                        <div ng-repeat="factory in selectedCity.factories">
+                            <div class="to-left"> <span ng-bind="factory.commodity.name"></span>, production <span ng-bind="factory.productionRate"></span></div> <br>
+                        </div>
+                    </div>
 
                     <button type="button" class="btn btn-default"
                             ng-click="commoditiesVisible = !commoditiesVisible">Commodities
                     </button>
 
-                    <div ng-show="commoditiesVisible" class="well well-lg">Commodities in this city
+                    <div ng-show="commoditiesVisible" class="well well-lg">
+
+                        <div ng-repeat="commodity in selectedCity.commodities">
+                            <div class="to-left"> <span ng-bind="commodity.name"></span>  <span ng-bind="commodity.quantity"></span></div> <br>
+                        </div>
+
                     </div>
                 </div>
 
             </div>
+        </div>
+
+        <div class="panel-right">
+            <div class="panel-row">
+                <div class="main-menu-button">
+                    <a ui-sref="home">Main Menu</a>
+                </div>
+            </div>
+
+            <div class="panel-row">
+                <div class="main-menu-button">
+                    <a ng-click="editSelectedCity()">Edit City</a>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

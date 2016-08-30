@@ -6,4 +6,11 @@ function citiesViewController($scope, citiesManager) {
     $scope.commoditiesVisible = false;
 
     $scope.allCities = citiesManager.getCities();
+    $scope.showCity = function(city) {
+        $scope.selectedCity = city
+    };
+
+    $scope.editSelectedCity = function() {
+
+    };
 }

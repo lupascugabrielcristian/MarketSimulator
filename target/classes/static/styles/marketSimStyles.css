@@ -265,6 +265,27 @@ buy-ship .selected {
     opacity: 0.8;
 }
 
+.right-top-main-menu {
+    position: absolute;
+    top: 100px;
+    right: 100px;
+}
+
+.main-menu-button{
+    font-size: 18px;
+}
+
+.main-menu-button a {
+    color: #7fc9ff;
+    cursor: pointer;
+}
+
+.main-menu-button a:hover{
+    color: #fff;
+    text-shadow: 0 0 0.2em #88a9d4, 0 0 0.2em #88a9d4, 0 0 0.2em #88a9d4;
+    text-decoration: none;
+}
+
 /*============================*/
 
 
@@ -425,4 +446,29 @@ border-panel-line {
 
 .dropdown-menu.special > li > a {
     color: #f2ecec;
+}
+
+
+.panel-right {
+    width: 17%;
+    float: right;
+    text-align: center;
+    position: absolute;
+    right: 0;
+    top: 100px;
+    border: solid 1px grey;
+    margin-right: 50px;
+    min-height: 500px;
+    background-color: rgba(249, 255, 239, 0.1);
+}
+
+.panel-row {
+    padding: 15px;
+}
+
+.panel-row:hover{
+    background-color: rgba(249, 255, 239, 0.15);
+}
+.panel-row:active{
+
 }
