@@ -24,7 +24,7 @@
                     <h3><span ng-bind="selectedCity.name"></span></h3>
 
                     <button type="button" class="btn btn-default"
-                            ng-click="detailsVisible = !detailsVisible">Details
+                            ng-click="detailsVisible = !detailsVisible; updateOptions()">Details
                     </button>
 
                     <div ng-show="detailsVisible" class="well well-lg">
@@ -35,17 +35,17 @@
                     </div>
 
                     <button type="button" class="btn btn-default"
-                            ng-click="factoriesVisible = !factoriesVisible">Factories
+                            ng-click="factoriesVisible = !factoriesVisible; updateOptions()">Factories
                     </button>
 
                     <div ng-show="factoriesVisible" class="well well-lg">
                         <div ng-repeat="factory in selectedCity.factories">
-                            <div class="to-left"> <span ng-bind="factory.commodity.name"></span>, production <span ng-bind="factory.productionRate"></span></div> <br>
+                            <div class="to-left"> <span ng-bind="factory.commodity.name"></span>: production <span ng-bind="factory.productionRate"></span></div> <br>
                         </div>
                     </div>
 
                     <button type="button" class="btn btn-default"
-                            ng-click="commoditiesVisible = !commoditiesVisible">Commodities
+                            ng-click="commoditiesVisible = !commoditiesVisible; updateOptions()">Commodities
                     </button>
 
                     <div ng-show="commoditiesVisible" class="well well-lg">
@@ -61,18 +61,42 @@
         </div>
 
         <div class="panel-right">
-            <div class="panel-row">
-                <div class="main-menu-button">
+            <div class="panel-row"  ng-class="{'collapsed': haveOption('finish')}">
+                <div class="main-menu-button" ng-show="!haveOption('finish')">
                     <a ui-sref="home">Main Menu</a>
                 </div>
             </div>
 
-            <div class="panel-row">
+            <div class="panel-row" ng-show="haveOption('details')">
                 <div class="main-menu-button">
-                    <a ng-click="editSelectedCity()">Edit City</a>
+                    <a ng-click="changeDetails()">Change Details</a>
                 </div>
             </div>
 
+            <div class="panel-row" ng-show="haveOption('factories')">
+                <div class="main-menu-button">
+                    <a ng-click="addFactory()">Add factory</a>
+                </div>
+            </div>
+
+            <div class="panel-row" ng-show="haveOption('factories')">
+                <div class="main-menu-button">
+                    <a ng-click="removeFactory()">Remove factory</a>
+                </div>
+            </div>
+
+            <div class="panel-row" ng-show="haveOption('commodities')">
+                <div class="main-menu-button">
+                    <a ng-click="addCommodity()">Add Commodity</a>
+                </div>
+            </div>
+
+            <div class="panel-row" ng-show="haveOption('commodities')">
+                <div class="main-menu-button">
+                    <a ng-click="removeCommodity()">Remove Commodity</a>
+                </div>
+            </div>
         </div>
+
     </div>
 </div>

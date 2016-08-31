@@ -472,3 +472,7 @@ border-panel-line {
 .panel-row:active{
 
 }
+
+.panel-row.collapsed {
+    padding: 0;
+}
