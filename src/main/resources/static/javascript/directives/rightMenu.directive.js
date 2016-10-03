@@ -9,11 +9,12 @@ function rightMenuService($rootScope, events) {
     return {
         addOption: addOption,
         removeOption: removeOption,
-        haveOption: haveOption
+        haveOption: haveOption,
+        clearOptions: clearOptions
     };
 
     function addOption(optionName, callback) {
-        if (findOptionWithName(optionName)) {
+        if (findOptionWithName(optionName).index != -1) {
             console.log("Cannot add option " + optionName + " because was found already");
             return;
         }
@@ -22,8 +23,13 @@ function rightMenuService($rootScope, events) {
         $rootScope.$broadcast(events.rightMenuAddOptionEvent, options);
     }
 
-    function removeOption(option) {
-        var indexToDelete = findOptionWithName(option.title).index;
+    function removeOption(optionName) {
+        var indexToDelete = findOptionWithName(optionName).index;
+
+        if (indexToDelete == -1){
+            return;
+        }
+
         options.splice(indexToDelete, 1);
         $rootScope.$broadcast(events.rightMenuAddOptionEvent, options);
     }
@@ -32,16 +38,32 @@ function rightMenuService($rootScope, events) {
         return findOptionWithName(optionName) != 0;
     }
 
+    function clearOptions() {
+        options = [];
+        $rootScope.$broadcast(events.rightMenuAddOptionEvent, []);
+    }
+
     function findOptionWithName(optionName) {
-        for (var option in options) {
-            if (option.title == optionName){
-                return {
-                    option: option,
-                    index: options.indexOf(option)
-                };
-            }
+        try {
+            options.forEach(function (option) {
+                if (option.title == optionName) {
+                    throw option;
+                }
+            });
         }
-        return 0;
+        catch (optionFound) {
+            return {
+                found: true,
+                option: optionFound,
+                index: options.indexOf(optionFound)
+            };
+        }
+
+        return {
+            found: false,
+            option: "None",
+            index: -1
+        };
     }
 
     function Option(title, callback){
@@ -60,51 +82,11 @@ function rightMenu($rootScope, events, rightMenuService){
         controller : function($scope){
             $scope.options = [];
 
-            // $scope.$on(events.rightMenuAddOptionEvent, function(event, arguments){
-            //    addOption(arguments.data.title, arguments.data.callback);
-            // });
-            //
-            //
-            // $scope.$on(events.rightMenuRemoveOptionEvent, function(event, arguments){
-            //     removeOption(arguments.data);
-            // });
-
-            function addOption(optionName, callback) {
-                // if (findOptionWithName(optionName)) {
-                //     console.log("Cannot add option " + optionName + " because was found already");
-                //     return;
-                // }
-                //
-                // $scope.options.push(new Option(optionName, callback));
-            }
-
-            function removeOption(option) {
-                // var indexToDelete = findOptionWithName(option.title).index;
-                // $scope.options.splice(indexToDelete, 1);
-            }
-
-            $scope.$on(events.rightMenuAddOptionEvent, function(event, arguements){
-                console.log("Updating options in directive");
-                $scope.options = arguements.data;
+            $scope.$on(events.rightMenuAddOptionEvent, function(event, arguments){
+                $scope.options = arguments;
             });
-
-            // function findOptionWithName(optionName) {
-            //     for (var option in $scope.options) {
-            //         if (option.title == optionName){
-            //             return {
-            //                 option: option,
-            //                 index: $scope.options.indexOf(option)
-            //             };
-            //         }
-            //     }
-            //     return 0;
-            // }
         }
     };
-
-    function makeAddOperation() {
-
-    }
 
     function Option(title, callback){
         this.title = title;

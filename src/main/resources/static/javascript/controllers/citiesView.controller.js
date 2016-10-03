@@ -23,33 +23,48 @@ function citiesViewController($scope, citiesManager, rightMenuService) {
     };
 
     $scope.updateOptions = function() {
+        rightMenuService.clearOptions();
+
         if ($scope.detailsVisible) {
-            rightMenuService.addOption(Options.DETAILS)
-        }
-        else {
-            rightMenuService.removeOption(Options.DETAILS);
+            rightMenuService.addOption("More")
         }
 
         if ($scope.factoriesVisible){
-            rightMenuService.addOption(Options.FACTORIES);
-        }
-        else {
-            rightMenuService.removeOption(Options.FACTORIES);
+            rightMenuService.addOption("Add factory", addFactory);
+            rightMenuService.addOption("Remove factory", removeFactory);
         }
 
         if ($scope.commoditiesVisible) {
-            rightMenuService.addOption(Options.COMMODITIES);
-        }
-        else {
-            rightMenuService.removeOption(Options.COMMODITIES);
+            rightMenuService.addOption("Add commodity", addCommodity);
+            rightMenuService.addOption("Remove commodity", removeCommodity);
         }
     };
+
+    function showDetails() {
+        console.log("Show details is not implemented");
+    }
+
+    function addFactory() {
+        console.log("Add factory is not implemented");
+    }
+
+    function removeFactory() {
+        console.log("Remove factory is not implemented");
+    }
+
+    function addCommodity() {
+        console.log("Add commodity function is not implemented");
+    }
+
+    function removeCommodity() {
+        console.log("Remove commodity function is not implemented");
+    }
 
     function Options() {
     }
     Options.FINISH = "finish";
-    Options.DETAILS = "details";
-    Options.FACTORIES = "factories";
-    Options.COMMODITIES = "commodities";
+    Options.DETAILS = "Details";
+    Options.FACTORIES = "Factories";
+    Options.COMMODITIES = "Commodities";
 
 }
