@@ -1,6 +1,6 @@
 angular.module('app').controller('citiesViewController', citiesViewController);
 
-function citiesViewController($scope, citiesManager) {
+function citiesViewController($scope, citiesManager, rightMenuService) {
     $scope.detailsVisible = false;
     $scope.factoriesVisible = false;
     $scope.commoditiesVisible = false;
@@ -10,59 +10,40 @@ function citiesViewController($scope, citiesManager) {
         $scope.selectedCity = city
     };
 
-    $scope.options = [];
-
     $scope.editSelectedCity = function() {
-        $scope.options.push(Options.FINISH);
+        rightMenuService.addOption(Options.FINISH);
     };
 
     $scope.finishEdit = function() {
-        removeOption(Options.FINISH);
+        rightMenuService.removeOption(Options.FINISH);
     };
 
     $scope.haveOption = function(optionName) {
-        return $scope.options.indexOf(optionName) != -1;
+        rightMenuService.haveOption(optionName);
     };
 
     $scope.updateOptions = function() {
         if ($scope.detailsVisible) {
-            addOption(Options.DETAILS);
+            rightMenuService.addOption(Options.DETAILS)
         }
         else {
-            removeOption(Options.DETAILS);
+            rightMenuService.removeOption(Options.DETAILS);
         }
 
         if ($scope.factoriesVisible){
-            addOption(Options.FACTORIES);
+            rightMenuService.addOption(Options.FACTORIES);
         }
         else {
-            removeOption(Options.FACTORIES);
+            rightMenuService.removeOption(Options.FACTORIES);
         }
 
         if ($scope.commoditiesVisible) {
-            addOption(Options.COMMODITIES);
+            rightMenuService.addOption(Options.COMMODITIES);
         }
         else {
-            removeOption(Options.COMMODITIES);
+            rightMenuService.removeOption(Options.COMMODITIES);
         }
     };
-
-    function removeOption(optionName) {
-        var index = $scope.options.indexOf(optionName);
-        if (index != -1){
-            $scope.options.splice(index, 1);
-        }
-    }
-
-    function addOption(optionName) {
-        var index = $scope.options.indexOf(optionName);
-        if (index > -1){
-            return
-        }
-        else {
-            $scope.options.push(optionName);
-        }
-    }
 
     function Options() {
     }
