@@ -4,6 +4,7 @@ import com.marketSim.Controllers.Requests.SaveCommodityRequest;
 import com.marketSim.Controllers.Requests.SaveGameRequest;
 import com.marketSim.Model.*;
 import com.marketSim.interfaces.*;
+import com.marketSim.services.IMessagingService;
 import com.mongodb.MongoTimeoutException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,8 @@ public class RstController {
     private IShipsService shipsService;
     @Autowired
     private ICommoditiesService commoditiesService;
+    @Autowired
+    private IMessagingService messagingService;
 
     @RequestMapping(value = "/initialcities")
     public List<City> getInitialCities(){
@@ -110,5 +113,11 @@ public class RstController {
     @RequestMapping(path = "/saveCommodity", method = RequestMethod.POST)
     public boolean saveCommodity(@RequestBody SaveCommodityRequest request) {
         return commoditiesService.saveCommodity(request.getCommodity());
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+    @RequestMapping(path = "/moreDetails", method = RequestMethod.POST)
+    public void moreDetails(@RequestParam(value="message")String message) {
+        messagingService.sendMessage(String.valueOf(message));
     }
 }

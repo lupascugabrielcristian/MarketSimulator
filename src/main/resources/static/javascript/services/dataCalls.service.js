@@ -9,6 +9,7 @@ function dataCalls($http){
     var getAvailableShipsUrl = "/availableShips";
     var getAvailableCommoditiesUrl = "/availableCommodities";
     var saveCommodityUrl = "/saveCommodity";
+    var moreDetailsUrl = "/moreDetails";
 
     return {
         getInitialCities: getInitialCities,
@@ -18,7 +19,8 @@ function dataCalls($http){
         loadOneGame: loadOneGame,
         getAvailableShips: getAvailableShips,
         getAvailableCommodities: getAvailableCommodities,
-        saveCommodity: saveCommodity
+        saveCommodity: saveCommodity,
+        sendMessage: sendMessage
     };
 
     function getInitialCities(){
@@ -61,5 +63,9 @@ function dataCalls($http){
         return $http.post(saveCommodityUrl, {
             commodity: commodity
         });
+    }
+
+    function sendMessage(message) {
+        return $http.post(moreDetailsUrl + "?message=" + message);
     }
 }

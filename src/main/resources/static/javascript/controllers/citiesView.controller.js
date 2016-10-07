@@ -1,6 +1,6 @@
 angular.module('app').controller('citiesViewController', citiesViewController);
 
-function citiesViewController($scope, citiesManager, rightMenuService) {
+function citiesViewController($scope, citiesManager, rightMenuService, dataCalls) {
     $scope.detailsVisible = false;
     $scope.factoriesVisible = false;
     $scope.commoditiesVisible = false;
@@ -26,7 +26,7 @@ function citiesViewController($scope, citiesManager, rightMenuService) {
         rightMenuService.clearOptions();
 
         if ($scope.detailsVisible) {
-            rightMenuService.addOption("More")
+            rightMenuService.addOption("Send message", sendMessage)
         }
 
         if ($scope.factoriesVisible){
@@ -39,6 +39,13 @@ function citiesViewController($scope, citiesManager, rightMenuService) {
             rightMenuService.addOption("Remove commodity", removeCommodity);
         }
     };
+
+    $scope.i = 0;
+    function sendMessage() {
+        var message = "M_" + $scope.i;
+        dataCalls.sendMessage(message);
+        $scope.i++;
+    }
 
     function showDetails() {
         console.log("Show details is not implemented");
